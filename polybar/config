@@ -1,0 +1,119 @@
+[colors]
+background           = #282828
+background-alt       = #fbf1c7
+foreground           = #bdae93
+foreground-alt       = #d5c4a1
+primary              = #bdae93
+secondary            = #83a598
+alert                = #fb4934
+
+[bar/myBar]
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 0.5%
+radius = 0
+fixed-center = true
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = ${colors.background-alt}
+
+border-size = 0
+border-color = ${colors.background}
+
+padding-left = 3
+padding-right = 3
+padding-bottom = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = "Comic Code Medium:style=Regular:size=11:antialias=false"
+font-1 = "Font Awesome 5 Free Regular:style=Regular:antialias=false"
+font-2 = "Font Awesome 5 Brands Regular:style=Regular:antialias=false"
+font-3 = "Font Awesome 5 Free Solid:style=Solid:antialias=false"
+font-4 = "CaskaydiaCove Nerd Font Mono:style=Book:antialias=false;-1"
+
+modules-left    = date bspwm
+modules-center  = xwindow
+modules-right   = pamixer memory cpu github
+
+wm-restack = bspwm
+
+override-redirect = false
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:85:...%
+format-foreground = ${colors.foreground}
+format-padding = 3
+
+[module/bspwm]
+type = internal/bspwm
+reverse-scroll = false
+
+ws-icon-default = 
+format = <label-state> <label-mode>
+
+label-focused-foreground = ${colors.background-alt}
+label-focused-padding = 1
+
+label-occupied = "%index%"
+label-occupied-padding = 1
+
+label-urgent = "%index%"!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty =
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${root.foreground}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 1
+date  = %a, %d-%b-%Y
+time  = %r
+
+format-prefix =
+label = "%date% %time%"
+
+[module/pamixer]
+type = custom/script
+interval = 0
+exec = ~/.config/polybar/volume.sh
+
+[module/github]
+type = custom/script
+interval = 0
+exec = ~/.config/polybar/github.sh
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/maniac/scripts/system'
+let g:netrw_dirhist_9='/home/maniac/Downloads/RECON_files'
+let g:netrw_dirhist_8='/home/maniac/Downloads/MyFonts_Order_M12088297/MyFonts Order M12088297'
+let g:netrw_dirhist_7='/home/maniac/scripts/system'
+let g:netrw_dirhist_6='/home/maniac'
+let g:netrw_dirhist_5='/home/maniac/scripts/system'
+let g:netrw_dirhist_4='/home/maniac/writeups/tryhackme/watcher'
+let g:netrw_dirhist_3='/home/maniac/writeups/tryhackme'
+let g:netrw_dirhist_2='/home/maniac/writeups'
+let g:netrw_dirhist_1='/home/maniac'

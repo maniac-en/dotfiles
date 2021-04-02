@@ -1,0 +1,131 @@
+*magnum.txt*	Pure Vim script big integer library
+
+Author: David Bürgin <dbuergin@gluet.ch>
+License: Same terms as Vim itself (see |license|)
+
+DESCRIPTION					*magnum*
+
+Magnum is a big integer library written in Vim script.  It provides a small
+set of predicates, arithmetic, and conversion operations.  It also includes a
+simple random number generator.
+
+Magnum has a lean user interface.  There is a single point of entry,
+|magnum#Int|, which accepts a number or a string and returns an Integer
+object.  All further interaction happens with such Integer objects.
+
+INTEGERS					*magnum-Integer*
+
+"Integer" is the name given to the immutable multiple-precision integer data
+type that lies at the heart of magnum.  You can obtain an instance of Integer
+by calling |magnum#Int|.
+
+Arithmetic and other operations are implemented as method calls on Integer
+objects.  They are documented below.
+
+						*magnum#Int*
+magnum#Int({number})
+magnum#Int({string} [, {base}])
+			Creates a new Integer object.  The argument may be a
+			{number}, or a {string} representing a number.  An
+			optional {base} between 2 and 36 can be given to
+			specify the radix of {string}.  Default is base 10.
+
+			Throws an exception for arguments of the wrong type,
+			invalid {base}, and for a {string} that cannot be
+			parsed.
+
+In the following, {value} represents an Integer argument.  All methods throw
+an exception when passed an argument other than an Integer.  For purposes of
+catching, all exception values are prefixed with "magnum:".
+
+Predicates ~
+
+Integer.Eq({value})	Returns true if Integer is equal to {value}, false
+			otherwise.
+
+Integer.Cmp({value})	Returns -1, 0, 1, depending on whether Integer is less
+			than, equal, greater than {value}.
+
+Integer.IsZero()	True if Integer is zero.
+Integer.IsPositive()	True if Integer is positive.
+Integer.IsNegative()	True if Integer is negative.
+Integer.IsEven()	True if Integer is even.
+Integer.IsOdd()		True if Integer is odd.
+
+Arithmetic operators ~
+
+Integer.Abs()		Returns the absolute value of Integer, | x |.
+
+Integer.Neg()		Returns the negated value of Integer, -x.
+
+Integer.Add({value})	Returns the sum of Integer and {value}, x + y.
+
+Integer.Sub({value})	Returns the difference of Integer and {value}, x - y.
+
+Integer.Mul({value})	Returns the product of Integer and {value}, x * y.
+
+Integer.Div({value})	Divides Integer by {value} and returns the quotient,
+			x / y.
+			Throws an exception on division by zero.
+
+Integer.Rem({value})	Divides Integer by {value} and returns the remainder,
+			x % y.
+			Throws an exception on division by zero.
+
+Integer.DivRem({value})
+			Divides Integer by {value} and returns the pair
+			[quotient, remainder].
+			Throws an exception on division by zero.
+
+Integer.Pow({number})	Raises Integer to the power of {number}, which must be
+			a number, and returns the result, x^y.
+			Throws an exception when {number} is not a number, and
+			when {number} is negative.
+
+Accessor methods ~
+
+Integer.Number()	Returns Integer as a Vim number.
+			Throws an exception when the Integer overflows (does
+			not fit in a number).
+
+Integer.String([{base}])
+			Returns Integer as a string.  An optional {base}
+			between 2 and 36 can be given to specify the radix of
+			the string representation.  Default is base 10.
+			Throws an exception when {base} is not a number, and
+			for invalid {base}.
+
+Constants ~
+						*magnum#ZERO*
+magnum#ZERO		The Integer value 0.
+						*magnum#ONE*
+magnum#ONE		The Integer value 1.
+
+Note that you must qualify these variables with |g:| when using them inside a
+function.
+
+RANDOM INTEGERS					*magnum-random*
+
+The function |magnum#random#NextInt| produces pseudo-random Integer values
+within a range.  This function employs the XORSHIFT-ADD algorithm available at
+http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/XSADD/.
+
+						*magnum#random#NextInt*
+magnum#random#NextInt([{start},] {end})
+			Returns a new, randomly generated Integer in the
+			interval between {start} inclusive and {end}
+			exclusive.  The optional {start} must be strictly less
+			than {end}.  Default is |magnum#ZERO|.
+
+			Throws an exception when either argument is not an
+			Integer, and when {start} is greater than or equal to
+			{end}.
+
+						*magnum#random#SetSeed*
+magnum#random#SetSeed({number})
+			Resets the state of the random number generator to the
+			state derived from seed {number}.  Only the least
+			significant 32 bits of {number} are used.  |+num64|
+			Throws an exception when {number} is not a number.
+
+ vim:tw=78:ts=8:ft=help:norl:
