@@ -20,7 +20,7 @@ set t_Co=256
 set background=dark
 colorscheme custom
 if has('termguicolors')
-	set notermguicolors
+	set termguicolors
 endif
 set laststatus=2
 set ruler
@@ -119,10 +119,6 @@ let g:NERDToggleCheckAllLines = 1
 " NERD Custom Delimiters
 let g:NERDCustomDelimiters = { 'vim': { 'left': '"', 'leftAlt': '"""' }, }
 
-""" emmet-vim
-let g:user_emmet_leader_key='<C-Z>'
-let g:user_emmet_mode='a'    "enable all function in all mode.
-
 """ undotree
 let g:undotree_WindowLayout = 2
 let g:undotree_DiffAutoOpen = 0
@@ -134,12 +130,6 @@ let g:undotree_HighlightChangedWithSign = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_browser = 'chromium --new-window'
 let g:instant_markdown_port = 9999
-
-""" limelight.vim
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-" autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
 
 """ fzf.vim
 set rtp+=$HOME/.fzf
@@ -232,6 +222,7 @@ nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
 " write & quit mapping
+noremap <silent> <leader>x :x<CR>
 noremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>q :q<CR>
 noremap <silent> <leader>Q :q!<CR>
@@ -247,6 +238,9 @@ noremap <silent> <C-h> <C-w>h
 noremap <silent> <C-j> <C-w>j
 noremap <silent> <C-k> <C-w>k
 noremap <silent> <C-l> <C-w>l
+
+" tab to switch b/w parenthesis
+noremap <silent> <TAB> %
 
 " check file in shellcheck:
 nmap <silent> <leader>s :!clear && shellcheck -x %<CR>
