@@ -19,20 +19,22 @@
 
 # Programs checklist
 	(ofcourse some are optional & replaceable)
-- [ ] bspwm
-- [ ] rofi
-- [ ] sxhkd
-- [ ] polybar
-- [ ] picom
-- [ ] pcmanfm
 - [ ] alacritty
+- [ ] bspwm
 - [ ] clipster
-- [ ] zsh
-- [ ] vim
-- [ ] tmux
-- [ ] zathura
-- [ ] screenkey
+- [ ] dunst
 - [ ] neofetch
+- [ ] pcmanfm
+- [ ] picom
+- [ ] polybar
+- [ ] rofi
+- [ ] screenkey
+- [ ] sxhkd
+- [ ] tmux
+- [ ] vim
+- [ ] zathura
+- [ ] zsh
+- [ ] GTK theme
 
 # Installation info
 - TODO

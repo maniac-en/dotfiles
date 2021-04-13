@@ -1,49 +1,52 @@
 #!/usr/bin/env bash
 
-# bspwm
-rsync -r --delete "$HOME"/.config/bspwm "$PWD"
-
-# rofi
-rsync -r --delete "$HOME"/.config/rofi "$PWD"
-
-# sxhkd
-rsync -r --delete "$HOME"/.config/sxhkd "$PWD"
-
-# polybar
-rsync -r --delete "$HOME"/.config/polybar "$PWD"
-
-# picom
-rsync -r "$HOME"/.config/picom.conf "$PWD"/picom/
-
-# pcmanfm
-rsync -r --delete "$HOME"/.config/pcmanfm "$PWD"
-
 # alacritty
 rsync -r --delete "$HOME"/.config/alacritty "$PWD"
+
+# bspwm
+rsync -r --delete "$HOME"/.config/bspwm "$PWD"
 
 # clipster
 rsync -r --delete "$HOME"/.config/clipster "$PWD"
 
-# zsh
-rsync -r "$HOME"/.zshrc "$PWD"/zsh/
-rsync -r --delete "$HOME"/.zsh "$PWD"/zsh/
-rsync -r --delete "$HOME"/.zsh_functions "$PWD"/zsh/
+# dunst
+rsync -r --delete "$HOME"/.config/dunst "$PWD"
+
+# neofetch
+rsync -r --delete "$HOME"/.config/neofetch "$PWD"
+
+# pcmanfm
+rsync -r --delete "$HOME"/.config/pcmanfm "$PWD"
+
+# picom
+rsync -r "$HOME"/.config/picom.conf "$PWD"/picom/
+
+# polybar
+rsync -r --delete "$HOME"/.config/polybar "$PWD"
+
+# rofi
+rsync -r --delete "$HOME"/.config/rofi "$PWD"
+
+# screenkey
+rsync -r "$HOME"/.config/screenkey.json "$PWD"/screenkey/
+
+# sxhkd
+rsync -r --delete "$HOME"/.config/sxhkd "$PWD"
+
+# tmux
+rsync -r "$HOME"/.tmux.conf "$PWD"/tmux/
 
 # vim
 rsync -r "$HOME"/.vimrc "$PWD"/vim/
 rsync -r --delete "$HOME"/.vim "$PWD"/vim/
 
-# tmux
-rsync -r "$HOME"/.tmux.conf "$PWD"/tmux/
-
 # zathura
 rsync -r --delete "$HOME"/.config/zathura "$PWD"
 
-# screenkey
-rsync -r "$HOME"/.config/screenkey.json "$PWD"/screenkey/
-
-# neofetch
-rsync -r --delete "$HOME"/.config/neofetch "$PWD"
+# zsh
+rsync -r "$HOME"/.zshrc "$PWD"/zsh/
+rsync -r --delete "$HOME"/.zsh "$PWD"/zsh/
+rsync -r --delete "$HOME"/.zsh_functions "$PWD"/zsh/
 
 # GTK theme
 rsync -rl --delete "$HOME"/.themes/ "$PWD"/gtk/
