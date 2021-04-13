@@ -12,6 +12,10 @@ rsync -r --delete "$HOME"/.config/clipster "$PWD"
 # dunst
 rsync -r --delete "$HOME"/.config/dunst "$PWD"
 
+# gtk theme
+rsync -rl --delete "$HOME"/.themes/ "$PWD"/gtk/
+rsync -r --delete "$HOME"/.config/gtk-3.0 "$PWD"/gtk/
+
 # neofetch
 rsync -r --delete "$HOME"/.config/neofetch "$PWD"
 
@@ -30,6 +34,9 @@ rsync -r --delete "$HOME"/.config/rofi "$PWD"
 # screenkey
 rsync -r "$HOME"/.config/screenkey.json "$PWD"/screenkey/
 
+# scripts
+rsync -r --delete "$HOME"/scripts "$PWD"
+
 # sxhkd
 rsync -r --delete "$HOME"/.config/sxhkd "$PWD"
 
@@ -47,7 +54,3 @@ rsync -r --delete "$HOME"/.config/zathura "$PWD"
 rsync -r "$HOME"/.zshrc "$PWD"/zsh/
 rsync -r --delete "$HOME"/.zsh "$PWD"/zsh/
 rsync -r --delete "$HOME"/.zsh_functions "$PWD"/zsh/
-
-# GTK theme
-rsync -rl --delete "$HOME"/.themes/ "$PWD"/gtk/
-rsync -r --delete "$HOME"/.config/gtk-3.0 "$PWD"/gtk/

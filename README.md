@@ -2,7 +2,7 @@
 
 # Index
 - [Things-to-note](#things-to-note)
-- [Programs-checklist](#programs-checklist)
+- [Checklist](#checklist)
 - [Installation info](#installation-info)
 
 # Things to note
@@ -17,25 +17,25 @@
 	- IMGUR API KEY (for screenshot script) [instructions](https://api.imgur.com/#overview)
 	- GITHUB TOKEN WITH SCOPE FOR NOTIFICATIONS (github notifications in polybar) [instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
-# Programs checklist
+# Checklist
 	(ofcourse some are optional & replaceable)
 - [ ] alacritty
 - [ ] bspwm
 - [ ] clipster
 - [ ] dunst
+- [ ] gtk theme
 - [ ] neofetch
 - [ ] pcmanfm
 - [ ] picom
 - [ ] polybar
 - [ ] rofi
 - [ ] screenkey
+- [ ] scripts
 - [ ] sxhkd
 - [ ] tmux
 - [ ] vim
 - [ ] zathura
 - [ ] zsh
-- [ ] GTK theme
 
 # Installation info
-- TODO
-
+- @@@ TODO
