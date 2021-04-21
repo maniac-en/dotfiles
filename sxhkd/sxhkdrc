@@ -1,0 +1,176 @@
+# $SYS is defined in bspwmrc
+
+# restart bspwm
+super + shift + r
+	"$SYS"/wm_reboot.sh
+
+# force-restart bspwm
+super + shift + ctrl + r
+	bspc wm -r && pkill -USR1 -x sxhkd
+
+# restart sxhkd
+super + grave
+	pkill -USR1 -x sxhkd && "$HOME"/bin/notify2 "SXHKD" "Reload successful!" -t 2000 -r 421
+
+# sxhkd help
+super + slash
+	"$SYS"/binds.sh
+
+# terminal
+super + Return
+	alacritty
+
+# floating terminal
+super + shift + Return
+	alacritty --class Alacritty,terminal_floating
+
+# PCmanfm
+super + o
+	pcmanfm
+
+# new browser
+super + b
+	chromium --new-window
+
+# existing browser
+super + shift + b
+	jumpapp chromium
+
+# # take notes
+# super + n
+#         termite --name=terminal_floating -e "$SYS"/takeNote.sh && exit
+#
+# # read notes
+# super + shift + n
+#         ls -r "$HOME"/notes/d_notes/pdf/*.pdf | head -n1 | xargs zathura
+
+# discord
+super + k
+	jumpapp discord
+
+# spotify
+alt + s
+	jumpapp spotify
+
+# rofi app launcher
+super + p
+	rofi -show drun
+
+# rofi ssh launcher
+super + shift + p
+	rofi -show ssh
+
+# vs-codium
+super + e
+	jumpapp codium
+
+# rofi workspace manager
+super + w
+	rofi -show window -lines 10 -width 50
+
+# clipster
+super + period
+	clipster -o -n 200 -0 | rofi -font "FantasqueSansMono Nerd Font Mono 17" -i -dmenu -sep '\x00' -width 80 -p "clipboard" | sed -ze 's/\n$//' | xclip -selection clipboard || exit 1
+
+# toggle mute volume
+F8
+	pamixer -t
+	# "$SYS"/audio.sh mute
+
+# decrease volume
+F9
+	pamixer -u; pamixer -d 5
+	# "$SYS"/audio.sh down
+
+# increase volume
+F10
+	pamixer -u; pamixer -i 5
+	# "$SYS"/audio.sh up
+
+# notify date-time
+# F6
+#         "$HOME"/bin/notify2 "Date & Time" "$(date +"%d-%m-%Y %I:%M %p")" -t 2500 -r 444 -i "/usr/share/icons/Faba/48x48/categories/preferences-system-time.svg"
+
+# spotify toggle play/pause
+ctrl + F8
+	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && sleep 0.15 && "$HOME"/bin/notify2 "Spotify" "$(python3 "$SYS"/spotify_status.py)" -t 2500 -r 450
+
+# spotify next song
+ctrl + F9
+	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+# spotify previous song
+ctrl + F10
+	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# close/kill node
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# focus the next/previous node in the current workspace
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local.!hidden.window
+
+# go to first/last workspace
+ctrl + {Home,End}
+	bspc desktop -f '^{1,10}' --follow
+
+# switching active workspaces
+super + {Next,Prior}
+	bspc desktop -f {next,prev}.occupied
+
+# switching active workspaces
+super + {_,shift +}Tab
+	bspc desktop -f {next,prev}.occupied
+
+# circulate root node in current workspace
+super + m
+	bspc node @/ -C forward
+
+# change the node state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# hide/unhide active node
+super + {_,shift + }h
+	"$SYS"/node_visibility.sh {hide,show}
+
+# go to workspace 1-9,0
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+
+# go to recent workspace
+super + Pause
+	bspc desktop -f last
+
+# move focused node to a workspace
+super + ctrl + {1-9,0}
+	bspc node -d '^{1-9,10}' --follow
+
+# move focused node to next/previous workspace
+super + ctrl + {Next,Prior}
+	bspc node -d {prev,next}
+
+# move current node to recent workspace
+super + ctrl + Pause
+	bspc node -d last --follow
+
+# move floating nodes
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# expand a node
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a node
+super + alt + ctrl + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# partial screenshot
+Print
+	"$SYS"/screenshot.sh -partial
+
+# full screenshot
+shift + Print
+	"$SYS"/screenshot.sh -full
