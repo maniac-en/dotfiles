@@ -1,0 +1,28 @@
+*spell-under.txt* Simple vim script to force using underline for spell checker.
+
+
+This `spell-under` is a simple vim plugin to change highlight scheme of
+spelling checker to use "UNDERLINE" instead of default "REVERSE" for color
+terminals when `:colorscheme` is set.
+
+This enables you to use both `:syntax on` and `:set spell` by avoiding
+unreadable text situation due to matched reversed background color and syntax
+highlighted foreground text color.
+
+Once `spell-under` is installed, Vim behaves as follows:
+
+* If `g:spell-under` is unset in `.vimrc`, `spell-under` executes
+  `:colorscheme murphy` and fixes up spell checker to use "UNDERLINE".
+* If `.vimrc` has `let g:spell-under='<scheme>'`, `spell-under` executes
+  `:colorscheme <scheme>` and fixes up spell checker to use "UNDERLINE".
+* If `.vimrc` has `let g:spell-under='NONE'`, `spell-under` doesn't executes
+  `:colorscheme <scheme>`.
+* When you execute `colorscheme <scheme>` from any scipt after parsing this
+  plugin or from the vim command prompt, vim sets colorscheme accordingly and
+  fixes up spell checker to use "UNDERLINE".
+* If `g:loaded_spell_under` is set to 1, `spell-under` plugin has been
+  loaded.
+
+# License
+
+MIT License. Copyright (c) 2019 Osamu Aoki
