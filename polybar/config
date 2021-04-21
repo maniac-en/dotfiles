@@ -49,6 +49,10 @@ override-redirect = false
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
+tray-position = right
+tray-padding = 5
+tray-background = ${colors.alt.background}
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:85:...%

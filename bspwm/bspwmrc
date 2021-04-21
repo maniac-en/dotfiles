@@ -27,6 +27,7 @@ bspc rule -a Alacritty focus=on
 bspc rule -a terminal_floating state=floating follow=on center=true rectangle=1100x650+0+0
 bspc rule -a MEGAsync state=floating follow=on center=true rectangle=400x570+0+0
 bspc rule -a Pcmanfm state=floating follow=on center=true
+bspc rule -a superProductivity state=floating follow=on center=true
 bspc rule -a 'Gimp-2.10' state=floating follow=on center=true
 bspc rule -a Sxiv state=floating follow=on center=true
 bspc rule -a '*:pavucontrol:*' state=floating follow=on center=true
