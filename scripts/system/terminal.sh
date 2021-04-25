@@ -5,5 +5,5 @@ wid_t=$(xdotool search --class terminal_fixed)
 
 if [ -z "$wid_t" ]
 then
-	alacritty --class Alacritty,terminal_fixed -e zsh -c tmux
+	alacritty --class Alacritty,terminal_fixed -e zsh -c "tmux new -s 0x11"
 fi

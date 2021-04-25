@@ -128,6 +128,7 @@ let g:undotree_DiffAutoOpen = 0
 let g:undotree_DiffpanelHeight = 10
 let g:undotree_HighlightChangedText = 0
 let g:undotree_HighlightChangedWithSign = 0
+let g:undotree_SetFocusWhenToggle = 1
 
 """ vim-instant-markdown
 let g:instant_markdown_autostart = 0
@@ -228,6 +229,7 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 " write & quit mapping
 noremap <silent> <leader>x :x<CR>
 noremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>a :qall<CR>
 noremap <silent> <leader>Q :q!<CR>
 
 " quick split
