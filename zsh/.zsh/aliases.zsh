@@ -1,7 +1,7 @@
 #git
-alias g.='git add -p'
+alias g.='git add --all .'
 alias ga='git add'
-alias gar='git add --all .'
+alias gar='git add -p'
 alias gc='git commit -S -vv'
 alias gcr='git commit -S --amend --reuse-message=HEAD'
 alias gd='git diff'
@@ -60,7 +60,7 @@ alias copy='xclip -selection clipboard'
 alias copy-img='xclip -selection clipboard -t image/png'
 alias colorpicker='colorpicker --short --one-shot --preview | head -c -1 | xsel -b -i'
 alias get_class='xprop | grep "WM_CLASS"'
-alias info='echo -n "\n" ; neofetch | sed "16d"'
+alias info='printf "\n" ; neofetch | sed "16d"'
 
 #no idea why I made them
 alias clrdockerps='docker rm $(docker ps -a -f status=exited -f status=created -q) 2>/dev/null'

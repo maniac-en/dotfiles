@@ -22,7 +22,7 @@ super + slash
 
 # terminal
 super + Return
-	jumpapp alacritty -e zsh -c "tmux attach || tmux"
+	"$SYS"/terminal.sh
 
 # floating terminal
 super + shift + Return
@@ -33,11 +33,7 @@ super + o
 	pcmanfm
 
 # new browser
-super + b
-	chromium --new-window
-
-# existing browser
-super + shift + b
+super + space
 	jumpapp chromium
 
 # # take notes
@@ -180,5 +176,5 @@ Print
 	"$SYS"/screenshot.sh -partial
 
 # full screenshot
-shift + Print
+super + Print
 	"$SYS"/screenshot.sh -full
