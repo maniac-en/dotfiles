@@ -12,6 +12,10 @@ super + shift + ctrl + r
 super + grave
 	pkill -USR1 -x sxhkd && "$HOME"/bin/notify2 "SXHKD" "Reload successful!" -t 2000 -r 421
 
+# restart polyar
+super + ctrl + p
+	"$SYS"/reload_polybar.sh
+
 # aliases list
 super + a
 	"$SYS"/aliases.sh
@@ -46,11 +50,11 @@ super + space
 
 # discord
 super + k
-	jumpapp discord
+	"$SYS"/discord.sh
 
 # spotify
 alt + s
-	jumpapp spotify
+	"$SYS"/spotify.sh
 
 # rofi app launcher
 super + p
@@ -93,7 +97,7 @@ F6
 
 # spotify toggle play/pause
 ctrl + F8
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && sleep 0.15 && "$HOME"/bin/notify2 "Spotify" "$(python3 "$SYS"/spotify_status.py)" -t 2500 -r 450
+	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # spotify next song
 ctrl + F9
