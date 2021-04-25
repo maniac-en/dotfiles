@@ -4,15 +4,15 @@
     geometry = "500x10-20+40"
     indicate_hidden = yes
     shrink = true
-    transparency = 10
+    transparency = 0
     notification_height = 0
     separator_height = 0
-    padding = 15
-    horizontal_padding = 20
+    padding = 10
+    horizontal_padding = 15
     frame_width = 1
     frame_color = "#d8dee9"
     separator_color = frame
-    font = FantasqueSansMono Nerd Font Mono 17
+    font = Comic Code Medium 14
     height = 4
     markup = full
     format = "<span foreground='#f3f4f5'><b>%s</b>%p</span>\n%b"
@@ -39,8 +39,7 @@
     mouse_middle_click = do_action
     mouse_right_click = close_all
     sort = yes
-    idle_threshold = 60
-
+    idle_threshold = -1
 
 [shortcuts]
     close = ctrl+space

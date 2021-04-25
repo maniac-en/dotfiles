@@ -10,10 +10,10 @@ less_termcap[mb]="${fg_bold[red]}"
 less_termcap[md]="${fg_bold[red]}"
 less_termcap[me]="${reset_color}"
 # standout mode
-less_termcap[so]="${fg_bold[yellow]}${bg[blue]}"
+less_termcap[so]="${bg[white]}${fg_bold[black]}"
 less_termcap[se]="${reset_color}"
 # underlining
-less_termcap[us]="${fg_bold[green]}"
+less_termcap[us]="${fg[yellow]}"
 less_termcap[ue]="${reset_color}"
 
 # Absolute path to this file's directory.

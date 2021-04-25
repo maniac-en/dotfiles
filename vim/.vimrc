@@ -45,6 +45,7 @@ set undodir=$HOME/.cache/vim/undo
 set autoread
 set noerrorbells
 set updatetime=300
+set ttymouse=xterm2
 set mouse=a
 set dictionary+=/usr/share/dict/words
 map Q gq
@@ -185,6 +186,7 @@ augroup fileType
         autocmd BufNewFile,BufRead *.md,*.markdown set filetype=ghmarkdown
         autocmd filetype sh nmap <leader>r :w<CR>:!clear;bash %<CR>
         autocmd filetype python nmap <leader>r :w<CR>:!clear;python %<CR>
+	autocmd filetype c nmap <leader>r :w<CR>:!clear; gcc % && ./a.out<CR>
         autocmd BufRead,BufNewFile *.sage nmap <leader>r :w<CR>:!clear;sage %<CR>
 augroup END
 
@@ -229,8 +231,8 @@ noremap <silent> <leader>q :q<CR>
 noremap <silent> <leader>Q :q!<CR>
 
 " quick split
-noremap <silent> <leader>v :vsp<CR>
-noremap <silent> <leader>h :sp<CR>
+noremap <silent> <leader>vs :vsp<CR>
+noremap <silent> <leader>hs :sp<CR>
 noremap <silent> <C-h> <C-w>h
 noremap <silent> <C-j> <C-w>j
 noremap <silent> <C-k> <C-w>k

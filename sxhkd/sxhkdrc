@@ -12,13 +12,17 @@ super + shift + ctrl + r
 super + grave
 	pkill -USR1 -x sxhkd && "$HOME"/bin/notify2 "SXHKD" "Reload successful!" -t 2000 -r 421
 
+# aliases list
+super + a
+	"$SYS"/aliases.sh
+
 # sxhkd help
 super + slash
 	"$SYS"/binds.sh
 
 # terminal
 super + Return
-	alacritty
+	jumpapp alacritty -e zsh -c "tmux attach || tmux"
 
 # floating terminal
 super + shift + Return
@@ -88,8 +92,8 @@ F10
 	# "$SYS"/audio.sh up
 
 # notify date-time
-# F6
-#         "$HOME"/bin/notify2 "Date & Time" "$(date +"%d-%m-%Y %I:%M %p")" -t 2500 -r 444 -i "/usr/share/icons/Faba/48x48/categories/preferences-system-time.svg"
+F6
+	"$HOME"/bin/notify2 "Date & Time" "$(date +"%d-%m-%Y %I:%M %p")" -t 2500 -r 444 -i "/usr/share/icons/Faba/48x48/categories/preferences-system-time.svg"
 
 # spotify toggle play/pause
 ctrl + F8
@@ -126,6 +130,10 @@ super + {_,shift +}Tab
 # circulate root node in current workspace
 super + m
 	bspc node @/ -C forward
+
+# rotate node by 90 deg
+super + r
+	bspc node @/ -R 90
 
 # change the node state
 super + {t,shift + t,s,f}

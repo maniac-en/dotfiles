@@ -89,7 +89,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#696969,bold"
 ZSHZ_CASE=smart
 
 # colored man pages in zsh
-[ -f "$HOME"/.zsh/colored-man-pages.plugin.zsh ] && source "$HOME"/.zsh/colored-man-pages.plugin.zsh
+[ -f "$HOME"/.zsh/man_page_colored.zsh ] && source "$HOME"/.zsh/man_page_colored.zsh
 
 # custom functions
 [ -f "$HOME"/.zsh/custom_functions.zsh ] && source "$HOME"/.zsh/custom_functions.zsh

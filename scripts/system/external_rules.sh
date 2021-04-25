@@ -9,7 +9,7 @@ consequences=$4
 main() {
     case "$class" in
         Spotify)
-            echo "state=fullscreen desktop=5 follow=on"
+            echo "state=tiled desktop=5 follow=on"
             ;;
         "")
             sleep 0.1
