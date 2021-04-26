@@ -139,7 +139,11 @@ let g:instant_markdown_port = 9999
 set rtp+=$HOME/.fzf
 let g:fzf_layout = { 'down': '~40%' }
 
-" search in git project else in current dir
+""" vim help tags
+packloadall
+silent! helptags ALL
+
+""" search in git project else in current dir
 command! -bang -nargs=* PRg
                         \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
 command! ProjectFiles execute 'Files' s:find_git_root()
@@ -230,6 +234,7 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 noremap <silent> <leader>x :x<CR>
 noremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>wq :wq<CR>
 noremap <silent> <leader>a :qall<CR>
 noremap <silent> <leader>Q :q!<CR>
 
