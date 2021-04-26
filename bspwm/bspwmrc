@@ -30,6 +30,7 @@ bspc rule -a install4j-burp-StartBurp desktop=2 focus=on state=floating center=t
 bspc rule -a Vmware desktop=3 focus=on state=tiled follow=on
 bspc rule -a VSCodium desktop=4 follow=on state=fullscreen border=off follow=on
 bspc rule -a mpv desktop=5 focus=on state=fullscreen follow=on
+bspc rule -a superProductivity desktop=6 state=floating follow=on center=true
 bspc rule -a discord desktop=9 focus=on state=tiled border=off follow=on
 bspc rule -a Chromium desktop=10 focus=on state=tiled border=off follow=on
 
@@ -37,7 +38,6 @@ bspc rule -a Chromium desktop=10 focus=on state=tiled border=off follow=on
 bspc rule -a terminal_floating state=floating follow=on center=true rectangle=1100x650+0+0
 bspc rule -a MEGAsync state=floating follow=on center=true rectangle=400x570+0+0
 bspc rule -a Pcmanfm state=floating follow=on center=true
-bspc rule -a superProductivity state=floating follow=on center=true
 bspc rule -a vlc state=floating follow=on center=true
 bspc rule -a 'Gimp-2.10' state=floating follow=on center=true
 bspc rule -a Sxiv state=floating follow=on center=true

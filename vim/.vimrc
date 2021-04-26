@@ -228,6 +228,7 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 
 " write & quit mapping
 noremap <silent> <leader>x :x<CR>
+noremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>q :q<CR>
 noremap <silent> <leader>a :qall<CR>
 noremap <silent> <leader>Q :q!<CR>
@@ -244,8 +245,7 @@ noremap <silent> <C-l> <C-w>l
 noremap <silent> <TAB> %
 
 " check file in shellcheck:
-nmap <silent> <leader>s :!clear && shellcheck -x %<CR>
-nmap <silent> <leader>ws :w<CR>:!clear && shellcheck -x %<CR>
+nmap <silent> <leader>s :w<CR>:!clear && shellcheck -x %<CR>
 
 " closing a buffer
 noremap <silent> <leader>d :bd<CR>
