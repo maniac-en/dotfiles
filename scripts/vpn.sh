@@ -2,14 +2,14 @@
 set -e
 
 _usage() {
-    echo "Usage : $(basename "$0") [htb|thm|csl]"
+    echo "Usage : $(basename "$0") [htb|thm]"
     exit 1
 }
 
 if [ ! $# -eq 1 ]; then _usage; fi
 case "$1" in
-    htb|thm|csl)
-        sudo openvpn "$HOME"/0x11/"$1"/man1ac.ovpn
+    htb|thm)
+        sudo openvpn "$HOME"/0x11/vpn/"$1".ovpn
         exit 0
         ;;
     *)
