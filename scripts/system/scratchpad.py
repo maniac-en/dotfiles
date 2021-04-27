@@ -11,17 +11,17 @@ LOG_FILE = r'.cache/bspwm_node_visibility.log'
 LOG_FILE_PATH = os.path.join(os.path.expanduser('~'), LOG_FILE)
 
 """
-usage: scratchpad.py [-h] -d {1,2,3,4,5,6,7,8,9,10} -c CLASS_NAME -x ... [--debug]
+usage: scratchpad.py [-h] [--debug] -d {1,2,3,4,5,6,7,8,9,10} -c CLASS_NAME -x ...
 
 scratchpad manager script
 
 optional arguments:
   -h, --help            show this help message and exit
+  --debug               cmd to start app if not running already
   -d {1,2,3,4,5,6,7,8,9,10}
                         desktop number that will have the app
   -c CLASS_NAME         exact or possible app class name for regex match
   -x ...                cmd to start app if not running already
-  --debug               cmd to start app if not running already
 """
 
 
