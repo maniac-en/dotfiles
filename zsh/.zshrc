@@ -104,6 +104,3 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 bindkey -M menuselect '^o' accept-and-infer-next-history
 compinit
 _comp_options+=(globdots)
-
-# todo stuff
-# if [ -f "$HOME"/.todo ]; then cat "$HOME"/.todo; fi

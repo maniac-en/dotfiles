@@ -202,14 +202,14 @@ set linebreak nowrap
 command! HighlightExtraSpaces :match Search /\S\zs\s\+$/
 
 """ remove trailing whitespaces
-command! RemoveExtraSpaces :%s/\s\+$//g
+command! RemoveExtraSpaces :%s/\s\+$//ge | nohl
 
 """ mappings
 " remap leader-key
 let mapleader = ','
 
 " stop highlighting matches
-nnoremap <silent> <Esc><Esc> :noh<CR>:match<CR>:redraw!<CR>
+nnoremap <silent> <BS><BS> :noh<CR>
 
 " netrw
 nnoremap <silent> - :Vexplore<CR>
@@ -247,7 +247,7 @@ noremap <silent> <C-k> <C-w>k
 noremap <silent> <C-l> <C-w>l
 
 " tab to switch b/w parenthesis
-noremap <silent> <TAB> %
+noremap <silent> <SPACE> %
 
 " check file in shellcheck:
 nmap <silent> <leader>s :w<CR>:!clear && shellcheck -x %<CR>
