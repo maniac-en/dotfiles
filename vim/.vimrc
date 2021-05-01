@@ -186,7 +186,6 @@ filetype plugin indent on
 augroup fileType
         autocmd!
         autocmd filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-        autocmd filetype tags setlocal formatoptions+=c formatoptions+=r formatoptions+=o
         " uses https://github.com/jtratner/vim-flavored-markdown
         autocmd BufNewFile,BufRead *.md,*.markdown set filetype=ghmarkdown
         autocmd filetype sh nmap <leader>r :w<CR>:!clear;bash %<CR>

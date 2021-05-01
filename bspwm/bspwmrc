@@ -66,4 +66,7 @@ killall -q picom
 # clear scratchpad cache
 true > "$HOME"/.cache/bspwm_node_visibility.log
 
+# save my aging eyes
+redshift -x && redshift -O 5800K
+
 pkill dunst && notify-send "BSPWM" "Boot successful"

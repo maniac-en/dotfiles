@@ -69,6 +69,7 @@ export FZF_ALT_C_COMMAND="blsd" # https://github.com/junegunn/blsd
 
 # build completion menu
 autoload -Uz compinit
+autoload -Uz zcalc
 setopt menu_complete
 setopt auto_menu
 setopt complete_in_word
