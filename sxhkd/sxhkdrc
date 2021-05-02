@@ -178,3 +178,11 @@ Print
 # full screenshot
 super + Print
 	"$SYS"/screenshot.sh -full
+
+# partial + offline screenshot
+shift + Print
+	"$SYS"/screenshot.sh -partial offline
+
+# full + offline screenshot
+super + shift + Print
+	"$SYS"/screenshot.sh -full offline
