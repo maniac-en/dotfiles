@@ -14,8 +14,8 @@ export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 source "$HOME/.cargo/env"
 
 # source required zsh scripts
-[[ -d "$HOME"/.zsh ]] &&
-	for zsh_files in "$HOME"/.zsh/*.zsh
+[[ -d "$HOME"/.zsh/zsh-config ]] &&
+	for zsh_files in "$HOME"/.zsh/zsh-config/*.zsh
 	do
 		source "$zsh_files"
 	done
