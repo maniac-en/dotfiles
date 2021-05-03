@@ -1,0 +1,16 @@
+# setopts
+setopt NO_BEEP
+setopt NO_CASE_GLOB
+setopt PROMPT_SUBST
+setopt INTERACTIVE_COMMENTS
+setopt MENU_COMPLETE
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
+setopt LOCALOPTIONS
+
+# unsetopts
+unsetopt CORRECT_ALL
+unsetopt COMPLETE_ALIASES
+unsetopt FLOWCONTROL
+unsetopt WARN_CREATE_GLOBAL
