@@ -101,9 +101,9 @@ zle -N _forward-kill-arg
 zle -N _backward-kill-word
 zle -N _backward-kill-path
 
-# kill whole word ignore "/" using <ALT>=
+# kill whole word ignore "/" using alt+backspace
 function _backward_kill_default_word() {
   WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
 }
 zle -N backward-kill-default-word _backward_kill_default_word
-bindkey '\e=' backward-kill-default-word
+bindkey '^[^?' backward-kill-default-word
