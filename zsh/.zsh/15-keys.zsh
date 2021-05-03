@@ -53,6 +53,7 @@ bindkey -M menuselect ${terminfo[kcbt]}	reverse-menu-complete	# shift-tab
 bindkey -M menuselect ${terminfo[kpp]}	backward-word		# page-down
 bindkey -M menuselect ${terminfo[knp]}	forward-word		# page-up
 bindkey -M menuselect '\eo'		accept-and-infer-next-history	# ctrl-o
+bindkey -M menuselect '/'  		accept-and-infer-next-history
 bindkey -- '\ee'			end-of-list		# ctrl-e
 
 # Misc
@@ -100,3 +101,9 @@ zle -N _forward-kill-arg
 zle -N _backward-kill-word
 zle -N _backward-kill-path
 
+# kill whole word ignore "/" using <ALT>=
+function _backward_kill_default_word() {
+  WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
+}
+zle -N backward-kill-default-word _backward_kill_default_word
+bindkey '\e=' backward-kill-default-word
