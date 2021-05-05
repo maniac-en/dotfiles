@@ -19,4 +19,3 @@ source "$HOME/.cargo/env"
 	do
 		source "$zsh_files"
 	done
-
