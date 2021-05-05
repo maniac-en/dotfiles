@@ -41,6 +41,8 @@
 :Snippets	fzf-vim.txt	/*:Snippets*
 :SpeedDatingFormat	speeddating.txt	/*:SpeedDatingFormat*
 :Tags	fzf-vim.txt	/*:Tags*
+:Undoquit	undoquit.txt	/*:Undoquit*
+:UndoquitTab	undoquit.txt	/*:UndoquitTab*
 :Windows	fzf-vim.txt	/*:Windows*
 <P	unimpaired.txt	/*<P*
 <p	unimpaired.txt	/*<p*
@@ -48,6 +50,8 @@
 =p	unimpaired.txt	/*=p*
 >P	unimpaired.txt	/*>P*
 >p	unimpaired.txt	/*>p*
+CTRL-W_U	undoquit.txt	/*CTRL-W_U*
+CTRL-W_u	undoquit.txt	/*CTRL-W_u*
 NERDComment()	NERD_Commenter.txt	/*NERDComment()*
 NERDCommentIsCharCommented()	NERD_Commenter.txt	/*NERDCommentIsCharCommented()*
 NERDCommentIsLineCommented()	NERD_Commenter.txt	/*NERDCommentIsLineCommented()*
@@ -210,6 +214,8 @@ g:instant_markdown_mathjax	vim-instant-markdown.txt	/*g:instant_markdown_mathjax
 g:instant_markdown_open_to_the_world	vim-instant-markdown.txt	/*g:instant_markdown_open_to_the_world*
 g:instant_markdown_port	vim-instant-markdown.txt	/*g:instant_markdown_port*
 g:instant_markdown_slow	vim-instant-markdown.txt	/*g:instant_markdown_slow*
+g:undoquit_mapping	undoquit.txt	/*g:undoquit_mapping*
+g:undoquit_tab_mapping	undoquit.txt	/*g:undoquit_tab_mapping*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
 i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 instant-markdown	vim-instant-markdown.txt	/*instant-markdown*
@@ -233,6 +239,12 @@ surround-mappings	surround.txt	/*surround-mappings*
 surround-replacements	surround.txt	/*surround-replacements*
 surround-targets	surround.txt	/*surround-targets*
 surround.txt	surround.txt	/*surround.txt*
+undoquit	undoquit.txt	/*undoquit*
+undoquit-contents	undoquit.txt	/*undoquit-contents*
+undoquit-installation	undoquit.txt	/*undoquit-installation*
+undoquit-settings	undoquit.txt	/*undoquit-settings*
+undoquit-usage	undoquit.txt	/*undoquit-usage*
+undoquit.txt	undoquit.txt	/*undoquit.txt*
 undotree-bugs	undotree.txt	/*undotree-bugs*
 undotree-changelog	undotree.txt	/*undotree-changelog*
 undotree-config	undotree.txt	/*undotree-config*

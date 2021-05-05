@@ -25,6 +25,7 @@ alias dnd!='dunstctl set-paused false'
 alias ....='cd ../../..'
 alias ...='cd ../..'
 alias ..='cd ..'
+alias getcd="pwd | tr -d '\n' | copy"
 alias sc='source $HOME/.zshrc'
 alias ali='$EDITOR $HOME/.zsh/zsh-config/10-aliases.zsh && sc'
 alias ip='ip -c -br a'
