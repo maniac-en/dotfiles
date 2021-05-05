@@ -25,7 +25,6 @@ bindkey -- ${terminfo[knp]}	end-of-buffer-or-history
 bindkey -- ${terminfo[khome]}	beginning-of-line
 bindkey -- ${terminfo[kend]}	end-of-line
 bindkey -- ${terminfo[kbs]}	backward-delete-char
-bindkey -- ${terminfo[kdch1]}	delete-char
 bindkey -- ${terminfo[kcub1]}	backward-char
 bindkey -- ${terminfo[kcuf1]}	forward-char
 bindkey -- ${terminfo[kLFT5]}  	backward-word
@@ -68,42 +67,3 @@ function _after-first-word() {
 }
 zle -N _after-first-word
 bindkey '\C-X1' _after-first-word
-
-# Extended word movements/actions
-autoload -Uz select-word-style
-function _zle-with-style() {
-	setopt localoptions
-	unsetopt warn_create_global
-	local style
-	[[ -n "$3" ]] && WORDCHARS=${WORDCHARS/$3}
-	[[ $BUFFER =~ '^\s+$' ]] && style=shell || style=$2
-	select-word-style $style
-	zle $1
-	[[ -n "$3" ]] && WORDCHARS="${WORDCHARS}${3}"
-	select-word-style normal
-}
-
-function _backward-word()		{ _zle-with-style backward-word			bash   }
-function _forward-word()		{ _zle-with-style forward-word			bash   }
-function _backward-arg()		{ _zle-with-style backward-word			shell  }
-function _forward-arg()			{ _zle-with-style forward-word			shell  }
-function _backward-kill-arg()		{ _zle-with-style backward-kill-word 		shell  }
-function _forward-kill-arg()		{ _zle-with-style kill-word 			shell  }
-function _backward-kill-word()		{ _zle-with-style backward-kill-word 		normal }
-function _backward-kill-path()		{ _zle-with-style backward-kill-word 		normal '/' }
-
-zle -N _backward-word
-zle -N _forward-word
-zle -N _backward-arg
-zle -N _forward-arg
-zle -N _backward-kill-arg
-zle -N _forward-kill-arg
-zle -N _backward-kill-word
-zle -N _backward-kill-path
-
-# kill whole word ignore "/" using alt+backspace
-function _backward_kill_default_word() {
-  WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
-}
-zle -N backward-kill-default-word _backward_kill_default_word
-bindkey '^[^?' backward-kill-default-word

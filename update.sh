@@ -51,5 +51,5 @@ rsync -r --delete "$HOME"/.vim "$PWD"/vim/
 rsync -r --delete "$HOME"/.config/zathura "$PWD"
 
 # zsh
+rsync -r --delete "$HOME"/.zsh/ "$PWD"/zsh/
 rsync -r "$HOME"/.zshrc "$PWD"/zsh/
-rsync -r --delete "$HOME"/.zsh "$PWD"/zsh/
