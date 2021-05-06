@@ -40,8 +40,9 @@ configuration {
 #window {
 	background-color: @backgroundcolor;
 	border-color: @separatorcolor;
-	border: 1;
-	border-radius: 2px;
+	border-color: #3c3836;
+	border: 3;
+	border-radius: 7px;
 }
 
 #mainbox {
