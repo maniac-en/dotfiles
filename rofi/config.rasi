@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,ssh,drun,emoji";
+	modi: "window,ssh,drun";
 	width: 50;
 	lines: 10;
 	font: "Comic Code Medium 15";

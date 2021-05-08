@@ -31,7 +31,7 @@ set hidden
 set listchars=tab:>-,space:@,eol:⏎
 set backspace=indent,eol,start
 set modeline
-set modelines=10
+" set modelines=10
 set autoindent smartindent noexpandtab
 set undofile
 set ttyfast
