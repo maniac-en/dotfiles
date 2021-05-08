@@ -14,7 +14,7 @@ rsync -r --delete "$HOME"/.config/dunst "$PWD"
 
 # gtk theme
 rsync -rl --delete "$HOME"/.themes/ "$PWD"/gtk/
-rsync -r --delete "$HOME"/.config/gtk-3.0 "$PWD"/gtk/
+rsync -r "$HOME"/.config/gtk-3.0/settings.ini "$PWD"/gtk/
 
 # neofetch
 rsync -r --delete "$HOME"/.config/neofetch "$PWD"

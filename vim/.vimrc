@@ -10,11 +10,6 @@ scriptencoding utf-8
 set spelllang=en
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
-""" Disable BCE to use Ctrl/Shift + arrow keys working inside tmux when using vim
-" https://sunaku.github.io/vim-256color-bce.html
-" https://superuser.com/a/562437
-" set t_ut=
-
 """ appearance
 set t_Co=256
 set background=dark
@@ -36,7 +31,7 @@ set hidden
 set listchars=tab:>-,space:@,eol:⏎
 set backspace=indent,eol,start
 set modeline
-set modelines=10
+" set modelines=10
 set autoindent smartindent noexpandtab
 set undofile
 set ttyfast
@@ -81,14 +76,14 @@ fu! s:find_git_root()
         return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endf
 
-" Source: https://vi.stackexchange.com/a/5977 for cmdheight
-fu! Buildnote()
-        set cmdheight=2
-        echom 'Building '.expand('%')
-        set cmdheight=1
-        silent! execute '!/home/maniac/scripts/system/buildNote.sh %:p'
-        redraw!
-endfu
+" " Source: https://vi.stackexchange.com/a/5977 for cmdheight
+" fu! Buildnote()
+"         set cmdheight=2
+"         echom 'Building '.expand('%')
+"         set cmdheight=1
+"         silent! execute '!/home/maniac/scripts/system/buildNote.sh %:p'
+"         redraw!
+" endfu
 
 """ status-line
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{StatuslineTrailingSpaceWarning()}%=%(l:\%l,\ \c:%c,\ %P\ %)
@@ -212,9 +207,6 @@ let mapleader = ','
 " stop highlighting matches
 nnoremap <silent> <BS><BS> :noh<CR>
 
-" netrw
-nnoremap <silent> - :Vexplore<CR>
-
 " status-bar
 nnoremap <silent> <F7> :call ToggleStatusBar()<CR>
 
@@ -239,13 +231,15 @@ noremap <silent> <leader>wq :wq<CR>
 noremap <silent> <leader>a :qall<CR>
 noremap <silent> <leader>Q :q!<CR>
 
-" quick split
-noremap <silent> <leader>vs :vsp<CR>
-noremap <silent> <leader>hs :sp<CR>
-noremap <silent> <C-h> <C-w>h
-noremap <silent> <C-j> <C-w>j
-noremap <silent> <C-k> <C-w>k
-noremap <silent> <C-l> <C-w>l
+" move around splits
+noremap <silent> gh <C-w>h
+noremap <silent> gj <C-w>j
+noremap <silent> gk <C-w>k
+noremap <silent> gl <C-w>l
+
+" move around tabs
+nmap <C-l> gt
+nmap <C-h> gT
 
 " tab to switch b/w parenthesis
 noremap <silent> <SPACE> %

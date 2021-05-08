@@ -7,7 +7,7 @@
 - [OS Usage](#os-usage)
 
 # Screenshots
-- @@@ yet to finalize which ones to add
+- @@@ yet to finalize which screenshots to add
 
 # Things to note
 - I'm lazy enough to put screenshots, but I'll give you one while I'm making this repo! [Here](https://i.imgur.com/ZbwIlEE.png)
@@ -22,11 +22,13 @@
 	- GITHUB TOKEN WITH SCOPE FOR NOTIFICATIONS (github notifications in polybar) [instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
 # Installation info
-- Run the following command to clean-install
+## CLEAN INSTALL
+- Run the following command for clean installation given you have met the following requirements:
+- @@@ sum-up the requirements
+- Insallation command:
 ```sh
 git clone https://github.com/maniac-en/dotfiles.git "$HOME/"dotfiles \
-	&& cd "$HOME"/dotfiles && chmod a+x install.sh \
-	&& sudo ./install.sh
+	&& cd "$HOME"/dotfiles && sudo ./clean_install.sh
 ```
 
 # OS Usage
