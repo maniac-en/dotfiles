@@ -42,8 +42,8 @@ padding-bottom = 2
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = "Comic Code Medium:style=Medium:size=11:antialias=false"
-font-1 = "Comic Code Medium:style=Medium Italic:size=12:antialias=false"
+font-0 = "Fantasque Sans Mono:style=Bold:size=12:antialias=false"
+font-1 = "Fantasque Sans Mono:style=Italic:size=13:antialias=false"
 font-2 = "Font Awesome 5 Free Regular:style=Regular:antialias=false"
 font-3 = "Font Awesome 5 Brands Regular:style=Regular:antialias=false"
 font-4 = "Font Awesome 5 Free Solid:style=Solid:antialias=false"

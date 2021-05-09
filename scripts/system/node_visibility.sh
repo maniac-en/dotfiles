@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-
 #Source: https://github.com/desyncr/bspwmrc/blob/master/misc/toggle
+
+if ! hash xdotool 2>/dev/null; then exit 1; fi
 
 log_file="$HOME"/.cache/bspwm_node_visibility.log
 focused_window="$(xdotool getactivewindow)"

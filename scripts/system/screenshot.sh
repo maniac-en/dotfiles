@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+if ! hash maim 2>/dev/null; then exit 1; fi
 API_KEY="$IMGUR_CLIENT_SECRET"
 
 function _save_log() {

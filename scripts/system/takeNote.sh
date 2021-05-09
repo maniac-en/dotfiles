@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if ! hash vim 2>/dev/null; then exit 1; fi
+
 notesDir="$HOME/notes/d_notes"
 noteFilename="note-$(date +%d-%m-%Y).md"
 note="$notesDir/$noteFilename"

@@ -46,7 +46,7 @@ bspc rule -a Zathura state=tiled follow=on
 bspc config external_rules_command "$SYS/external_rules.sh"
 
 # sxhkd
-pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x sxhkd > /dev/null || sxhkd -c "$HOME"/.config/sxhkd/sxhkdrc &
 
 # set us keyboard-mapping
 setxkbmap us &
@@ -57,15 +57,10 @@ clipster -d &
 # wallpaper
 "$HOME"/.fehbg &
 
-# kill and start will delay
-killall -q polybar
-killall -q picom
-"$SYS"/do.sh &
+# start some stuff late
+"$SYS"/start_late.sh &
 
 # clear scratchpad cache
 true > "$HOME"/.cache/bspwm_node_visibility.log
-
-# save my aging eyes
-redshift -x && redshift -O 5800K
 
 pkill dunst && notify-send "BSPWM" "Boot successful"
