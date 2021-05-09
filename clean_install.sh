@@ -109,7 +109,7 @@ yay_git_packages=(
 echo "Enabling autologin"
 sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
 sudo ln -sf -- "$HERE"/misc/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
-systemctl enable getty@tty1.service
+sudo systemctl enable getty@tty1.service
 
 echo "Generating locale"
 sudo ln -sf -- "$HERE"/locale/locale.conf /etc/locale.conf
