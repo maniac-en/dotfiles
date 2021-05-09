@@ -63,4 +63,7 @@ clipster -d &
 # clear scratchpad cache
 true > "$HOME"/.cache/bspwm_node_visibility.log
 
+# change screen res if in vm
+if (sudo dmidecode | grep -A3 '^System Information' | grep -qi 'virtual'); then xrandr -s 1400x1050; fi 2>/dev/null
+
 pkill dunst && notify-send "BSPWM" "Boot successful"

@@ -1,9 +1,13 @@
 # Dotfiles & stuff
 
 # Index
+- [Screenshots](#screenshots)
 - [Things-to-note](#things-to-note)
-- [Checklist](#checklist)
 - [Installation info](#installation-info)
+- [OS Usage](#os-usage)
+
+# Screenshots
+- @@@ yet to finalize which screenshots to add
 
 # Things to note
 - I'm lazy enough to put screenshots, but I'll give you one while I'm making this repo! [Here](https://i.imgur.com/ZbwIlEE.png)
@@ -17,25 +21,16 @@
 	- IMGUR API KEY (for screenshot script) [instructions](https://api.imgur.com/#overview)
 	- GITHUB TOKEN WITH SCOPE FOR NOTIFICATIONS (github notifications in polybar) [instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
-# Checklist
-	(ofcourse some are optional & replaceable)
-- [ ] alacritty
-- [ ] bspwm
-- [ ] clipster
-- [ ] dunst
-- [ ] gtk theme
-- [ ] neofetch
-- [ ] pcmanfm
-- [ ] picom
-- [ ] polybar
-- [ ] rofi
-- [ ] screenkey
-- [ ] scripts
-- [ ] sxhkd
-- [ ] tmux
-- [ ] vim
-- [ ] zathura
-- [ ] zsh
-
 # Installation info
-- @@@ TODO
+## CLEAN INSTALL
+- Run the following command for clean installation given you have met the following requirements:
+- @@@ sum-up the requirements
+- Insallation command:
+```sh
+git clone https://github.com/maniac-en/dotfiles.git "$HOME/"dotfiles \
+	&& cd "$HOME"/dotfiles && sudo ./clean_install.sh
+```
+
+# OS Usage
+- @@@ custom scripts use-case
+- @@@ main shortcuts
