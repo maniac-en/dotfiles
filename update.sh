@@ -56,3 +56,9 @@ rsync -r "$HOME"/.zshrc "$PWD"/zsh/
 
 # custom zsh completions
 rsync -r --delete "$HOME"/.zsh_functions/ "$PWD"/compdefs/
+
+# xinitrc
+rsync -r "$HOME"/.xinitrc "$PWD"/X/
+
+# feh
+rsync -r "$HOME"/.fehbg "$PWD"/feh/

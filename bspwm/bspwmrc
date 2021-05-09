@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 bspc rule -r "*"
 export EDITOR=vim
 export SYS="$HOME"/scripts/system
@@ -55,8 +55,7 @@ setxkbmap us &
 clipster -d &
 
 # wallpaper
-# if [ -d "$HOME"/Pictures/walls/rick_and_morty ]; then nitrogen --set-auto --random "$HOME"/Pictures/walls/rick_and_morty; fi
-nitrogen --restore
+"$HOME"/.fehbg &
 
 # kill and start will delay
 killall -q polybar
