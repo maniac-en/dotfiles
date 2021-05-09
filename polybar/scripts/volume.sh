@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if ! hash pamixer 2>/dev/null; then exit 1; fi
+
 function _get_vol() {
 	volume=$(pamixer --get-volume)
 	if pamixer --get-mute &>/dev/null
