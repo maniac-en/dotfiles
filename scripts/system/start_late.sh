@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if ! hash polybar dmidecode picom redshift 2>/dev/null; then exit 1; fi
+
 sleep 11
 
 # polybar
@@ -8,8 +10,9 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done # Wait until the pro
 polybar -c "$HOME"/.config/polybar/config.ini myBar -r & # Launch myBar
 
 # picom
-kill -s usr1 $(pgrep picom)
-picom -b
+if (sudo dmidecode | grep -A3 '^System Information' | grep -qi 'virtual'); \
+then true; else kill -s usr1 $(pgrep picom); picom -b; fi
 
-# redshift
-redshift -x
+# redshift : save my aging eyes
+redshift -x && redshift -O 5800K
+

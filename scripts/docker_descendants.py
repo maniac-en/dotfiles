@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-#
-# usage: python3 docker_descendants.py <image_id> ...
 
+# usage: python3 docker_descendants.py <image_id> ...
 import sys
 from subprocess import check_output
 

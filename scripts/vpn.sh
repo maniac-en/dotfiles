@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+if ! hash openvpn 2>/dev/null; then exit 1; fi
 
 _usage() {
     echo "Usage : $(basename "$0") [htb|thm]"

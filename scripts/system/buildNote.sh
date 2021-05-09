@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if ! hash pandoc 2>/dev/null; then exit 1; fi
+
 filename="$1"
 target="$(dirname "${filename}")/pdf"
 outputFile="$(basename "$filename" .md).pdf"

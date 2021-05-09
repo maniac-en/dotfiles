@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1079,SC2154,SC1078
-set -e
+set -o errexit -o errtrace
 
 # Picks a file name for the output file based on availability:
 dir="$HOME"/screenshots/screencasts
 mkdir -p "$dir"
 
-while [[ -f "$dir"/screencast"$n".mkv ]]
-do
-    n="$((n+1))"
-done
+while [[ -f "$dir"/screencast"$n".mkv ]]; do n="$((n+1))"; done
 
 filename="$dir"/screencast"$n".mkv
 sname="$(basename "$0")"
