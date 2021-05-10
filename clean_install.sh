@@ -151,7 +151,7 @@ _exec rustup default stable # for alacritty-git
 _exec sudo pacman -Rns vim --noconfirm # for gvim-git
 _exec curl -sSO https://download.spotify.com/debian/pubkey_0D811D58.gpg
 _exec gpg --import pubkey_0D811D58.gpg
-_exec rm pubkey_0D811D58
+_exec rm pubkey_0D811D58.gpg
 
 _echo "Installing: yay"
 _exec git clone https://aur.archlinux.org/yay.git
