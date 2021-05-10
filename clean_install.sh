@@ -14,6 +14,7 @@ mkdir -p -- "$HOME"/bin
 mkdir -p -- "$HOME"/.themes
 mkdir -p -- "$HOME"/.config/gtk-3.0
 mkdir -p -- "$HOME"/.cache/vim
+mkdir -p -- "$HOME"/.cargo
 
 _confirm_sigint() {
 	printf "\n"
@@ -84,6 +85,7 @@ yay_normal_packages=(
 	discord
 	zathura
 	vscodium-bin
+	pod2man # dunst dependency
 )
 
 yay_git_packages=(
@@ -114,18 +116,12 @@ sudo locale-gen
 echo "Updating pacman DB"
 sudo pacman -Syyu --noconfirm
 echo "Set tty font"
-pacman -S terminus-font --noconfirm && setfont ter-122b
+sudo pacman -S terminus-font --noconfirm && setfont ter-122b
 echo "Installing pacman packages"
 for pack in "${pacman_packages[@]}"; do p_install "$pack"; done
 rustup default stable # for alacritty-git
 sudo pacman -Rns vim --noconfirm # for gvim-git
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import - # spotify gpg
-
-echo "Enabling autologin"
-rg 'maniac' -r "$USER" "$HERE/misc/autologin.conf" > tmp && mv -f tmp "$HERE/misc/autologin.conf"
-sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
-sudo ln -sf -- "$HERE"/misc/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
-sudo systemctl enable getty@tty1.service
 
 echo "Installing: yay"
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && cd "$OLDPWD" && rm -rf yay
@@ -145,6 +141,12 @@ git clone https://github.com/tmux-plugins/tmux-prefix-highlight "$HOME"/.tmux/pl
 
 echo "Installing: fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf && "$HOME"/.fzf/install --no-update-rc --no-completion --no-key-bindings
+
+echo "Enabling autologin"
+rg 'maniac' -r "$USER" "$HERE/misc/autologin.conf" > tmp && mv -f tmp "$HERE/misc/autologin.conf"
+sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
+sudo ln -sf -- "$HERE"/misc/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
+sudo systemctl enable getty@tty1.service
 
 echo "Changing default monospace font"
 if (fc-list | grep -q -F "Comic Code Medium")
