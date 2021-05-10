@@ -58,6 +58,7 @@ pacman_packages=(
 	dbus
 	dbus-python
 	rustup
+	dmidecode
 )
 
 yay_normal_packages=(
@@ -106,6 +107,7 @@ yay_git_packages=(
 	pamixer
 	maim
 	jumpapp
+	redshift
 )
 
 echo "Generating locale"
