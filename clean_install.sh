@@ -103,12 +103,8 @@ yay_git_packages=(
 	feh
 	pamixer
 	maim
+	jumpapp
 )
-
-echo "Enabling autologin"
-sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
-sudo ln -sf -- "$HERE"/misc/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
-sudo systemctl enable getty@tty1.service
 
 echo "Generating locale"
 sudo ln -sf -- "$HERE"/locale/locale.conf /etc/locale.conf
@@ -124,6 +120,12 @@ for pack in "${pacman_packages[@]}"; do p_install "$pack"; done
 rustup default stable # for alacritty-git
 sudo pacman -Rns vim --noconfirm # for gvim-git
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import - # spotify gpg
+
+echo "Enabling autologin"
+rg 'maniac' -r "$USER" "$HERE/misc/autologin.conf" > tmp && mv -f tmp "$HERE/misc/autologin.conf"
+sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
+sudo ln -sf -- "$HERE"/misc/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
+sudo systemctl enable getty@tty1.service
 
 echo "Installing: yay"
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && cd "$OLDPWD" && rm -rf yay
