@@ -223,12 +223,7 @@ nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
-" write & quit mapping
-" noremap <silent> <leader>x :x<CR>
-" noremap <silent> <leader>w :w<CR>
-" noremap <silent> <leader>q :q<CR>
-" noremap <silent> <leader>wq :wq<CR>
-noremap <silent> <leader>qa :qall<CR>
+" force quit
 noremap <silent> <leader>Q :q!<CR>
 
 " move around splits
