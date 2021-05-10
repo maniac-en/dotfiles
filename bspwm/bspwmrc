@@ -2,6 +2,7 @@
 bspc rule -r "*"
 export EDITOR=vim
 export SYS="$HOME"/scripts/system
+export DEFAULT_NETWORK_INTERFACE=$(ip route | grep '^default' | awk '{print $5}' | head -n1)
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # monitors
@@ -22,8 +23,7 @@ bspc config pointer_action3     resize_corner
 bspc config focus_follows_pointer true
 bspc config ignore_ewmh_focus 	false
 
-# rules
-
+## rules
 # fixed-desktops
 bspc rule -a terminal_fixed desktop=1 focus=on border=off follow=on
 bspc rule -a install4j-burp-StartBurp desktop=2 focus=on state=floating center=true follow=on
@@ -64,6 +64,6 @@ clipster -d &
 true > "$HOME"/.cache/bspwm_node_visibility.log
 
 # change screen res if in vm
-if (sudo dmidecode | grep -A3 '^System Information' | grep -qi 'virtual'); then xrandr -s 1400x1050; fi 2>/dev/null
+if (sudo dmidecode | grep -A3 '^System Information' | grep -qi 'virtual'); then xrandr -s 1440x810; fi 2>/dev/null
 
 pkill dunst && notify-send "BSPWM" "Boot successful"

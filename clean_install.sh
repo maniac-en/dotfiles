@@ -152,6 +152,7 @@ _exec sudo pacman -Rns vim --noconfirm # for gvim-git
 _exec curl -sSO https://download.spotify.com/debian/pubkey_0D811D58.gpg
 _exec gpg --import pubkey_0D811D58.gpg
 _exec rm pubkey_0D811D58.gpg
+_exec sudo systemctl enable NetworkManager.service --now
 
 _echo "Installing: yay"
 _exec git clone https://aur.archlinux.org/yay.git

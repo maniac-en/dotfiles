@@ -26,7 +26,7 @@ super + slash
 
 # terminal
 super + Return
-	"$SYS"/scratchpad.py -d 1 -c terminal_fixed -x alacritty --class Alacritty,terminal_fixed -e zsh -c "tmux attach || tmux new -s 0x11"
+	"$SYS"/scratchpad.py -d 1 -c terminal_fixed -x alacritty --config-file "$HOME"/.config/alacritty/alacritty.yml --class Alacritty,terminal_fixed -e zsh -c "tmux attach || tmux new -s 0x11"
 
 # floating terminal
 super + shift + Return
@@ -70,7 +70,7 @@ super + e
 
 # clipster
 super + period
-	clipster -o -n 200 -0 | rofi -font "Fantasque Sans Mono 15" -i -dmenu -sep '\x00' -width 80 -p "clipboard" | sed -ze 's/\n$//' | xclip -selection clipboard || exit 1
+	clipster -o -n 200 -0 | rofi -font "Fantasque Sans Mono 15" -no-show-icons -i -dmenu -sep '\x00' -width 80 -p "clipboard" | sed -ze 's/\n$//' | xclip -selection clipboard || exit 1
 
 # toggle mute volume
 F8

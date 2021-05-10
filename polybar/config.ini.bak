@@ -50,7 +50,7 @@ font-4 = "Font Awesome 5 Free Solid:style=Solid:antialias=false"
 
 modules-left    = bspwm
 modules-center 	= spotify
-modules-right   = pamixer memory cpu github wireless-network
+modules-right   = mic pamixer memory cpu github wireless-network
 
 wm-restack = bspwm
 override-redirect = false

@@ -70,7 +70,7 @@ super + e
 
 # clipster
 super + period
-	clipster -o -n 200 -0 | rofi -font "Comic Code Medium 15" -i -dmenu -sep '\x00' -width 80 -p "clipboard" | sed -ze 's/\n$//' | xclip -selection clipboard || exit 1
+	clipster -o -n 200 -0 | rofi -font "Comic Code Medium 15" -no-show-icons -i -dmenu -sep '\x00' -width 80 -p "clipboard" | sed -ze 's/\n$//' | xclip -selection clipboard || exit 1
 
 # toggle mute volume
 F8
