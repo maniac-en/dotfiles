@@ -57,7 +57,6 @@ pacman_packages=(
 	dbus
 	dbus-python
 	rustup
-	terminus-font
 )
 
 yay_normal_packages=(
@@ -118,11 +117,12 @@ sudo locale-gen
 
 echo "Updating pacman DB"
 sudo pacman -Syyu --noconfirm
+echo "Set tty font"
+pacman -S terminus-font --noconfirm && setfont ter-122b
 echo "Installing pacman packages"
 for pack in "${pacman_packages[@]}"; do p_install "$pack"; done
 rustup default stable # for alacritty-git
 sudo pacman -Rns vim --noconfirm # for gvim-git
-setfont ter-122b # better tty font
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import - # spotify gpg
 
 echo "Installing: yay"
@@ -146,7 +146,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf && "$HOME"/
 
 echo "Changing default monospace font"
 if (fc-list | grep -q -F "Comic Code Medium")
-then;
+then
+	true
 else
 	_revert_to_bak_file "$HERE"/alacritty/alacritty.yml
 	_revert_to_bak_file "$HERE"/sxhkd/sxhkdrc
@@ -193,5 +194,5 @@ ln -sf -- "$HERE"/scripts/vpn.sh "$HOME"/bin/vpn
 sudo ln -sf -- "$HERE"/misc/vconsole.conf /etc
 
 echo "Changing default shell to zsh"
-chsh -s /usr/bin/zsh
+sudo chsh $USER -s /usr/bin/zsh
 reboot
