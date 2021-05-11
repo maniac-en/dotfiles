@@ -41,14 +41,6 @@ _install_y() {
 	printf "\t"; _echo "Installing $1" && _exec yay -S --noconfirm --needed "$@"
 }
 
-_revert_to_bak_file() {
-	dir=$(dirname "$1")
-	base=$(basename "$1")
-	_exec cp "$dir/$base.bak" "$dir/$base.new"
-	_exec cp "$dir/$base" "$dir/$base.bak"
-	_exec mv -f "$dir/$base.new" "$dir/$base"
-}
-
 pacman_packages=(
 	base-devel
 	sudo
@@ -124,6 +116,7 @@ yay_git_packages=(
 _echo "Script init"
 CONFIG_DIR="$HOME"/.config
 HERE="$(cd "$(dirname "$0")" && pwd)"
+DOT_DIR="$HERE/dotfiles"
 _exec mkdir -p -- "$CONFIG_DIR"
 _exec mkdir -p -- "$HOME"/bin
 _exec mkdir -p -- "$HOME"/.themes
@@ -139,8 +132,8 @@ _exec sudo pacman -S terminus-font --noconfirm
 _exec setfont ter-122b
 
 _echo "Generating locale"
-_exec sudo ln -sf -- "$HERE"/locale/locale.conf /etc/locale.conf
-_exec sudo ln -sf -- "$HERE"/locale/locale.gen /etc/locale.gen
+_exec sudo ln -sf -- "$DOT_DIR"/locale/locale.conf /etc/locale.conf
+_exec sudo ln -sf -- "$DOT_DIR"/locale/locale.gen /etc/locale.gen
 _exec sudo locale-gen
 
 _echo "Installing pacman packages"
@@ -183,63 +176,50 @@ _exec "$HOME"/.fzf/install --no-update-rc --no-completion --no-key-bindings
 
 _echo "Enabling autologin"
 if [[ "$USER" != "maniac" ]]; then
-	_exec rg 'maniac' -r "$USER" "$HERE/misc/autologin.conf" > tmp
-	_exec mv -f tmp "$HERE/misc/autologin.conf"
+	_exec rg 'maniac' -r "$USER" "$DOT_DIR/autologin.conf" > tmp
+	_exec mv -f tmp "$DOT_DIR/autologin.conf"
 fi
 _exec sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
-_exec sudo ln -sf -- "$HERE"/misc/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
+_exec sudo ln -sf -- "$DOT_DIR"/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
 _exec sudo systemctl enable getty@tty1.service
 
-_echo "Changing default monospace font"
-if (fc-list | grep -q -F "Comic Code Medium")
-then
-	true
-else
-	_exec _revert_to_bak_file "$HERE"/alacritty/alacritty.yml
-	_exec _revert_to_bak_file "$HERE"/sxhkd/sxhkdrc
-	_exec _revert_to_bak_file "$HERE"/rofi/config.rasi
-	_exec _revert_to_bak_file "$HERE"/polybar/config.ini
-	_exec _revert_to_bak_file "$HERE"/dunst/dunstrc
-	_exec _revert_to_bak_file "$HERE"/neofetch/config.conf
-fi
-
 _echo "Symlinking dotfiles"
-_exec ln -sf -- "$HERE/alacritty" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/bspwm" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/sxhkd" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/rofi" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/polybar" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/dunst" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/clipster" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/screenkey" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/neofetch" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/zathura" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/pcmanfm" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/zsh/.zsh" "$HOME"
-_exec ln -sf -- "$HERE/zsh/.zshrc" "$HOME"
-_exec ln -sf -- "$HERE/zsh/.zlogin" "$HOME"
-_exec ln -sf -- "$HERE/vim/.vim" "$HOME"
-_exec ln -sf -- "$HERE/vim/.vimrc" "$HOME"
-_exec ln -sf -- "$HERE/misc/background.png" "$HOME"
-_exec ln -sf -- "$HERE/feh/.fehbg" "$HOME"
-_exec ln -sf -- "$HERE/scripts" "$HOME"
-_exec ln -sf -- "$HERE/fontconfig" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/picom/picom.conf" "$CONFIG_DIR"
-_exec ln -sf -- "$HERE/tmux/.tmux.conf" "$HOME"
-_exec ln -sf -- "$HERE/X/.xinitrc" "$HOME"
-_exec ln -sf -- "$HERE/compdefs/" "$HOME/.zsh_functions"
-_exec ln -sf -- "$HERE/gtk/settings.ini" "$CONFIG_DIR/gtk-3.0/"
-_exec ln -sf -- "$HERE/gtk/Gruvbox-Material-Dark" "$HOME/.themes/"
-_exec ln -sf -- "$HERE/scripts/btc.sh" "$HOME/bin/btc"
-_exec ln -sf -- "$HERE/scripts/etc.sh" "$HOME/bin/etc"
-_exec ln -sf -- "$HERE/scripts/screencast.sh" "$HOME/bin/cast"
-_exec ln -sf -- "$HERE/scripts/docker_descendants.py" "$HOME/bin/docker_descendants"
-_exec ln -sf -- "$HERE/scripts/kp.sh" "$HOME/bin/kp"
-_exec ln -sf -- "$HERE/scripts/notify2.sh" "$HOME/bin/notify2"
-_exec ln -sf -- "$HERE/scripts/out.sh" "$HOME/bin/out"
-_exec ln -sf -- "$HERE/scripts/vpn.sh" "$HOME/bin/vpn"
-_exec sudo ln -sf -- "$HERE/misc/blsd" "/usr/bin"
-_exec sudo ln -sf -- "$HERE/misc/vconsole.conf" /etc
+_exec ln -sf -- "$DOT_DIR/alacritty" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/bspwm" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/sxhkd" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/rofi" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/polybar" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/dunst" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/clipster" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/screenkey" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/neofetch" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/zathura" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/pcmanfm" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
+_exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
+_exec ln -sf -- "$DOT_DIR/zsh/.zlogin" "$HOME"
+_exec ln -sf -- "$DOT_DIR/vim/.vim" "$HOME"
+_exec ln -sf -- "$DOT_DIR/vim/.vimrc" "$HOME"
+_exec ln -sf -- "$DOT_DIR/background.png" "$HOME"
+_exec ln -sf -- "$DOT_DIR/feh/.fehbg" "$HOME"
+_exec ln -sf -- "$DOT_DIR/scripts" "$HOME"
+_exec ln -sf -- "$DOT_DIR/fontconfig" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/picom/picom.conf" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/tmux/.tmux.conf" "$HOME"
+_exec ln -sf -- "$DOT_DIR/X/.xinitrc" "$HOME"
+_exec ln -sf -- "$DOT_DIR/compdefs/" "$HOME/.zsh_functions"
+_exec ln -sf -- "$DOT_DIR/gtk/settings.ini" "$CONFIG_DIR/gtk-3.0/"
+_exec ln -sf -- "$DOT_DIR/gtk/Gruvbox-Material-Dark" "$HOME/.themes/"
+_exec ln -sf -- "$DOT_DIR/scripts/btc.sh" "$HOME/bin/btc"
+_exec ln -sf -- "$DOT_DIR/scripts/etc.sh" "$HOME/bin/etc"
+_exec ln -sf -- "$DOT_DIR/scripts/screencast.sh" "$HOME/bin/cast"
+_exec ln -sf -- "$DOT_DIR/scripts/docker_descendants.py" "$HOME/bin/docker_descendants"
+_exec ln -sf -- "$DOT_DIR/scripts/kp.sh" "$HOME/bin/kp"
+_exec ln -sf -- "$DOT_DIR/scripts/notify2.sh" "$HOME/bin/notify2"
+_exec ln -sf -- "$DOT_DIR/scripts/out.sh" "$HOME/bin/out"
+_exec ln -sf -- "$DOT_DIR/scripts/vpn.sh" "$HOME/bin/vpn"
+_exec sudo ln -sf -- "$DOT_DIR/blsd" "/usr/bin"
+_exec sudo ln -sf -- "$DOT_DIR/vconsole.conf" /etc
 
 _echo "Changing default shell to zsh and rebooting"
 _exec sudo chsh "$USER" -s /usr/bin/zsh
