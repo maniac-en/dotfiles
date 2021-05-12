@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-trap '_less_logfile' EXIT
+trap '_less_logfile' ERR
 trap '_confirm_sigint' SIGINT
 DEBUG=0
 logfile=$(date).log
@@ -88,10 +88,6 @@ yay_normal_packages=(
 	discord
 	zathura
 	vscodium-bin
-	pod2man # dunst-git dependency
-)
-
-yay_git_packages=(
 	alacritty
 	bspwm
 	sxhkd
@@ -99,7 +95,7 @@ yay_git_packages=(
 	zsh-completions
 	gvim
 	tmux
-	picom-jonaburg
+	picom-jonaburg-git
 	polybar
 	clipster
 	dunst
@@ -159,7 +155,6 @@ _exec yay -Syyu --noconfirm
 
 _echo "Installing yay packages"
 for pack in "${yay_normal_packages[@]}"; do _install_y "$pack"; done
-for pack in "${yay_git_packages[@]}"; do _install_y "$pack"-git; done
 
 _echo "Clearing build cache"
 _exec yay -Sc --noconfirm
