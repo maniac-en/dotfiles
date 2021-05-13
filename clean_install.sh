@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-trap '_less_logfile' EXIT
+trap '_less_logfile' ERR
 trap '_confirm_sigint' SIGINT
 DEBUG=0
 logfile=$(date).log
@@ -64,7 +64,7 @@ pacman_packages=(
 	dmidecode
 )
 
-yay_normal_packages=(
+yay_packages=(
 	rofi
 	neofetch
 	pcmanfm-gtk3
@@ -88,18 +88,14 @@ yay_normal_packages=(
 	discord
 	zathura
 	vscodium-bin
-	pod2man # dunst-git dependency
-)
-
-yay_git_packages=(
-	alacritty
+	alacritty-git
 	bspwm
 	sxhkd
-	zsh
+	zsh-git
 	zsh-completions
-	gvim
-	tmux
-	picom-jonaburg
+	gvim-git
+	tmux-git
+	picom-jonaburg-git
 	polybar
 	clipster
 	dunst
@@ -111,6 +107,7 @@ yay_git_packages=(
 	maim
 	jumpapp
 	redshift
+	colorpicker
 )
 
 _echo "Script init"
@@ -158,8 +155,7 @@ _echo "Updating yay DB"
 _exec yay -Syyu --noconfirm
 
 _echo "Installing yay packages"
-for pack in "${yay_normal_packages[@]}"; do _install_y "$pack"; done
-for pack in "${yay_git_packages[@]}"; do _install_y "$pack"-git; done
+for pack in "${yay_packages[@]}"; do _install_y "$pack"; done
 
 _echo "Clearing build cache"
 _exec yay -Sc --noconfirm
@@ -175,12 +171,9 @@ _exec git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf
 _exec "$HOME"/.fzf/install --no-update-rc --no-completion --no-key-bindings
 
 _echo "Enabling autologin"
-if [[ "$USER" != "maniac" ]]; then
-	_exec rg 'maniac' -r "$USER" "$DOT_DIR/autologin.conf" > tmp
-	_exec mv -f tmp "$DOT_DIR/autologin.conf"
-fi
 _exec sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
-_exec sudo ln -sf -- "$DOT_DIR"/autologin.conf /etc/systemd/system/getty@tty1.service.d/override.conf
+_exec sudo cp -v "$DOT_DIR/autologin.conf" /etc/systemd/system/getty@tty1.service.d/override.conf
+_exec sudo sed -i -e "s/maniac/$USER/" /etc/systemd/system/getty@tty1.service.d/override.conf
 _exec sudo systemctl enable getty@tty1.service
 
 _echo "Symlinking dotfiles"
