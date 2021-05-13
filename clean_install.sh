@@ -171,7 +171,8 @@ _exec "$HOME"/.fzf/install --no-update-rc --no-completion --no-key-bindings
 
 _echo "Enabling autologin"
 _exec sudo mkdir -p -- /etc/systemd/system/getty@tty1.service.d
-_exec rg --passthru 'maniac' -r "$USER" "$DOT_DIR/autologin.conf" | sudo tee -a /etc/systemd/system/getty@tty1.service.d/override.conf
+_exec sudo cp -v "$DOT_DIR/autologin.conf" /etc/systemd/system/getty@tty1.service.d/override.conf
+_exec sudo sed -i -e "s/maniac/$USER/" /etc/systemd/system/getty@tty1.service.d/override.conf
 _exec sudo systemctl enable getty@tty1.service
 
 _echo "Symlinking dotfiles"

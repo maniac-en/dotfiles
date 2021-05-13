@@ -58,7 +58,6 @@ bindkey -- '\ee'			end-of-list		# ctrl-e
 # Misc
 bindkey -- '\eq'			push-line-or-edit	# ctrl-o
 bindkey -- '^[p'			copy-prev-shell-word	# alt-p
-bindkey -- '^[,' 			"^[."			# bind alt-, to alt-.
 
 # Quickly jump right after the first word (e.g. to insert switches)
 function _after-first-word() {
