@@ -83,18 +83,20 @@ yay_packages=(
 	pulseaudio
 	ttf-font-awesome
 	ttf-fantasque-sans-mono
+	ttf-ms-fonts
 	noto-fonts-emoji
+	faba-icon-theme
 	spotify
 	discord
 	zathura
 	vscodium-bin
-	alacritty-git
+	alacritty
 	bspwm
 	sxhkd
-	zsh-git
+	zsh
 	zsh-completions
-	gvim-git
-	tmux-git
+	gvim
+	tmux
 	picom-jonaburg-git
 	polybar
 	clipster
@@ -108,6 +110,7 @@ yay_packages=(
 	jumpapp
 	redshift
 	colorpicker
+	unzip
 )
 
 _echo "Script init"
