@@ -94,8 +94,9 @@ yay_packages=(
     alacritty
     bspwm
     sxhkd
-    zsh
-    zsh-completions
+    # Reason behind using zsh-git version because of this issue:
+    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/150
+    zsh-git
     gvim
     tmux
     picom-jonaburg-git
