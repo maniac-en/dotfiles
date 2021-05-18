@@ -104,6 +104,10 @@ vnoremap <F2> :GistLines<CR>
 set esckeys
 set notimeout ttimeout ttimeoutlen=0
 
+" help cmd
+cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
+nnoremap <leader>h :tab help<space>
+
 """ terminal
 set title
 set titlestring=%t
@@ -143,8 +147,8 @@ set scrolloff=5
 set shortmess=a     " Abbreviate status line
 set shortmess+=tToO " Other crap
 
-""" change default grep to rg
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+""" ripgrep (rg)
+let g:rg_command='rg --vimgrep --smart-case --follow'
 let g:rg_derive_root='true'
 
 """ to change cursorline when entering insert mode
@@ -220,13 +224,10 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 """ fzf.vim (https://github.com/junegunn/fzf.vim)
 set rtp+=$HOME/.fzf
-let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit'
-            \ }
+let g:fzf_layout = {'down': '~40%'}
+let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
 " search in git project else in current dir
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 command! -bang -nargs=* Search call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
 command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
@@ -234,18 +235,6 @@ nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <leader>f :w<CR>:Search<CR>
 nnoremap <silent> <leader>F :Filetypes<CR>
 nnoremap <silent> \ :BLines<CR>
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>h/ :History/<CR>
-
-""" vim-after-object (https://github.com/junegunn/vim-after-object)
-augroup after-object
-    autocmd!
-    autocmd VimEnter * call after_object#enable( '=', ':', '-', '#', ' ', '.', ',', '^')
-    autocmd VimEnter * call after_object#enable( '!', '?', '|', '_', ']', '[', '}', '{')
-    autocmd VimEnter * call after_object#enable( '<', '>',  '/', '\', '$', '@', '%', '&')
-    autocmd VimEnter * call after_object#enable( '+', '*')
-augroup END
 
 """ nerdcommentor (https://github.com/preservim/nerdcommenter)
 " Add spaces after comment delimiters by default
@@ -274,20 +263,18 @@ nnoremap <silent> <F5> :UndotreeToggle<CR>
 
 """ my custom shortcuts
 " save, quit, etc.
-noremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>q :qa<CR>
+nnoremap <silent> <leader>d :q<CR>
+noremap <silent> <leader>wa :wa<CR>
 noremap <silent> <leader>wq :x<CR>
 noremap <silent> <leader>x :x<CR>
 noremap <silent> <leader>Q :q!<CR>
 " tab to jump parenthesis
 noremap <silent> <SPACE> %
-" close current buffer
-nnoremap <silent> <leader>d :bd<CR>
 " subsitute map
 nnoremap <leader>r :%s///g<Left><Left><Left>
 " delete map
 nnoremap <leader>R :%g//d<Left><Left>
-" perform dot commands over visual selections
-vnoremap <silent> <leader> . :normal .<CR>
 " copy to primary clipboard
 vnoremap <silent> <C-y> "+y
 " autocd
