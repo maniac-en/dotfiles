@@ -12,105 +12,105 @@ if [[ "$EUID" -eq 0 ]]; then printf "\e[31m%s\e[m" "This script must NOT be run 
 if [[ "$1" == "DEBUG" ]]; then DEBUG=1; fi
 
 _confirm_sigint() {
-	printf "\n"; read -rp "SIGINT caught: Are you sure you want to stop running the installation script? [y/N]" res
-	{ [ "$res" == "y" ] || [ "$res" == "Y" ]; } && exit 1 || return
+        printf "\n"; read -rp "SIGINT caught: Are you sure you want to stop running the installation script? [y/N]" res
+        { [ "$res" == "y" ] || [ "$res" == "Y" ]; } && exit 1 || return
 }
 
 _less_logfile() {
-	less -Nr "$logfile"
+        less -Nr "$logfile"
 }
 
 _echo() {
-	printf "\e[32m%s\e[m\n" "$@"
+        printf "\e[32m%s\e[m\n" "$@"
 }
 
 _exec() {
-	if [[ "$DEBUG" -eq 1 ]]
-	then
-		"$@" 2>&1 | tee -a "$logfile"
-	else
-		"$@" 1>> "$logfile" 2>> "$logfile"
-	fi
+        if [[ "$DEBUG" -eq 1 ]]
+        then
+                "$@" 2>&1 | tee -a "$logfile"
+        else
+                "$@" 1>> "$logfile" 2>> "$logfile"
+        fi
 }
 
 _install_p() {
-	printf "\t"; _echo "Installing $1" && _exec sudo pacman -S --noconfirm --needed "$@"
+        printf "\t"; _echo "Installing $1" && _exec sudo pacman -S --noconfirm --needed "$@"
 }
 
 _install_y() {
-	printf "\t"; _echo "Installing $1" && _exec yay -S --noconfirm --needed "$@"
+        printf "\t"; _echo "Installing $1" && _exec yay -S --noconfirm --needed "$@"
 }
 
 pacman_packages=(
-	base-devel
-	sudo
-	git
-	curl
-	wget
-	xorg
-	xorg-xinit
-	xclip
-	cmake
-	ninja
-	networkmanager
-	python-wheel
-	python2-wheel
-	python-pip
-	python2-pip
-	python-pipx
-	dbus
-	dbus-python
-	rustup
-	dmidecode
+        base-devel
+        sudo
+        git
+        curl
+        wget
+        xorg
+        xorg-xinit
+        xclip
+        cmake
+        ninja
+        networkmanager
+        python-wheel
+        python2-wheel
+        python-pip
+        python2-pip
+        python-pipx
+        dbus
+        dbus-python
+        rustup
+        dmidecode
 )
 
 yay_packages=(
-	rofi
-	neofetch
-	pcmanfm-gtk3
-	jq
-	xdotool
-	chromium
-	firefox
-	wget
-	bat
-	ripgrep
-	fast
-	gist
-	openvpn
-	openssh
-	pavucontrol
-	pulseaudio
-	ttf-font-awesome
-	ttf-fantasque-sans-mono
-	ttf-ms-fonts
-	noto-fonts-emoji
-	faba-icon-theme
-	spotify
-	discord
-	zathura
-	vscodium-bin
-	alacritty
-	bspwm
-	sxhkd
-	zsh
-	zsh-completions
-	gvim
-	tmux
-	picom-jonaburg-git
-	polybar
-	clipster
-	dunst
-	screenkey
-	sxiv
-	feh
-	pamixer
-	fd
-	maim
-	jumpapp
-	redshift
-	colorpicker
-	unzip
+        rofi
+        neofetch
+        pcmanfm-gtk3
+        jq
+        xdotool
+        chromium
+        firefox
+        wget
+        bat
+        ripgrep
+        fast
+        gist
+        openvpn
+        openssh
+        pavucontrol
+        pulseaudio
+        ttf-font-awesome
+        ttf-fantasque-sans-mono
+        ttf-ms-fonts
+        noto-fonts-emoji
+        faba-icon-theme
+        spotify
+        discord
+        zathura
+        vscodium-bin
+        alacritty
+        bspwm
+        sxhkd
+        zsh
+        zsh-completions
+        gvim
+        tmux
+        picom-jonaburg-git
+        polybar
+        clipster
+        dunst
+        screenkey
+        sxiv
+        feh
+        pamixer
+        fd
+        maim
+        jumpapp
+        redshift
+        colorpicker
+        unzip
 )
 
 _echo "Script init"
@@ -140,8 +140,8 @@ _echo "Installing pacman packages"
 for pack in "${pacman_packages[@]}"; do _install_p "$pack"; done
 
 _echo "Post pacman commands"
-_exec rustup default stable # for alacritty-git
-_exec sudo pacman -Rns vim --noconfirm # for gvim-git
+_exec rustup default stable
+_exec sudo pacman -Rns vim --noconfirm
 _exec curl -sSO https://download.spotify.com/debian/pubkey_0D811D58.gpg
 _exec gpg --import pubkey_0D811D58.gpg
 _exec rm pubkey_0D811D58.gpg
@@ -162,12 +162,6 @@ for pack in "${yay_packages[@]}"; do _install_y "$pack"; done
 
 _echo "Clearing build cache"
 _exec yay -Sc --noconfirm
-
-_echo "Cloning tmux plugins"
-_exec git clone https://github.com/tmux-plugins/tpm "$HOME"/.tmux/plugins/tpm
-_exec git clone https://github.com/tmux-plugins/tmux-copycat "$HOME"/.tmux/plugins/tmux-copycat
-_exec git clone https://github.com/tmux-plugins/tmux-yank "$HOME"/.tmux/plugins/tmux-yank
-_exec git clone https://github.com/tmux-plugins/tmux-prefix-highlight "$HOME"/.tmux/plugins/tmux-prefix-highlight
 
 _echo "Installing fzf"
 _exec git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf
@@ -214,6 +208,7 @@ _exec ln -sf -- "$DOT_DIR/scripts/kp.sh" "$HOME/bin/kp"
 _exec ln -sf -- "$DOT_DIR/scripts/notify2.sh" "$HOME/bin/notify2"
 _exec ln -sf -- "$DOT_DIR/scripts/out.sh" "$HOME/bin/out"
 _exec ln -sf -- "$DOT_DIR/scripts/vpn.sh" "$HOME/bin/vpn"
+_exec ln -sf -- "$DOT_DIR/scripts/markdown2pdf.sh" "$HOME/bin/markdown2pdf"
 _exec sudo ln -sf -- "$DOT_DIR/blsd" "/usr/bin"
 _exec sudo ln -sf -- "$DOT_DIR/vconsole.conf" /etc
 

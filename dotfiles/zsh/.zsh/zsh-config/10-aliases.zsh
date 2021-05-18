@@ -8,7 +8,7 @@ alias gd='git diff'
 alias gl='git verboselog'
 alias gll='git log'
 alias gp='git push'
-alias gs='git status -sb'
+alias gs='{ git headlog 2>/dev/null || : } && git status -sb'
 alias gb='git branch'
 alias gch='git checkout'
 
@@ -20,6 +20,7 @@ alias sxiv='sxiv -r'
 alias camera='mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video0'
 alias dnd='dunstctl set-paused true'
 alias dnd!='dunstctl set-paused false'
+alias r32='tr -dc a-zA-Z0-9 < /dev/urandom | head -c 32 | copy'
 
 #general
 alias ....='cd ../../..'

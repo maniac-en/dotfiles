@@ -11,6 +11,7 @@ chmod 700 $ZSH_CACHE
 # not always included there by default.
 typeset -U fpath
 [[ -d /usr/share/zsh/site-functions ]] && fpath+=(/usr/share/zsh/site-functions)
+[[ -d "$HOME"/.zsh/zsh-completions/src ]] && fpath+=("$HOME"/.zsh/zsh-completions/src)
 [[ -d "$HOME"/.zsh_functions ]] && fpath+=("$HOME"/.zsh_functions)
 
 # colors

@@ -1,148 +1,147 @@
-""" enter the current millenium
-set nocompatible
+""" leader key
+let mapleader=','
 
-""" encoding
+""" encoding n stuff
 set encoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
 scriptencoding utf-8
+set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
 
-""" spellcheck file
+""" spellcheck
+set spellcapcheck=
 set spelllang=en
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
-""" appearance
+""" general
+set nocompatible
 set t_Co=256
 set background=dark
-colorscheme custom
+let g:gruvbox_italic=1
+colorscheme gruvbox
 if has('termguicolors')
-	set termguicolors
+    set termguicolors
 endif
-set laststatus=2
-set ruler
-set scrolloff=1 sidescrolloff=5
-set number
-set relativenumber
-set splitbelow splitright
-set noshowcmd
-set shortmess=Iac
-set hidden
-
-""" misc
-set listchars=tab:>-,space:@,eol:⏎
-set backspace=indent,eol,start
+set hidden " hide abandoned buffers rather than unloading
+let g:loaded_matchparen = v:true
 set modeline
-" set modelines=10
-set autoindent smartindent noexpandtab
-set undofile
-set ttyfast
 set timeout timeoutlen=1000 ttimeoutlen=50
 set dir=$HOME/.cache/vim
 set undodir=$HOME/.cache/vim/undo
+set undofile
 set autoread
 set noerrorbells
 set updatetime=300
-set ttymouse=xterm2
-set mouse=a
 set dictionary+=/usr/share/dict/words
-map Q gq
+set concealcursor=nv
 
-""" functions
-fu! StatuslineTrailingSpaceWarning()
-        if !exists('b:statusline_trailing_space_warning')
-                if search('\s\+$', 'nw') != 0
-                        let b:statusline_trailing_space_warning = '[ts]'
-                else
-                        let b:statusline_trailing_space_warning = ''
-                endif
-        endif
-        return b:statusline_trailing_space_warning
-endf
+""" whitespace, indention, etc.
+set sw=4 et
+set softtabstop=-1
+set ts=8
+set nosmartindent
+set cin noai
+set tw=80
 
-fu! ToggleStatusBar()
-        if s:hidden_all  == 0
-                let s:hidden_all = 1
-                set noshowmode
-                set noruler
-                set laststatus=0
-        else
-                let s:hidden_all = 0
-                set showmode
-                set ruler
-                set laststatus=2
-        endif
-endf
+""" wrap settings
+set linebreak nowrap
+set nojoinspaces
 
-fu! s:find_git_root()
-        return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endf
+""" text manipulation
+set bs=indent,eol,start
+set completeopt=menu,preview
 
-" " Source: https://vi.stackexchange.com/a/5977 for cmdheight
-" fu! Buildnote()
-"         set cmdheight=2
-"         echom 'Building '.expand('%')
-"         set cmdheight=1
-"         silent! execute '!/home/maniac/scripts/system/buildNote.sh %:p'
-"         redraw!
-" endfu
+""" use mouse to manage splits
+set ttyfast
+set mouse=a
+set ttymouse=sgr
 
-""" status-line
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%{StatuslineTrailingSpaceWarning()}%=%(l:\%l,\ \c:%c,\ %P\ %)
-augroup cal_white_space
-        autocmd!
-        autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-augroup end
+""" navigation
+set nofoldenable
+set foldmethod=marker
+set relativenumber
+set numberwidth=3
+set nostartofline
 
-" toggle statusbar
-let s:hidden_all = 1
-call ToggleStatusBar()
+""" sane searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+nmap <silent> <Leader>l :noh<CR>
 
-""" NERDcommentor
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+""" Windows management
+nmap <silent> th <C-W>h
+nmap <silent> tl <C-W>l
+nmap <silent> tj <C-W>j
+nmap <silent> tk <C-W>k
+nmap <silent> ts :split<SPACE>
+nmap <silent> tv :vsplit<SPACE>
+nmap <silent> tc <C-W>c
+set splitbelow splitright
 
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+""" tabs management
+" use <Leader>c to pop the tab stack
+nmap <silent> <Leader>c :tabclose<CR>
+" <leader><num> to get to a tab<num>
+let s:i = 1
+while s:i <= 10
+    execute printf('nnoremap <silent> <Leader>%d :%dtabnext<CR>', s:i == 10 ? 0 : s:i, s:i,)
+    let s:i += 1
+endwhile
 
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
+""" easy movement around wrapped lines
+noremap <silent> j gj
+noremap <silent> k gk
+noremap <silent> 0 g0
+noremap <silent> $ g$
+noremap <silent> <Up> g<Up>
+noremap <silent> <Down> g<Down>
 
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+""" vselect and gist the selection
+command -range GistLines call system('gist', getbufline('%', <line1>, <line2>))
+vnoremap <F2> :GistLines<CR>
 
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+""" handle <ESC> immediately in insert mode. Wait indefinitely for incomplete mappings.
+set esckeys
+set notimeout ttimeout ttimeoutlen=0
 
-" Enable NERDCommenterToggle to check if all selected lines are commented or not
-let g:NERDToggleCheckAllLines = 1
+""" terminal
+set title
+set titlestring=%t
+set titleold=
+" Treat undercurl as underline in terminal
+set t_Cs= t_Ce=
 
-" NERD Custom Delimiters
-let g:NERDCustomDelimiters = { 'vim': { 'left': '"', 'leftAlt': '"""' }, }
+""" command line
+set wildmenu
+set wildmode=longest,full
+set wildchar=<TAB>
 
-""" undotree
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffAutoOpen = 0
-let g:undotree_DiffpanelHeight = 10
-let g:undotree_HighlightChangedText = 0
-let g:undotree_HighlightChangedWithSign = 0
-let g:undotree_SetFocusWhenToggle = 1
+""" save history
+set history=10000
+set viminfo+=/200
+set viminfo+=:10000
 
-""" vim-instant-markdown
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_browser = 'chromium --new-window'
-let g:instant_markdown_port = 9999
+""" syntax hilighting
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
 
-""" fzf.vim
-set rtp+=$HOME/.fzf
-let g:fzf_layout = { 'down': '~40%' }
-
-""" vim help tags
-packloadall
-silent! helptags ALL
-
-""" search in git project else in current dir
-command! -bang -nargs=* PRg
-                        \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
-command! ProjectFiles execute 'Files' s:find_git_root()
+""" display
+set cursorline
+set number
+set relativenumber
+set noshowcmd
+set nowrap
+set ruler
+set laststatus=2
+set list
+set listchars=
+set listchars+=tab:⇥\ ,precedes:<,extends:>
+set sidescroll=5
+set scrolloff=5
+set shortmess=a     " Abbreviate status line
+set shortmess+=tToO " Other crap
 
 """ change default grep to rg
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
@@ -150,49 +149,58 @@ let g:rg_derive_root='true'
 
 """ to change cursorline when entering insert mode
 augroup cursor_change
-	autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
-	autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
+    autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
+    autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
 augroup END
 
-""" search settings
-set hlsearch
-set history=10000
-set incsearch
-set ignorecase
-set smartcase
+""" functions
+fu! StatuslineTrailingSpaceWarning()
+    if !exists('b:statusline_trailing_space_warning')
+        if search('\s\+$', 'nw') != 0
+            let b:statusline_trailing_space_warning = '[ts]'
+        else
+            let b:statusline_trailing_space_warning = ''
+        endif
+    endif
+    return b:statusline_trailing_space_warning
+endf
 
-""" netrw-settings
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-let g:netrw_altv = 1
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+fu! ToggleStatusBar()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set noshowmode
+        set noruler
+        set laststatus=0
+    else
+        let s:hidden_all = 0
+        set showmode
+        set ruler
+        set laststatus=2
+    endif
+endf
 
-""" tab-completion setting
-set wildmenu
-set wildmode=longest:full,full
-set wildchar=<TAB>
+fu! s:find_git_root()
+    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endf
 
-""" file-format settings
-set fileformats=unix,dos
-syntax enable
-filetype plugin indent on
+fu! MD2PDF()
+    set cmdheight=2
+    echom 'Building '.expand('%')
+    set cmdheight=1
+    silent! execute '!markdown2pdf %:p'
+    redraw!
+endfu
 
-" filetype auto-commands
-augroup fileType
-        autocmd!
-        autocmd filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-        " uses https://github.com/jtratner/vim-flavored-markdown
-        autocmd BufNewFile,BufRead *.md,*.markdown set filetype=ghmarkdown
-        autocmd filetype sh nmap <leader>r :w<CR>:!clear;bash %<CR>
-        autocmd filetype python nmap <leader>r :w<CR>:!clear;python %<CR>
-	autocmd filetype c nmap <leader>r :w<CR>:!clear; gcc % && ./a.out<CR>
-        autocmd BufRead,BufNewFile *.sage nmap <leader>r :w<CR>:!clear;sage %<CR>
-augroup END
-
-""" wrap settings
-set linebreak nowrap
+""" status-line
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{StatuslineTrailingSpaceWarning()}%=%(l:\%l,\ \c:%c,\ %P\ %)
+augroup cal_white_space
+    autocmd!
+    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+augroup end
+" toggle statusbar
+let s:hidden_all = 1
+call ToggleStatusBar()
+nnoremap <silent> <F7> :call ToggleStatusBar()<CR>
 
 """ highlight trailing whitespaces
 command! HighlightExtraSpaces :match Search /\S\zs\s\+$/
@@ -200,85 +208,131 @@ command! HighlightExtraSpaces :match Search /\S\zs\s\+$/
 """ remove trailing whitespaces
 command! RemoveExtraSpaces :%s/\s\+$//ge | nohl
 
-""" mappings
-" remap leader-key
-let mapleader = ','
+""" LOAD'em PLUGINS
+""" load all plugins
+packloadall
 
-" stop highlighting matches
-nnoremap <silent> <BS><BS> :noh<CR>
+""" gen all helptags
+silent! helptags ALL
 
-" status-bar
-nnoremap <silent> <F7> :call ToggleStatusBar()<CR>
+""" vim-vinegar(https://github.com/tpope/vim-vinegar)
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
-" undotree
-nnoremap <silent> <F5> :UndotreeToggle<CR>
-
-" fzf mappings
+""" fzf.vim (https://github.com/junegunn/fzf.vim)
+set rtp+=$HOME/.fzf
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit'
+            \ }
+" search in git project else in current dir
+command! -bang -nargs=* Search call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
+command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <leader>f :w<CR>:PRg<CR>
+nnoremap <silent> <leader>f :w<CR>:Search<CR>
 nnoremap <silent> <leader>F :Filetypes<CR>
 nnoremap <silent> \ :BLines<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
-" force quit
-noremap <silent> <leader>Q :q!<CR>
-
-" move around splits
-noremap <silent> gh <C-w>h
-noremap <silent> gj <C-w>j
-noremap <silent> gk <C-w>k
-noremap <silent> gl <C-w>l
-
-" move around tabs
-nmap <C-l> gt
-nmap <C-h> gT
-
-" tab to switch b/w parenthesis
-noremap <silent> <SPACE> %
-
-" check file in shellcheck:
-nmap <silent> <leader>s :w<CR>:!clear && shellcheck -x %<CR>
-
-" closing a buffer
-noremap <silent> <leader>d :bd<CR>
-
-" subsitute map
-map <leader>S :%s///g<Left><Left><Left>
-
-" easy movement around wrapped lines
-noremap j gj
-noremap k gk
-noremap 0 g0
-noremap $ g$
-noremap <Up> g<Up>
-noremap <Down> g<Down>
-
-" vim terminal
-noremap <silent> <leader>t :botright vert term<CR>
-
-" perform dot commands over visual selections
-vnoremap . :normal .<CR>
-
-" copy to primary clipboard
-vnoremap <C-y> "+y
-
-" config files
-nnoremap <silent> <leader>ez :tabe $HOME/.zshrc<CR>
-nnoremap <silent> <leader>ev :tabe $MYVIMRC<CR>
-nnoremap <silent> <leader>ea :tabe $HOME/.config/alacritty/alacritty.yml<CR>
-augroup autosource_vimrc
-        autocmd!
-        autocmd BufWritePost $MYVIMRC :source %
+""" vim-after-object (https://github.com/junegunn/vim-after-object)
+augroup after-object
+    autocmd!
+    autocmd VimEnter * call after_object#enable( '=', ':', '-', '#', ' ', '.', ',', '^')
+    autocmd VimEnter * call after_object#enable( '!', '?', '|', '_', ']', '[', '}', '{')
+    autocmd VimEnter * call after_object#enable( '<', '>',  '/', '\', '$', '@', '%', '&')
+    autocmd VimEnter * call after_object#enable( '+', '*')
 augroup END
 
-" " auto-build notes
-" augroup notes
-"         autocmd!
-"         autocmd BufWritePost *note-*.md call Buildnote()
-" augroup END
+""" nerdcommentor (https://github.com/preservim/nerdcommenter)
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check if all selected lines are commented or not
+let g:NERDToggleCheckAllLines = 1
+" NERD Custom Delimiters
+let g:NERDCustomDelimiters = { 'vim': { 'left': '"', 'leftAlt': '"""' }, }
 
-""" even strager doesn't know why
-set exrc secure
+""" undotree (https://github.com/mbbill/undotree.git)
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffAutoOpen = 0
+let g:undotree_DiffpanelHeight = 10
+let g:undotree_HighlightChangedText = 0
+let g:undotree_HighlightChangedWithSign = 0
+let g:undotree_SetFocusWhenToggle = 1
+nnoremap <silent> <F5> :UndotreeToggle<CR>
+
+""" my custom shortcuts
+" save, quit, etc.
+noremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>wq :x<CR>
+noremap <silent> <leader>x :x<CR>
+noremap <silent> <leader>Q :q!<CR>
+" tab to jump parenthesis
+noremap <silent> <SPACE> %
+" close current buffer
+nnoremap <silent> <leader>d :bd<CR>
+" subsitute map
+nnoremap <leader>r :%s///g<Left><Left><Left>
+" delete map
+nnoremap <leader>R :%g//d<Left><Left>
+" perform dot commands over visual selections
+vnoremap <silent> <leader> . :normal .<CR>
+" copy to primary clipboard
+vnoremap <silent> <C-y> "+y
+" autocd
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" open vimrc in new tab
+nnoremap <silent> <leader>ev :tabe $MYVIMRC<CR>
+" sorting made easy
+nmap <silent> <Leader>s vip:sort u<CR>
+vmap <silent> <Leader>s :sort u<CR>
+nmap <silent> <Leader>S vip:sort iu<CR>
+vmap <silent> <Leader>S :sort iu<CR>
+" make Y consistent with D (i.e. D : d$ :: Y : y$)
+nnoremap <silent> Y y$
+" navigate jump list with \j, \k
+nnoremap <silent> <Leader>j <C-I>
+nnoremap <silent> <Leader>k <C-O>
+
+" custom augroups
+augroup generic_fileoptions
+    autocmd!
+    autocmd filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
+augroup autosource_vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC :source %
+augroup END
+augroup wrapped_fileoptions
+    autocmd!
+    autocmd filetype gitcommit setlocal cc=72
+    autocmd filetype md setlocal cc=80 formatoptions+=t
+    autocmd filetype text setlocal cc=80 formatoptions+=t
+    autocmd BufWritePost *note-*.md call MD2PDF()
+augroup END
+augroup python_file_type
+    autocmd!
+    autocmd filetype python nnoremap <F2> :w<CR>:!clear;python %<CR>
+    autocmd filetype python inoremap <F2> :w<CR>:!clear;python %<CR>
+augroup END
+augroup sh_file_type
+    autocmd!
+    autocmd filetype sh nnoremap <silent> <F1> :w<CR>:!clear; shellcheck -x %:p<CR>
+    autocmd filetype sh nnoremap <F2> :w<CR>:!clear;bash %<CR>
+    autocmd filetype sh inoremap <F2> :w<CR>:!clear;bash %<CR>
+augroup END
+augroup notes_to_pdf
+    autocmd!
+    autocmd BufWritePost *note-*.md call Buildnote()
+augroup END

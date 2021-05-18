@@ -1,0 +1,84 @@
+[submodule "dotfiles/vim/.vim/pack/github/start/fugitive"]
+	path = dotfiles/vim/.vim/pack/github/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
+[submodule "dotfiles/vim/.vim/pack/github/start/gruvbox"]
+	path = dotfiles/vim/.vim/pack/github/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "dotfiles/vim/.vim/pack/github/start/nerdcommenter"]
+	path = dotfiles/vim/.vim/pack/github/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter
+[submodule "dotfiles/vim/.vim/pack/github/start/fzf.vim"]
+	path = dotfiles/vim/.vim/pack/github/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "dotfiles/vim/.vim/pack/github/start/gv.vim"]
+	path = dotfiles/vim/.vim/pack/github/start/gv.vim
+	url = https://github.com/junegunn/gv.vim
+[submodule "dotfiles/vim/.vim/pack/github/start/undoquit.vim"]
+	path = dotfiles/vim/.vim/pack/github/start/undoquit.vim
+	url = https://github.com/AndrewRadev/undoquit.vim.git
+[submodule "dotfiles/vim/.vim/pack/github/start/undotree"]
+	path = dotfiles/vim/.vim/pack/github/start/undotree
+	url = https://github.com/mbbill/undotree.git
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-after-object"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-after-object
+	url = https://github.com/junegunn/vim-after-object
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-easy-align"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-endwise"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-eunuch"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-lastplace"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-lastplace
+	url = https://github.com/farmergreg/vim-lastplace
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-markdown"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-markdown
+	url = https://github.com/tpope/vim-markdown
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-repeat"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-rhubarb"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-speeddating"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-spell-under"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-spell-under
+	url = https://github.com/osamuaoki/vim-spell-under
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-surround"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-unimpaired"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-vinegar"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar
+[submodule "dotfiles/zsh/.zsh/zsh-completions"]
+	path = dotfiles/zsh/.zsh/zsh-completions
+	url = git://github.com/zsh-users/zsh-completions.git
+[submodule "dotfiles/zsh/.zsh/zsh-autosuggestions"]
+	path = dotfiles/zsh/.zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "dotfiles/zsh/.zsh/zsh-syntax-highlighting"]
+	path = dotfiles/zsh/.zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "dotfiles/zsh/.zsh/zsh-z"]
+	path = dotfiles/zsh/.zsh/zsh-z
+	url = https://github.com/agkozak/zsh-z
+[submodule "dotfiles/tmux/.tmux/plugins/tmux-copycat"]
+	path = dotfiles/tmux/.tmux/plugins/tmux-copycat
+	url = https://git::@github.com/tmux-plugins/tmux-copycat
+[submodule "dotfiles/tmux/.tmux/plugins/tmux-prefix-highlight"]
+	path = dotfiles/tmux/.tmux/plugins/tmux-prefix-highlight
+	url = https://git::@github.com/tmux-plugins/tmux-prefix-highlight
+[submodule "dotfiles/tmux/.tmux/plugins/tmux-yank"]
+	path = dotfiles/tmux/.tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank.git
+[submodule "dotfiles/tmux/.tmux/plugins/tpm"]
+	path = dotfiles/tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
