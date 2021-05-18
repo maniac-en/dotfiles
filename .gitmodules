@@ -15,7 +15,7 @@
 	url = https://github.com/junegunn/gv.vim
 [submodule "dotfiles/vim/.vim/pack/github/start/undoquit.vim"]
 	path = dotfiles/vim/.vim/pack/github/start/undoquit.vim
-	url = https://github.com/AndrewRadev/undoquit.vim.git
+	url = https://github.com/maniac-en/undoquit.vim
 [submodule "dotfiles/vim/.vim/pack/github/start/undotree"]
 	path = dotfiles/vim/.vim/pack/github/start/undotree
 	url = https://github.com/mbbill/undotree.git
