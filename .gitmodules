@@ -1,6 +1,6 @@
 [submodule "dotfiles/vim/.vim/pack/github/start/fugitive"]
 	path = dotfiles/vim/.vim/pack/github/start/fugitive
-	url = https://tpope.io/vim/fugitive.git
+	url = https://github.com/tpope/vim-fugitive
 [submodule "dotfiles/vim/.vim/pack/github/start/gruvbox"]
 	path = dotfiles/vim/.vim/pack/github/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
