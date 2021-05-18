@@ -19,9 +19,6 @@
 [submodule "dotfiles/vim/.vim/pack/github/start/undotree"]
 	path = dotfiles/vim/.vim/pack/github/start/undotree
 	url = https://github.com/mbbill/undotree.git
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-after-object"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-after-object
-	url = https://github.com/junegunn/vim-after-object
 [submodule "dotfiles/vim/.vim/pack/github/start/vim-easy-align"]
 	path = dotfiles/vim/.vim/pack/github/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
