@@ -73,8 +73,8 @@ nmap <silent> th <C-W>h
 nmap <silent> tl <C-W>l
 nmap <silent> tj <C-W>j
 nmap <silent> tk <C-W>k
-nmap <silent> ts :split<SPACE>
-nmap <silent> tv :vsplit<SPACE>
+nmap ts :split<SPACE>
+nmap tv :vsplit<SPACE>
 nmap <silent> tc <C-W>c
 set splitbelow splitright
 
@@ -97,8 +97,8 @@ noremap <silent> <Up> g<Up>
 noremap <silent> <Down> g<Down>
 
 """ vselect and gist the selection
-command -range GistLines call system('gist', getbufline('%', <line1>, <line2>))
-vnoremap <F2> :GistLines<CR>
+command -range GistLines <line1>,<line2>call GistWrapper()
+xnoremap <F2> :GistLines<CR>
 
 """ handle <ESC> immediately in insert mode. Wait indefinitely for incomplete mappings.
 set esckeys
@@ -183,6 +183,39 @@ fu! ToggleStatusBar()
     endif
 endf
 
+" Source: https://vi.stackexchange.com/a/11028/29810
+fu! GistWrapper() range abort
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+
+    " Get all the lines represented by this range
+    let lines = getline(lnum1, lnum2)
+
+    " The last line might need to be cut if the visual selection didn't end on
+    " the last column
+    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+    " The first line might need to be trimmed if the visual selection didn't
+    " start on the first column
+    let lines[0] = lines[0][col1 - 1:]
+
+    " Get the desired text
+    let selectedText = join(lines, "\n")
+
+    " call gist binary
+    if strlen(&filetype) > 0
+        let l:url = system('gist -t '.&filetype.' -p', selectedText)
+    else
+        let l:url = system('gist -p', selectedText)
+    endif
+
+    " paste url in system clipboard
+    let @+ = l:url
+
+    " remove last entry using clipster deamon to avoid double entries in the
+    " clipboard manager
+    execute system('clipster -r')
+endfu
+
 fu! s:find_git_root()
     return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endf
@@ -230,10 +263,10 @@ let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 command! -bang -nargs=* Search call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
 command! ProjectFiles execute 'Files' s:find_git_root()
-nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <leader>f :w<CR>:Search<CR>
+nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
 nnoremap <silent> <leader>F :Filetypes<CR>
+nnoremap <silent> ? :w<CR>:Search<CR>
 nnoremap <silent> \ :BLines<CR>
 
 """ nerdcommentor (https://github.com/preservim/nerdcommenter)
@@ -296,6 +329,7 @@ nnoremap <silent> <Leader>k <C-O>
 augroup generic_fileoptions
     autocmd!
     autocmd filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd filetype *.txt setlocal filetype=text
 augroup END
 augroup autosource_vimrc
     autocmd!
