@@ -51,13 +51,13 @@ if [[ "$2" == "offline" ]]
 then
     (_save_offline "$img_path" && _save_log "$new_img_name" \
         && notify2 "Screenshot.sh" "Offline screenshot saved:\n$new_img_name" ) || exit 1
-else
+        else
 
-    link=$(curl -s -X POST -H "Authorization: Client-ID $API_KEY" \
-	    -F "image=@$img_path" https://api.imgur.com/3/upload.xml \
-	    | grep -oE '<link>([^<]+)</link>' | sed 's#</\?link>##g')
+            link=$(curl -s -X POST -H "Authorization: Client-ID $API_KEY" \
+                -F "image=@$img_path" https://api.imgur.com/3/upload.xml \
+                | grep -oE '<link>([^<]+)</link>' | sed 's#</\?link>##g')
 
-    ([[ -z "$link" ]] && _save_offline "$img_path" && _save_log "$new_img_name" \
-        && notify2 "Screenshot.sh" "Upload failed!\nImage saved offline: $new_img_name") \
-        || (_save_log "$link" && xclip -selection clipboard <<< "$link" && rm -f "$img_path") || exit 1
+            ([[ -z "$link" ]] && _save_offline "$img_path" && _save_log "$new_img_name" \
+                && notify2 "Screenshot.sh" "Upload failed!\nImage saved offline: $new_img_name") \
+                || (_save_log "$link" && clipster -c <<< "$link" && clipster -r && rm -f "$img_path") || exit 1
 fi
