@@ -44,7 +44,7 @@
 	- switch user from to `root` to `USER` using `su - USER`
 	- Clone and run the script using the command given below:
 	```sh
-	git clone https://github.com/maniac-en/dotfiles.git ~/.dotfiles \
+	git clone --recursive https://github.com/maniac-en/dotfiles.git ~/.dotfiles \
 		&& cd ~/.dotfiles && ./clean_install.sh
 	```
 
