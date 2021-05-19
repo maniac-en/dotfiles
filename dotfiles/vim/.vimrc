@@ -97,8 +97,8 @@ noremap <silent> <Up> g<Up>
 noremap <silent> <Down> g<Down>
 
 """ vselect and gist the selection
-command -range GistLines call system('gist', getbufline('%', <line1>, <line2>))
-vnoremap <F2> :GistLines<CR>
+command -range GistLines <line1>,<line2>call GistWrapper()
+xnoremap <F2> :GistLines<CR>
 
 """ handle <ESC> immediately in insert mode. Wait indefinitely for incomplete mappings.
 set esckeys
@@ -182,6 +182,39 @@ fu! ToggleStatusBar()
         set laststatus=2
     endif
 endf
+
+" Source: https://vi.stackexchange.com/a/11028/29810
+fu! GistWrapper() range abort
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+
+    " Get all the lines represented by this range
+    let lines = getline(lnum1, lnum2)
+
+    " The last line might need to be cut if the visual selection didn't end on
+    " the last column
+    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+    " The first line might need to be trimmed if the visual selection didn't
+    " start on the first column
+    let lines[0] = lines[0][col1 - 1:]
+
+    " Get the desired text
+    let selectedText = join(lines, "\n")
+
+    " call gist binary
+    if strlen(&filetype) > 0
+        let l:url = system('gist -t '.&filetype.' -p', selectedText)
+    else
+        let l:url = system('gist -p', selectedText)
+    endif
+
+    " paste url in system clipboard
+    let @+ = l:url
+
+    " remove last entry using clipster deamon to avoid double entries in the
+    " clipboard manager
+    execute system('clipster -r')
+endfu
 
 fu! s:find_git_root()
     return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]

@@ -37,3 +37,8 @@ function wget_dir() {
             \n\t\033[1;40;31mwget_dir 2 http://mysite.com/dir1/dir2/data\033[0m\n" >&2
     fi
 }
+
+# gist wrapper
+function gist() {
+    /usr/bin/gist -p --skip-empty "${@}" | clipster -c
+}
