@@ -73,8 +73,8 @@ nmap <silent> th <C-W>h
 nmap <silent> tl <C-W>l
 nmap <silent> tj <C-W>j
 nmap <silent> tk <C-W>k
-nmap <silent> ts :split<SPACE>
-nmap <silent> tv :vsplit<SPACE>
+nmap ts :split<SPACE>
+nmap tv :vsplit<SPACE>
 nmap <silent> tc <C-W>c
 set splitbelow splitright
 
@@ -230,10 +230,10 @@ let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 command! -bang -nargs=* Search call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
 command! ProjectFiles execute 'Files' s:find_git_root()
-nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <leader>f :w<CR>:Search<CR>
+nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
 nnoremap <silent> <leader>F :Filetypes<CR>
+nnoremap <silent> ? :w<CR>:Search<CR>
 nnoremap <silent> \ :BLines<CR>
 
 """ nerdcommentor (https://github.com/preservim/nerdcommenter)
@@ -296,6 +296,7 @@ nnoremap <silent> <Leader>k <C-O>
 augroup generic_fileoptions
     autocmd!
     autocmd filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd filetype *.txt setlocal filetype=text
 augroup END
 augroup autosource_vimrc
     autocmd!
