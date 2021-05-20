@@ -1,5 +1,6 @@
 # mkdir -p and cd $1
-function mkd() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" || true; }
+function mcd() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" || true; }
+compdef _directories mcd
 
 # view obj dump in vim
 function vobjdump() { objdump -D "$@" -M intel | vim -c "set ft=ia64" -; }
@@ -42,3 +43,13 @@ function wget_dir() {
 function gist() {
     /usr/bin/gist -p --skip-empty "${@}" | clipster -c
 }
+
+# git wrapper
+function g() {
+    if [[ $# -gt 0 ]]; then
+        git "$@"
+    else
+        { git headlog 2>/dev/null || : } && git status -sb
+    fi
+}
+compdef g=git

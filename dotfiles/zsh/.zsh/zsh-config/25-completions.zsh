@@ -61,3 +61,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 # press Ctrl-o to accept suggestion and proceed to next menu if possible
 bindkey -M menuselect '^o' accept-and-infer-next-history
+
+# deleting inbuilt mcd completion from mtools package
+compdef -d _mcd
