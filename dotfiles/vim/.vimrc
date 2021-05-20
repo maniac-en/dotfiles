@@ -133,6 +133,7 @@ filetype plugin on
 
 """ display
 set cursorline
+highlight CursorLine cterm=NONE guibg=#363230
 set number
 set relativenumber
 set noshowcmd
@@ -228,8 +229,11 @@ fu! MD2PDF()
     redraw!
 endfu
 
-""" status-line
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%{StatuslineTrailingSpaceWarning()}%=%(l:\%l,\ \c:%c,\ %P\ %)
+""" statusline
+set statusline=
+set statusline+=[%n]\ %<%.99f\ %h%w%m%r
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%=%(l:\%l,\ \c:%c,\ %P\ %)
 augroup cal_white_space
     autocmd!
     autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
@@ -239,11 +243,8 @@ let s:hidden_all = 1
 call ToggleStatusBar()
 nnoremap <silent> <F7> :call ToggleStatusBar()<CR>
 
-""" highlight trailing whitespaces
-command! HighlightExtraSpaces :match Search /\S\zs\s\+$/
-
 """ remove trailing whitespaces
-command! RemoveExtraSpaces :%s/\s\+$//ge | nohl
+command! TrimTrailingSpaces :%s/\s\+$//ge | nohl
 
 """ LOAD'em PLUGINS
 """ load all plugins
@@ -263,7 +264,6 @@ let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 command! -bang -nargs=* Search call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
 command! ProjectFiles execute 'Files' s:find_git_root()
-nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
 nnoremap <silent> <leader>F :Filetypes<CR>
 nnoremap <silent> ? :w<CR>:Search<CR>
@@ -295,7 +295,7 @@ let g:undotree_SetFocusWhenToggle = 1
 nnoremap <silent> <F5> :UndotreeToggle<CR>
 
 """ my custom shortcuts
-" save, quit, etc.
+" write, quit mappings
 noremap <silent> <leader>q :qa<CR>
 nnoremap <silent> <leader>d :q<CR>
 noremap <silent> <leader>wa :wa<CR>
