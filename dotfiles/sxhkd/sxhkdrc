@@ -16,10 +16,6 @@ super + grave
 super + ctrl + p
 	"$SYS"/reload_polybar.sh
 
-# aliases list
-super + a
-	"$SYS"/aliases.sh
-
 # sxhkd help
 super + slash
 	"$SYS"/binds.sh
