@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-trap '_less_logfile' ERR
 trap '_confirm_sigint' SIGINT
 DEBUG=0
 logfile=$(date).log
