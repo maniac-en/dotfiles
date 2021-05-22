@@ -54,13 +54,10 @@ alias rg="rg --hidden --glob '!.git'"
 alias s='sudo'
 alias sc='source $HOME/.zshrc'
 alias su='s su'
-alias sv='sudo vim'
 alias sx='$EDITOR $HOME/.config/sxhkd/sxhkdrc'
 alias v='vim'
-alias vc='$EDITOR $HOME/.vimrc'
-alias vi='vim'
+alias vc='$EDITOR $HOME/.vim/vimrc'
 alias x='chmod a+x'
-alias zc='$EDITOR $HOME/.zshrc'
 alias zd='$EDITOR $HOME/.zsh/zsh-config'
 
 #no idea why I made them

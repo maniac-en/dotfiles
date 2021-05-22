@@ -55,7 +55,8 @@ then
 
             link=$(curl -s -X POST -H "Authorization: Client-ID $API_KEY" \
                 -F "image=@$img_path" https://api.imgur.com/3/upload.xml \
-                | grep -oE '<link>([^<]+)</link>' | sed 's#</\?link>##g')
+                | rg -o '<link>https://i\.(.*)</link>' -r 'https://$1' \
+                | sed 's#\.png$##')
 
             ([[ -z "$link" ]] && _save_offline "$img_path" && _save_log "$new_img_name" \
                 && notify2 "Screenshot.sh" "Upload failed!\nImage saved offline: $new_img_name") \

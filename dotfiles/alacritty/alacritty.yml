@@ -136,7 +136,7 @@ font:
     style: Medium Italic
 
   # Point size
-  size: 14
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -339,7 +339,7 @@ selection:
   save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: false
+dynamic_title: true
 
 cursor:
   # Cursor style

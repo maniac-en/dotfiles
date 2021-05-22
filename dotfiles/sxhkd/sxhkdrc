@@ -13,8 +13,8 @@ super + grave
     pkill -USR1 -x sxhkd && "$HOME"/bin/notify2 "SXHKD" "Reload successful!" -t 2000 -r 421
 
 # restart polyar
-super + ctrl + p
-    "$SYS"/reload_polybar.sh
+# super + ctrl + p
+#     "$SYS"/reload_polybar.sh
 
 # sxhkd help
 super + slash
