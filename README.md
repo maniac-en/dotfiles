@@ -1,10 +1,10 @@
 # Dotfiles & stuff
 
-### LICENSE
+## LICENSE
 [GPL-3.0 License](https://github.com/maniac-en/dotfiles/blob/main/LICENSE)
 
 ## Things to note
-- THESE DOTFILES MIGHT BREAK YOUR EXISTING SYSTEM/MIGHT NOT WORK FOR YOU. THESE ARE MEANT FOR MY PERSONAL USAGE, AND FOR SOME OF MY ACQUAINTANCES.
+- THESE DOTFILES MIGHT BREAK YOUR EXISTING SYSTEM OR MIGHT NOT EVEN WORK FOR YOU. THESE ARE MEANT FOR MY PERSONAL USAGE, AND MY ACQUAINTANCES.
 - I use [`Comic Code Medium`](https://www.myfonts.com/fonts/tabular-type-foundry/comic-code/medium/) font but you can change it if you want to :)
 - I use an [IMGUR API](https://api.imgur.com/#overview) for the screenshot script. It can be put in user's home folder `/home/USER` with a file name `.env.api` [(Sample File)](https://github.com/maniac-en/dotfiles/blob/gruvbox/.env.api)
 
@@ -25,7 +25,7 @@ pacstrap /mnt base linux linux-firmware sudo networkmanager git
 7. generate fstab entries using the following command:
 ```sh
 genfstab -U /mnt >> /mnt/etc/fstab
-``` 
+```
 8. arch-chroot to your installation and enable network manager service with following command
 ```sh
 systemctl enable NetworkManager.service
@@ -45,7 +45,7 @@ systemctl enable NetworkManager.service
 	echo "USER ALL=(ALL) NOPASSWD: ALL" | sudo EDITOR='tee -a' visudo
 	passwd USER
 	su - USER
-	```	
+	```
 15. Clone and run the script using following command:
 ```sh
 git clone --recursive https://github.com/maniac-en/dotfiles.git ~/.dotfiles \
