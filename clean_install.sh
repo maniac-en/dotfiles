@@ -42,77 +42,78 @@ _install_y() {
 
 pacman_packages=(
     base-devel
-    sudo
-    git
-    curl
-    wget
-    xorg
-    xorg-xinit
-    xclip
     cmake
-    ninja
-    networkmanager
-    python-wheel
-    python2-wheel
-    python-pip
-    python2-pip
-    python-pipx
+    curl
     dbus
     dbus-python
-    rustup
     dmidecode
+    git
+    networkmanager
+    ninja
     nvidia
+    python-pip
+    python-pipx
+    python-wheel
+    python2-pip
+    python2-wheel
+    rustup
+    sudo
+    wget
+    xclip
+    xorg
+    xorg-xinit
 )
 
+# Reason behind using zsh-git version because of this issue:
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/150
 yay_packages=(
-    wdiff
-    rofi
-    neofetch
-    pcmanfm-gtk3
-    jq
-    xdotool
-    chromium
-    firefox
-    wget
-    bat
-    ripgrep
-    fast
-    gist
-    openvpn
-    openssh
-    pavucontrol
-    pulseaudio
-    ttf-font-awesome
-    ttf-fantasque-sans-mono
-    ttf-ms-fonts
-    noto-fonts-emoji
-    faba-icon-theme
-    spotify
-    discord
-    zathura
-    vscodium-bin
     alacritty
+    bat
     bspwm
-    sxhkd
-    # Reason behind using zsh-git version because of this issue:
-    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/150
-    zsh-git
+    chromium
+    clipster
+    colorpicker
+    discord
+    dunst
+    faba-icon-theme
+    fast
+    fd
+    feh
+    firefox
+    gist
     gvim
-    tmux
+    jq
+    jumpapp
+    maim
+    neofetch
+    noto-fonts-emoji
+    openssh
+    openvpn
+    pamixer
+    pavucontrol
+    pcmanfm-gtk3
     picom-jonaburg-git
     polybar
-    clipster
-    dunst
-    screenkey
-    sxiv
-    feh
-    pamixer
-    fd
-    maim
-    jumpapp
+    pulseaudio
     redshift
-    colorpicker
+    ripgrep
+    rofi
+    screenkey
+    shellcheck
+    spotify
+    sxhkd
+    sxiv
+    tmux
+    ttf-fantasque-sans-mono
+    ttf-font-awesome
+    ttf-ms-fonts
     unzip
+    vscodium-bin
+    wdiff
+    wget
+    xdotool
+    zathura
+    zsh-git
 )
 
 _echo "Script init"
