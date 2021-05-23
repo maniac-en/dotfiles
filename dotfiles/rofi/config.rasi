@@ -3,7 +3,7 @@ configuration {
 	show-icons: true;
 	width: 50;
 	lines: 10;
-	font: "Fantasque Sans Mono 16";
+	font: "Comic Code Medium 18";
 	parse-known-hosts: false;
 	display-drun: "Search";
 	display-window: "Workspaces";

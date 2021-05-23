@@ -17,11 +17,11 @@ bspc config split_ratio         0.50
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 
-bspc config pointer_action1  	move
+bspc config pointer_action1     move
 bspc config pointer_action2     resize_side
 bspc config pointer_action3     resize_corner
 bspc config focus_follows_pointer true
-bspc config ignore_ewmh_focus 	false
+bspc config ignore_ewmh_focus   false
 
 ## rules
 # fixed-desktops
@@ -29,13 +29,13 @@ bspc rule -a terminal_fixed desktop=1 focus=on border=off follow=on
 bspc rule -a install4j-burp-StartBurp desktop=2 focus=on state=floating center=true follow=on
 bspc rule -a Vmware desktop=3 focus=on state=tiled follow=on
 bspc rule -a VSCodium desktop=4 follow=on state=fullscreen border=off follow=on
-bspc rule -a mpv desktop=5 focus=on state=fullscreen follow=on
-bspc rule -a superProductivity desktop=6 state=floating follow=on center=true
+# desktop 5 is for spotify from external rules script
+bspc rule -a mpv desktop=6 focus=on state=fullscreen follow=on
 bspc rule -a discord desktop=9 focus=on state=tiled border=off follow=on
 bspc rule -a Chromium desktop=10 focus=on state=tiled border=off follow=on
 
 # misc
-bspc rule -a terminal_floating state=floating follow=on center=true rectangle=1100x650+0+0
+bspc rule -a terminal_floating state=floating follow=on center=true rectangle=1440x900+0+0 border_width=7
 bspc rule -a MEGAsync state=floating follow=on center=true rectangle=400x570+0+0
 bspc rule -a Pcmanfm state=floating follow=on center=true
 bspc rule -a vlc state=floating follow=on center=true

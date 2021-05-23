@@ -45,15 +45,15 @@ zstyle -e ':completion:*' hosts 'reply=()'
 # Don't complete uninteresting stuff unless we really want to.
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|TRAP*)'
 zstyle ':completion:*:*:*:users' ignored-patterns \
-		adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
-		clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
-		gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
-		ldap lp mail mailman mailnull man messagebus mldonkey mysql nagios \
-		named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
-		operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
-		rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
-		usbmux uucp vcsa wwwrun xfs cron mongodb nullmail portage redis \
-		shoutcast tcpdump '_*'
+    adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+    clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+    gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+    ldap lp mail mailman mailnull man messagebus mldonkey mysql nagios \
+    named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+    operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+    rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+    usbmux uucp vcsa wwwrun xfs cron mongodb nullmail portage redis \
+    shoutcast tcpdump '_*'
 zstyle ':completion:*' single-ignored show
 
 # case insensitive https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/
@@ -61,3 +61,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 # press Ctrl-o to accept suggestion and proceed to next menu if possible
 bindkey -M menuselect '^o' accept-and-infer-next-history
+
+# deleting inbuilt mcd completion from mtools package
+compdef -d _mcd

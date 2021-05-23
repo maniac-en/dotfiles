@@ -79,3 +79,9 @@
 [submodule "dotfiles/tmux/.tmux/plugins/tpm"]
 	path = dotfiles/tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "dotfiles/vim/.vim/pack/github/start/python-syntax"]
+	path = dotfiles/vim/.vim/pack/github/start/python-syntax
+	url = https://github.com/maniac-en/python-syntax
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-syntax-extra-for-c"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-syntax-extra-for-c
+	url = https://github.com/maniac-en/vim-syntax-extra-for-c

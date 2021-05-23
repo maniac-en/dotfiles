@@ -16,7 +16,6 @@ alias gs='{ git headlog 2>/dev/null || : } && git status -sb'
 alias camera='mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video0'
 alias dnd!='dunstctl set-paused false'
 alias dnd='dunstctl set-paused true'
-alias gist='gist -p --skip-empty'
 alias nmap='sudo nmap'
 alias r32='tr -dc a-zA-Z0-9 < /dev/urandom | head -c 32 | copy'
 alias sxiv='sxiv -r'
@@ -27,7 +26,6 @@ alias ....='cd ../../..'
 alias ...='cd ../..'
 alias ..='cd ..'
 alias ac='$EDITOR $HOME/.config/alacritty/alacritty.yml'
-alias ali='$EDITOR $HOME/.zsh/zsh-config/10-aliases.zsh && sc'
 alias bsp='$EDITOR $HOME/.config/bspwm/bspwmrc'
 alias c='bat'
 alias colorpicker='colorpicker --short --one-shot --preview | head -c -1 | copy'
@@ -56,15 +54,16 @@ alias rg="rg --hidden --glob '!.git'"
 alias s='sudo'
 alias sc='source $HOME/.zshrc'
 alias su='s su'
-alias sv='sudo vim'
 alias sx='$EDITOR $HOME/.config/sxhkd/sxhkdrc'
 alias v='vim'
-alias vc='$EDITOR $HOME/.vimrc'
-alias vi='vim'
+alias vc='$EDITOR $HOME/.vim/vimrc'
 alias x='chmod a+x'
-alias zc='$EDITOR $HOME/.zshrc'
 alias zd='$EDITOR $HOME/.zsh/zsh-config'
 
 #no idea why I made them
 alias clrdockerps='docker rm $(docker ps -a -f status=exited -f status=created -q) 2>/dev/null'
 alias sl="echo -e \"\nIt's ls you DUMB-ASS\n\""
+
+# Hack(maniac): I keep changing zsh aliases file name so I wrote this workaround
+export _MANIAC_ALIASES_FILE_PATH="$0:A"
+alias ali="$EDITOR $_MANIAC_ALIASES_FILE_PATH && sc"

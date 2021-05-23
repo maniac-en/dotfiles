@@ -37,4 +37,6 @@ fi
 xsetroot -cursor_name left_ptr
 xset -dpms s off
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 exec bspwm

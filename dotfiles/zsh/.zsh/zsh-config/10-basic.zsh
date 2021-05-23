@@ -12,7 +12,7 @@ chmod 700 $ZSH_CACHE
 typeset -U fpath
 [[ -d /usr/share/zsh/site-functions ]] && fpath+=(/usr/share/zsh/site-functions)
 [[ -d "$HOME"/.zsh/zsh-completions/src ]] && fpath+=("$HOME"/.zsh/zsh-completions/src)
-[[ -d "$HOME"/.zsh_functions ]] && fpath+=("$HOME"/.zsh_functions)
+[[ -d "$HOME"/.zsh/custom-zsh-completions ]] && fpath+=("$HOME"/.zsh/custom-zsh-completions)
 
 # colors
 autoload -U colors && colors

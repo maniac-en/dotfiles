@@ -1,0 +1,28 @@
+[advice]
+    addIgnoredFile = false
+    addEmptyPathspec = false
+[alias]
+    verboselog = log --color --graph --pretty=format:'%Cgreen%h%Creset :%C(yellow)%d%Creset %s %Cgreen(%cr) %C("#849598")<%an>%Creset' --abbrev-commit
+    headlog = log --color --pretty=format:'%Cgreen%h%Creset :%C(yellow)%d%Creset %s%Creset' --abbrev-commit -n1
+[color]
+    ui = auto
+[commit]
+    gpgsign = true
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
+    submodule = log
+[difftool]
+    prompt = false
+[init]
+    defaultBranch = main
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[pull]
+    rebase = false
+[user]
+    name = Shivam Mehta
+    email = sm.cse17@gmail.com
+    signingkey = 35CA96A67982D315
