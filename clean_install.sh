@@ -81,6 +81,8 @@ yay_packages=(
     feh
     firefox
     gist
+    gruvbox-material-gtk-theme-git
+    gruvbox-material-icon-theme-git
     gvim
     jq
     jumpapp
@@ -123,7 +125,6 @@ DOT_DIR="$HERE/dotfiles"
 _exec mkdir -p -- "$CONFIG_DIR"
 _exec mkdir -p -- "$HOME"/bin
 _exec mkdir -p -- "$HOME"/.themes
-_exec mkdir -p -- "$HOME"/.config/gtk-3.0
 _exec mkdir -p -- "$HOME"/.cache/vim
 _exec mkdir -p -- "$HOME"/.cargo
 
@@ -177,42 +178,41 @@ _exec sudo sed -i -e "s/maniac/$USER/" /etc/systemd/system/getty@tty1.service.d/
 _exec sudo systemctl enable getty@tty1.service
 
 _echo "Symlinking dotfiles"
-_exec ln -sf -- "$DOT_DIR/alacritty" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/bspwm" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/sxhkd" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/rofi" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/polybar" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/dunst" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/clipster" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/neofetch" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/zathura" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/pcmanfm" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/bat" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/screenkey/screenkey.json" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
-_exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
-_exec ln -sf -- "$DOT_DIR/zsh/.zlogin" "$HOME"
-_exec ln -sf -- "$DOT_DIR/vim/.vim" "$HOME"
-_exec ln -sf -- "$DOT_DIR/background.png" "$HOME/.background"
-_exec ln -sf -- "$DOT_DIR/feh/.fehbg" "$HOME"
-_exec ln -sf -- "$DOT_DIR/scripts" "$HOME"
-_exec ln -sf -- "$DOT_DIR/fontconfig" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/picom/picom.conf" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/tmux/.tmux" "$HOME"
-_exec ln -sf -- "$DOT_DIR/tmux/.tmux.conf" "$HOME"
 _exec ln -sf -- "$DOT_DIR/X/.xinitrc" "$HOME"
+_exec ln -sf -- "$DOT_DIR/alacritty" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/background.png" "$HOME/.background"
+_exec ln -sf -- "$DOT_DIR/bat" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/bspwm" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/clipster" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/dunst" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/feh/.fehbg" "$HOME"
+_exec ln -sf -- "$DOT_DIR/fontconfig" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/gitconfig" "$HOME/.gitconfig"
 _exec ln -sf -- "$DOT_DIR/gtk/settings.ini" "$CONFIG_DIR/gtk-3.0/"
-_exec ln -sf -- "$DOT_DIR/gtk/Gruvbox-Material-Dark" "$HOME/.themes/"
+_exec ln -sf -- "$DOT_DIR/neofetch" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/pcmanfm" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/picom/picom.conf" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/polybar" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/rofi" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/screenkey/screenkey.json" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/scripts" "$HOME"
 _exec ln -sf -- "$DOT_DIR/scripts/btc.sh" "$HOME/bin/btc"
-_exec ln -sf -- "$DOT_DIR/scripts/etc.sh" "$HOME/bin/etc"
-_exec ln -sf -- "$DOT_DIR/scripts/screencast.sh" "$HOME/bin/cast"
 _exec ln -sf -- "$DOT_DIR/scripts/docker_descendants.py" "$HOME/bin/docker_descendants"
+_exec ln -sf -- "$DOT_DIR/scripts/etc.sh" "$HOME/bin/etc"
 _exec ln -sf -- "$DOT_DIR/scripts/kp.sh" "$HOME/bin/kp"
+_exec ln -sf -- "$DOT_DIR/scripts/markdown2pdf.sh" "$HOME/bin/markdown2pdf"
 _exec ln -sf -- "$DOT_DIR/scripts/notify2.sh" "$HOME/bin/notify2"
 _exec ln -sf -- "$DOT_DIR/scripts/out.sh" "$HOME/bin/out"
+_exec ln -sf -- "$DOT_DIR/scripts/screencast.sh" "$HOME/bin/cast"
 _exec ln -sf -- "$DOT_DIR/scripts/vpn.sh" "$HOME/bin/vpn"
-_exec ln -sf -- "$DOT_DIR/scripts/markdown2pdf.sh" "$HOME/bin/markdown2pdf"
-_exec ln -sf -- "$DOT_DIR/gitconfig" "$HOME/.gitconfig"
+_exec ln -sf -- "$DOT_DIR/sxhkd" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/tmux/.tmux" "$HOME"
+_exec ln -sf -- "$DOT_DIR/tmux/.tmux.conf" "$HOME"
+_exec ln -sf -- "$DOT_DIR/vim/.vim" "$HOME"
+_exec ln -sf -- "$DOT_DIR/zathura" "$CONFIG_DIR"
+_exec ln -sf -- "$DOT_DIR/zsh/.zlogin" "$HOME"
+_exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
+_exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
 _exec sudo ln -sf -- "$DOT_DIR/blsd" "/usr/bin"
 _exec sudo ln -sf -- "$DOT_DIR/vconsole.conf" /etc
 
