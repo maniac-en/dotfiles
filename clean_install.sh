@@ -48,7 +48,6 @@ pacman_packages=(
     dbus-python
     dmidecode
     git
-    networkmanager
     ninja
     nvidia
     python-pip
