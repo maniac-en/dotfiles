@@ -400,13 +400,13 @@ if has("autocmd")
     augroup filetype_python
         autocmd!
         autocmd filetype python nnoremap <F2> :w<CR>:!clear;python %<CR>
-        autocmd filetype python inoremap <F2> :w<CR>:!clear;python %<CR>
+        autocmd filetype python inoremap <F2> <ESC>:w<CR>:!clear;python %<CR>
     augroup END
     augroup filetype_sh
         autocmd!
         autocmd filetype sh nnoremap <silent> <F1> :w<CR>:!clear; shellcheck -x %:p<CR>
         autocmd filetype sh nnoremap <F2> :w<CR>:!clear;bash %<CR>
-        autocmd filetype sh inoremap <F2> :w<CR>:!clear;bash %<CR>
+        autocmd filetype sh inoremap <F2> <ESC>:w<CR>:!clear;bash %<CR>
     augroup END
     augroup cal_white_space
         autocmd!
