@@ -9,35 +9,56 @@ fc-cache
 HERE="$(cd "$(dirname "$0")" && pwd)"
 possible_config_files=(
     alacritty
+    all
     clipster
     dunst
     rofi
-    screenkey
 )
 
 # patch functions
 _patch_alacritty() {
-    true
+    local conf_file="$HERE/dotfiles/alacritty/alacritty.yml"
+    local normal_face=$(fc-list "$1" --format="%{style}\n" | sed 's#,#\n#g' | \
+        sort -u | fzf --header="Choose \"Normal\" font face" --no-sort  --ansi \
+        --info=hidden)
+    local italic_face=$(fc-list "$1" --format="%{style}\n" | sed 's#,#\n#g' | \
+        sort -u | fzf --header="Choose \"Italic\" font face" --no-sort  --ansi \
+        --info=hidden)
+    # font family
+    sed -i "111s#.*#    family: $1#" "$conf_file"
+    sed -i "133s#.*#    family: $1#" "$conf_file"
+    # normal font face
+    sed -i "114s#.*#    style: $normal_face#" "$conf_file"
+    # italic font face
+    sed -i "136s#.*#    style: $italic_face#" "$conf_file"
+    # font size
+    sed -i "139s#.*#  size: $2#" "$conf_file"
+
+    # update neofetch as well
+    sed -i "12s#.*#\tprintf -v term_font \"$1\"#" \
+    "$HERE/dotfiles/neofetch/config.conf"
 }
 
 _patch_clipster() {
-    true
+    local conf_file="$HERE/dotfiles/scripts/system/clipster.sh"
+    sed -i "4s#.*#    | rofi -font \"$1 $2\" \\\\#" "$conf_file"
 }
 
 _patch_rofi() {
-    true
+    local conf_file="$HERE/dotfiles/rofi/config.rasi"
+    sed -i "6s#.*#\tfont: \"$1 $2\";#" "$conf_file"
 }
 
 _patch_dunst() {
-    true
-}
-
-_patch_screenkey() {
-    true
+    local conf_file="$HERE/dotfiles/dunst/dunstrc"
+    sed -i "14s#.*#    font = $1 $2#" "$conf_file"
 }
 
 _patch_all() {
-    true
+    _patch_alacritty "$1" "$2"
+    _patch_clipster "$1" "$2"
+    _patch_rofi "$1" "$2"
+    _patch_dunst "$1" "$2"
 }
 
 # get user inputs, and call the subsequent patch function
@@ -46,7 +67,7 @@ main() {
     --header="Choose a config file to update:" --no-sort --ansi --info=hidden)
     if [[ -n "$selected_conf_file" ]]
     then
-        selected_font_style=$(fc-list | cut -d ':' -f 2 | sort -u | fzf \
+        selected_font_style=$(fc-list : family | sort -u | fzf \
         --header="Choose a font style:" --no-sort --ansi --info=hidden | xargs)
         if [[ -n "$selected_font_style" ]]
         then
@@ -73,9 +94,6 @@ main() {
             ;;
         dunst)
             _patch_dunst "$selected_font_style" "$selected_font_size"
-            ;;
-        screenkey)
-            _patch_screenkey "$selected_font_style" "$selected_font_size"
             ;;
         all)
             _patch_all "$selected_font_style" "$selected_font_size"
