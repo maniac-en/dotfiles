@@ -1,15 +1,17 @@
 # Dotfiles & stuff
 
-## Preview
-![Preview](https://i.imgur.com/kBJRydh.jpg)
-> Font in this preview is [Comic Code Medium](https://www.myfonts.com/fonts/tabular-type-foundry/comic-code/medium/), if you have it, you can use the corresponding config from `dev` branch!
-
 ## Index
-- [Clean Installation Steps](#clean-installation-steps)
 - [Things to note](#things-to-note)
-- [Contributing](#contributing)
-- [Code of conduct](#code-of-conduct)
+- [Clean Installation Steps](#clean-installation-steps)
 - [LICENSE](#license)
+
+## Things to note
+- THESE DOTFILES MIGHT BREAK YOUR EXISTING SYSTEM/MIGHT NOT WORK FOR YOU. THESE ARE MEANT FOR MY PERSONAL USAGE, AND FOR SOME OF MY ACQUAINTANCES.
+- Amongst the all [scripts](https://github.com/maniac-en/dotfiles/tree/main/dotfiles/scripts), I use API for two of them, and they can be put in user's home folder `/home/USER` with a file name `.env.api` [(Sample File)](https://github.com/maniac-en/dotfiles/blob/main/.env.api)
+	- Github API (scope: notification access) for getting unread notification counter in polybar (bar present at the top in the screenshots)
+	> Github API docs: [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+	- Imgur API for uploading screenshots to imgur for easy sharing!
+	> Imgur API docs: [here](https://api.imgur.com/#overview)
 
 ## Clean Installation Steps
 - You need to have a arch base-install (or, you can experiment on your existing system if you wanna get adventurous),
@@ -48,13 +50,5 @@
 		&& cd ~/.dotfiles && ./clean_install.sh
 	```
 
-## Things to note
-- Amongst the all [scripts](https://github.com/maniac-en/dotfiles/tree/main/dotfiles/scripts), I use API for two of them, and they can be put in user's home folder `/home/USER` with a file name `.env.api` [(Sample File)](https://github.com/maniac-en/dotfiles/blob/main/.env.api)
-	- Github API (scope: notification access) for getting unread notification counter in polybar (bar present at the top in the screenshots)
-	> Github API docs: [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
-	- Imgur API for uploading screenshots to imgur for easy sharing!
-	> Imgur API docs: [here](https://api.imgur.com/#overview)
-
-### [Contributing](https://github.com/maniac-en/dotfiles/blob/main/docs/CONTRIBUTING.md)
-### [Code of conduct](https://github.com/maniac-en/dotfiles/blob/main/CODE_OF_CONDUCT.md)
-### [LICENSE](https://github.com/maniac-en/dotfiles/blob/main/LICENSE)
+### LICENSE
+[GPL-3.0 License](https://github.com/maniac-en/dotfiles/blob/main/LICENSE)
