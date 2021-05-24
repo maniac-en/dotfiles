@@ -156,8 +156,6 @@ set incsearch
 set ignorecase
 " override ignorecase if uppercase char is present
 set smartcase
-" disable currently highlighted matches
-nnoremap <silent> <Leader>l :noh<CR>
 " }}}
 
 """ splits management {{{
@@ -312,7 +310,7 @@ xnoremap <F2> :GistLines<CR>
 cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
 nnoremap <leader>h :tab help<space>
 " remove trailing whitespaces
-command! TrimTrailingSpaces :%s/\s\+$//ge | nohl
+command! TrimTrailingSpaces :%s/\s\+$//ge | noh
 " Use |(beam) cursor for insert mode, use █(block) cursor otherwise
 augroup cursor_change
     autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
@@ -419,6 +417,11 @@ nnoremap <silent> <Leader>S vip:sort iu<CR>
 nnoremap <silent> Y y$
 " re-indent whole file
 nnoremap <silent> == gg=G
+" disable currently highlighted matches
+nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
+" highlight all occurances of current word without jumpig cursor
+" Source: https://vim.fandom.com/wiki/Highlight_all_search_pattern_matches
+nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " }}}
 
 """ visual mode mappings {{{
