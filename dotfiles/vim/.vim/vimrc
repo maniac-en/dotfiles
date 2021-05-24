@@ -399,8 +399,8 @@ nnoremap <silent> <leader>wa :wa<CR>
 nnoremap <silent> <leader>wq :x<CR>
 nnoremap <silent> <leader>x :x<CR>
 nnoremap <silent> <leader>Q :q!<CR>
-" jump between pair of parentheses
-nnoremap <silent> <SPACE> %
+" jump between pair of parentheses using backspace
+nnoremap <silent> <BS> %
 " subsitute map
 nnoremap <leader>r :%s///g<Left><Left><Left>
 " delete map
