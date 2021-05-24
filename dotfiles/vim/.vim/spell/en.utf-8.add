@@ -148,3 +148,12 @@ waivable
 www
 x86's
 zsh
+modeline
+keycodes
+upto
+alacritty
+colorscheme
+cursorline
+statusline
+ignorecase
+wildcard
