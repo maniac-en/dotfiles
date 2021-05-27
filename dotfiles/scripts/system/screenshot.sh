@@ -2,7 +2,7 @@
 
 if ! hash maim 2>/dev/null; then exit 1; fi
 
-API_KEY="$IMGUR_CLIENT_SECRET"
+API_KEY="$IMGUR_CLIENT_ID"
 SCREENSHOT_DIR="$HOME/screenshots"
 LOG_FILE="$HOME/.cache/screenshots.log"
 new_img_path=""

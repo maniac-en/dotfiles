@@ -9,7 +9,7 @@
 ```sh
 ./update_font.sh
 ```
-- I use an [IMGUR API](https://api.imgur.com/#overview) for the screenshot script. It can be put in user's home folder `/home/USER` with a file name `.env.api` [(Sample File)](https://github.com/maniac-en/dotfiles/blob/gruvbox/.env.api)
+- I use an [IMGUR API](https://apidocs.imgur.com/) for the screenshot script. It can be put in user's home folder `/home/USER` with a file name `.env.api` [(Sample File)](https://github.com/maniac-en/dotfiles/blob/gruvbox/dotfiles/sample_api_file)
 
 ## Clean Installation Steps
 - You need to have a arch base-install (or, you can experiment on your existing system if you wanna get adventurous),
