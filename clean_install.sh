@@ -41,79 +41,76 @@ _install_y() {
 }
 
 pacman_packages=(
-    base-devel
-    cmake
-    curl
-    dbus
-    dbus-python
-    dmidecode
-    git
-    ninja
-    nvidia
-    python-pip
-    python-pipx
-    python-wheel
-    python2-pip
-    python2-wheel
-    rustup
-    sudo
-    wget
-    xclip
-    xorg
-    xorg-xinit
-)
-
-# Reason behind using zsh-git version because of this issue:
-# https://github.com/zsh-users/zsh-syntax-highlighting/issues/150
-yay_packages=(
     alacritty
     bat
     bspwm
     chromium
     clipster
-    colorpicker
+    cmake
+    curl
     discord
+    dmidecode
     dunst
-    faba-icon-theme
-    fast
     fd
     feh
     firefox
     gist
-    gruvbox-material-gtk-theme-git
-    gruvbox-material-icon-theme-git
+    git
     gvim
     jq
-    jumpapp
     maim
     neofetch
+    ninja
     noto-fonts-emoji
+    nvidia
     openssh
     openvpn
     pamixer
     pavucontrol
     pcmanfm-gtk3
-    picom-jonaburg-git
-    polybar
     pulseaudio
+    python-pip
+    python-pipx
+    python-wheel
+    python2-pip
+    python2-wheel
     redshift
     ripgrep
     rofi
+    rustup
     screenkey
     shellcheck
-    spotify
+    sudo
     sxhkd
     sxiv
     tmux
     ttf-fantasque-sans-mono
     ttf-font-awesome
-    ttf-ms-fonts
     unzip
-    vscodium-bin
     wdiff
     wget
+    xclip
     xdotool
+    xorg
+    xorg-xinit
     zathura
+)
+
+# Reason behind using zsh-git:
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/150
+yay_packages=(
+    clipster
+    colorpicker
+    faba-icon-theme-git
+    fast
+    gruvbox-material-gtk-theme-git
+    gruvbox-material-icon-theme-git
+    jumpapp
+    picom-jonaburg-git
+    # polybar
+    spotify
+    ttf-ms-fonts
+    vscodium-bin
     zsh-git
 )
 
@@ -123,12 +120,13 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 DOT_DIR="$HERE/dotfiles"
 _exec mkdir -p -- "$CONFIG_DIR"
 _exec mkdir -p -- "$HOME"/bin
-_exec mkdir -p -- "$HOME"/.themes
 _exec mkdir -p -- "$HOME"/.cache/vim
-_exec mkdir -p -- "$HOME"/.cargo
 
 _echo "Updating pacman DB"
 _exec sudo pacman -Syyu --noconfirm
+
+_echo "Installing base-devel"
+_exec sudo pacman -S base-devel --noconfirm
 
 _echo "Set tty font"
 _exec sudo pacman -S terminus-font --noconfirm
@@ -142,15 +140,12 @@ _exec sudo locale-gen
 _echo "Installing pacman packages"
 for pack in "${pacman_packages[@]}"; do _install_p "$pack"; done
 
-_echo "Post pacman commands"
-_exec rustup default stable
-_exec sudo pacman -Rns vim --noconfirm
+_echo "Importing spotify gpg key"
 _exec curl -sSO https://download.spotify.com/debian/pubkey_0D811D58.gpg
 _exec gpg --import pubkey_0D811D58.gpg
 _exec rm pubkey_0D811D58.gpg
-_exec sudo systemctl enable NetworkManager.service --now
 
-_echo "Installing: yay"
+_echo "Installing yay"
 _exec git clone https://aur.archlinux.org/yay.git
 _exec cd yay
 _exec makepkg -si --noconfirm
@@ -179,7 +174,7 @@ _exec sudo systemctl enable getty@tty1.service
 _echo "Symlinking dotfiles"
 _exec ln -sf -- "$DOT_DIR/X/.xinitrc" "$HOME"
 _exec ln -sf -- "$DOT_DIR/alacritty" "$CONFIG_DIR"
-_exec ln -sf -- "$DOT_DIR/background.png" "$HOME/.background"
+_exec ln -sf -- "$DOT_DIR/backgrounds/ibm.png" "$HOME/.background"
 _exec ln -sf -- "$DOT_DIR/bat" "$CONFIG_DIR"
 _exec ln -sf -- "$DOT_DIR/bspwm" "$CONFIG_DIR"
 _exec ln -sf -- "$DOT_DIR/clipster" "$CONFIG_DIR"
