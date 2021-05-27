@@ -32,7 +32,7 @@ bspc rule -a VSCodium desktop=4 follow=on state=fullscreen border=off follow=on
 # desktop 5 is for spotify from external rules script
 bspc rule -a mpv desktop=6 focus=on state=fullscreen follow=on
 bspc rule -a discord desktop=9 focus=on state=tiled border=off follow=on
-bspc rule -a Chromium desktop=10 focus=on state=tiled border=off follow=on
+bspc rule -a firefox desktop=10 focus=on state=tiled border=off follow=on #firefox
 
 # misc
 bspc rule -a terminal_floating state=floating follow=on center=true rectangle=1440x900+0+0 border_width=7
@@ -60,7 +60,7 @@ clipster -d &
 # start some stuff late
 "$SYS"/start_late.sh &
 
-# clear scratchpad cache
+# clear zombie id's
 true > "$HOME"/.cache/bspwm_node_visibility.log
 
 # change screen res if in vm

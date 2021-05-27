@@ -34,7 +34,7 @@ super + o
 
 # browser
 super + space
-    "$SYS"/node_manager.py -d 10 -c Chromium -x chromium
+    "$SYS"/node_manager.py -d 10 -c firefox -x firefox
 
 # # take notes
 # super + n
