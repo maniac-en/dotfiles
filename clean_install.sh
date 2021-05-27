@@ -103,6 +103,7 @@ yay_packages=(
     colorpicker
     faba-icon-theme-git
     fast
+    glogg
     gruvbox-material-gtk-theme-git
     gruvbox-material-icon-theme-git
     jumpapp
