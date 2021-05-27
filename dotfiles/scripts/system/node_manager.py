@@ -11,7 +11,8 @@ LOG_FILE = r'.cache/bspwm_node_visibility.log'
 LOG_FILE_PATH = os.path.join(os.path.expanduser('~'), LOG_FILE)
 
 """
-usage: scratchpad.py [-h] [--debug] -d {1,2,3,4,5,6,7,8,9,10} -c CLASS_NAME -x ...
+usage: node_manager.py [-h] [--debug] -d {1,2,3,4,5,6,7,8,9,10} -c CLASS_NAME
+                       -x ...
 
 scratchpad manager script
 
