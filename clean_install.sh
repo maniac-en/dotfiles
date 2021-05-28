@@ -211,6 +211,9 @@ _exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
 _exec sudo ln -sf -- "$DOT_DIR/blsd" "/usr/bin"
 _exec sudo ln -sf -- "$DOT_DIR/vconsole.conf" /etc
 
+_echo "Post-hook markdown-preview.nvim"
+_exec "$DOT_DIR/vim/.vim/pack/github/start/markdown-preview.nvim/app/install.sh"
+
 _echo "Changing default shell to zsh and rebooting"
 _exec sudo chsh "$USER" -s /usr/bin/zsh
 reboot

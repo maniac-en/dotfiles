@@ -35,7 +35,8 @@ set undodir=$HOME/.cache/vim/undo
 set autoread
 " time out which swap file is written
 set updatetime=300
-" keep track of cursor [not sure]
+" keep track of cursor
+" @@@ [not sure]
 set concealcursor=nv
 " store upto 10000(max) for : and /
 set history=10000
@@ -114,8 +115,8 @@ set formatoptions+=c
 set formatoptions+=q
 " remove comment leader if possible on joining coments
 set formatoptions+=j
-" do not put comments leader's key when <CR> or o/O in normal mode
-set formatoptions-=r formatoptions-=o
+" put comments leader's key when <CR> or o/O in normal mode
+set formatoptions+=ro
 " do not wrap lines unless specified
 set formatoptions-=t
 " wrap long lines at a character in 'breakat'
@@ -382,6 +383,19 @@ let g:undotree_HighlightChangedWithSign = 1
 " python-syntax (https://github.com/maniac-en/python-syntax.git)[my fork]
 " show all possible syntax highlights
 let g:python_highlight_all = 1
+
+" vim-fugitive (https://github.com/tpope/vim-fugitive)
+" open git diff against staged version in vsplit
+nnoremap <leader>gd :Gvdiffsplit<SPACE>
+" open current git file in browser
+" for github -> https://github.com/tpope/vim-rhubarb
+nnoremap <silent> <leader>gb :GBrowse<CR>
+
+" markdown-preview.nvim (https://github.com/iamcco/markdown-preview.nvim)
+" do not auto close current preview window on buffer change
+let g:mkdp_auto_close = 0
+" use MarkdownPreview command for all filetypes
+let g:mkdp_command_for_global = 1
 " }}}
 
 """ normal mode mappings {{{
@@ -461,12 +475,12 @@ onoremap <silent> il{ :<C-U>normal! $F}vi{<cr>
 
 """ autocommand groups {{{
 if has("autocmd")
-    " set colorcolumns and wrap both lines and comments
-    augroup wrap_all_text
+    " set spellings, and formatoptions
+    augroup text_files
         autocmd!
-        autocmd filetype gitcommit setlocal cc=72 formatoptions=ctqj
-        autocmd filetype md setlocal cc=80 formatoptions=ctqj
-        autocmd filetype text setlocal cc=80 formatoptions=ctqj
+        autocmd filetype gitcommit setlocal spell formatoptions=ctqjno
+        autocmd filetype markdown setlocal spell formatoptions=ctqjno
+        autocmd filetype text setlocal spell formatoptions=ctqjno
     augroup END
     augroup filetype_python
         autocmd!

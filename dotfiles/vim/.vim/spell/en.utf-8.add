@@ -157,3 +157,5 @@ cursorline
 statusline
 ignorecase
 wildcard
+nvim
+submodule

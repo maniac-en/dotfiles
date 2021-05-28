@@ -50,3 +50,9 @@ function g() {
     fi
 }
 compdef g=git
+
+# gcd
+function gcd() {
+    local git_root_path=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [[ -n "$git_root_path" ]]; then cd "$git_root_path"; fi
+}

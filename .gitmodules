@@ -85,3 +85,6 @@
 [submodule "dotfiles/vim/.vim/pack/github/start/vim-syntax-extra-for-c"]
 	path = dotfiles/vim/.vim/pack/github/start/vim-syntax-extra-for-c
 	url = https://github.com/maniac-en/vim-syntax-extra-for-c
+[submodule "dotfiles/vim/.vim/pack/github/start/markdown-preview.nvim"]
+	path = dotfiles/vim/.vim/pack/github/start/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim
