@@ -396,6 +396,7 @@ nnoremap <silent> <leader>gb :GBrowse<CR>
 let g:mkdp_auto_close = 0
 " use MarkdownPreview command for all filetypes
 let g:mkdp_command_for_global = 1
+let g:mkdp_browser='chromium'
 " }}}
 
 """ normal mode mappings {{{
