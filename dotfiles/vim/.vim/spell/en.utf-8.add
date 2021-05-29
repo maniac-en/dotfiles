@@ -159,3 +159,6 @@ ignorecase
 wildcard
 nvim
 submodule
+isNaN
+vnoremap
+xnoremap

@@ -319,6 +319,8 @@ augroup cursor_change
 augroup END
 " move cursor to 1st non-blank while navigation
 set nostartofline
+" Change all crappy quotes ”, “, ’, ‘
+command! ChangeCrappyQuotes silent call execute("%s/’/'/ge | %s/‘/'/ge | %s/”/\"/ge | %s/“/\"/ge") | noh
 " }}}
 
 """ plugins {{{
@@ -439,13 +441,13 @@ nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
 nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " }}}
 
-""" visual mode mappings {{{
+""" visual mode(only) mappings {{{
 " copy to primary clipboard
-vnoremap <silent> <C-y> "+y
+xnoremap <silent> <C-y> "+y
 " sort selection uniquely (case-sensitive)
-vnoremap <silent> <Leader>s :sort u<CR>
+xnoremap <silent> <Leader>s :sort u<CR>
 " sort selection uniquely (case-insensitive)
-vnoremap <silent> <Leader>S :sort iu<CR>
+xnoremap <silent> <Leader>S :sort iu<CR>
 " }}}
 
 """ insert mode mappings {{{
@@ -455,7 +457,7 @@ inoremap <silent> <c-l> <ESC>ddi
 inoremap <silent> <C-U> <ESC>gUiWEa
 " }}}
 
-""" operator mode mappings {{{
+""" operator-pending mode mappings {{{
 " around next parentheses
 onoremap <silent> an( :<C-U>normal! 0f(hviw<CR>
 onoremap <silent> an[ :<C-U>normal! 0f[hviw<CR>
