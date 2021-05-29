@@ -5,7 +5,7 @@
 
 ## Things to note
 - THESE DOTFILES MIGHT BREAK YOUR EXISTING SYSTEM OR MIGHT NOT EVEN WORK FOR YOU. THESE ARE MEANT FOR MY PERSONAL USAGE, AND MY ACQUAINTANCES.
-- I use [`Comic Code Medium`](https://www.myfonts.com/fonts/tabular-type-foundry/comic-code/medium/) font but you can change it using `update_font.sh`. Just run:
+- I use [`Comic Code Medium`](https://tosche.net/fonts/comic-code) font but you can change it using `update_font.sh`. Just run:
 ```sh
 ./update_font.sh
 ```
