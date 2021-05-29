@@ -129,10 +129,6 @@ _exec sudo pacman -Syyu --noconfirm
 _echo "Installing base-devel"
 _exec sudo pacman -S base-devel --noconfirm
 
-_echo "Set tty font"
-_exec sudo pacman -S terminus-font --noconfirm
-_exec setfont ter-122b
-
 _echo "Generating locale"
 _exec sudo ln -sf -- "$DOT_DIR"/locale/locale.conf /etc/locale.conf
 _exec sudo ln -sf -- "$DOT_DIR"/locale/locale.gen /etc/locale.gen
@@ -209,7 +205,6 @@ _exec ln -sf -- "$DOT_DIR/zsh/.zlogin" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
 _exec sudo ln -sf -- "$DOT_DIR/blsd" "/usr/bin"
-_exec sudo ln -sf -- "$DOT_DIR/vconsole.conf" /etc
 
 _echo "Post-hook markdown-preview.nvim"
 _exec "$DOT_DIR/vim/.vim/pack/github/start/markdown-preview.nvim/app/install.sh"
