@@ -56,6 +56,9 @@ set spellcapcheck=
 set spelllang=en
 " wordlist for spellchecking
 set spellfile=$HOME/.vim/spell/en.utf-8.add
+" stay in middle when jumping around
+nnoremap <c-o> <c-o>zz
+nnoremap <TAB> <TAB>zz
 " }}}
 
 """ colorscheme {{{
@@ -81,8 +84,6 @@ set ttyfast
 set lazyredraw
 " always report changed lines
 set report=0
-" highlight row with current cursor
-set cursorline
 " cursorline background colour
 highlight CursorLine cterm=NONE guibg=#363230
 " show both, current and relative line number
@@ -106,6 +107,8 @@ set shortmess=a
 set shortmess+=tT
 " overwrite write messages over others
 set shortmess+=oO
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " }}}
 
 """ wrap options {{{
@@ -125,7 +128,17 @@ set linebreak
 set textwidth=80
 " }}}
 
-""" abbreviations for typos {{{
+""" typos {{{
+" command typos
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
+" insert typos
 " Tip: use <C-V> after wrong word to cancel abbreviation completion (map.txt)
 iabbrev adn and
 iabbrev tset test
@@ -157,6 +170,12 @@ set incsearch
 set ignorecase
 " override ignorecase if uppercase char is present
 set smartcase
+" Use sane regexes
+nnoremap / /\v
+vnoremap / /\v
+" Keep search matches in the middle of the window
+nnoremap n nzzzv
+nnoremap N Nzzzv
 " }}}
 
 """ splits management {{{
@@ -314,18 +333,30 @@ command -range GistLines <line1>,<line2>call GistWrapper()
 xnoremap <F2> :GistLines<CR>
 " open help in new tab using abbrev
 cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
-nnoremap <leader>h :tab help<space>
+nnoremap <leader>h :tab help<SPACE>
+" show trailing whitespaces
+nnoremap <silent> <leader>ws /\v\s+$<CR>
 " remove trailing whitespaces
-command! TrimTrailingSpaces :%s/\s\+$//ge | noh
+nnoremap <silent> <leader>wr mz:%s/\s\+$//e<CR>:let @/=''<CR>`z
 " Use |(beam) cursor for insert mode, use █(block) cursor otherwise
-augroup cursor_change
+augroup cline
+    autocmd!
     autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
+    autocmd WinLeave,InsertEnter * set nocursorline
     autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
+    autocmd WinEnter,InsertLeave * set cursorline
 augroup END
 " move cursor to 1st non-blank while navigation
 set nostartofline
 " Change all crappy quotes ”, “, ’, ‘
 command! ChangeCrappyQuotes silent call execute("%s/’/'/ge | %s/‘/'/ge | %s/”/\"/ge | %s/“/\"/ge") | noh
+" Make those folders automatically if they don't already exist
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 " }}}
 
 """ plugins {{{
@@ -446,11 +477,29 @@ nnoremap <silent> Y y$
 " re-indent whole file
 nnoremap <silent> == gg=G
 " disable currently highlighted matches
-nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
+nnoremap <silent> <SPACE> :noh<CR>:call clearmatches()<CR><BAR>:echo<CR>
 " highlight all occurances of current word without jumpig cursor
 " Source: https://vim.fandom.com/wiki/Highlight_all_search_pattern_matches
 nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" Select entire buffer
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
+" Man page
+nnoremap M K
+" Easier linewise reselection of what you just pasted.
+nnoremap <leader>V V`]
+" autoindent what you just pasted
+nnoremap =- V`]=
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
 " }}}
+
+""" insert mode mappings {{{
+" file completion
+inoremap <c-f> <c-x><c-f>
+" whole line completion
+inoremap <c-l> <c-x><c-l>
+""" }}}
 
 """ visual mode(only) mappings {{{
 " copy to primary clipboard
@@ -459,11 +508,6 @@ xnoremap <silent> <C-y> "+y
 xnoremap <silent> <Leader>s :sort u<CR>
 " sort selection uniquely (case-insensitive)
 xnoremap <silent> <Leader>S :sort iu<CR>
-" }}}
-
-""" insert mode mappings {{{
-" convert current WORD to uppercase
-inoremap <silent> <C-U> <ESC>gUiWEa
 " }}}
 
 """ operator-pending mode mappings {{{

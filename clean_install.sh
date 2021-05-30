@@ -121,7 +121,6 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 DOT_DIR="$HERE/dotfiles"
 _exec mkdir -p -- "$CONFIG_DIR"
 _exec mkdir -p -- "$HOME"/bin
-_exec mkdir -p -- "$HOME"/.cache/vim
 
 _echo "Updating pacman DB"
 _exec sudo pacman -Syyu --noconfirm

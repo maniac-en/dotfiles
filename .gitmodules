@@ -88,3 +88,6 @@
 [submodule "dotfiles/vim/.vim/pack/github/start/markdown-preview.nvim"]
 	path = dotfiles/vim/.vim/pack/github/start/markdown-preview.nvim
 	url = https://github.com/iamcco/markdown-preview.nvim
+[submodule "dotfiles/tmux/.tmux/plugins/tmux-fzf-url"]
+	path = dotfiles/tmux/.tmux/plugins/tmux-fzf-url
+	url = https://github.com/maniac-en/tmux-fzf-url
