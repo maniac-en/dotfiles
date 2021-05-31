@@ -10,6 +10,7 @@
     gpgsign = true
 [core]
     editor = vim
+    excludesfile = ~/.gitignore_global
 [diff]
     tool = vimdiff
     submodule = log
