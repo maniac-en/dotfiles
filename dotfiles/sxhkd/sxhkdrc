@@ -98,7 +98,7 @@ F6
 
 # spotify toggle play/pause
 ctrl + F8
-    dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && "$HOME"/bin/notify2 "Spotify" "$(python3 "$SYS"/spotify_status.py)" -t 2500 -r 445 -i "file:///usr/share/icons/Gruvbox-Material-Dark/64x64/apps/spotify-client.svg"
 
 # spotify next song
 ctrl + F9
