@@ -101,7 +101,6 @@ pacman_packages=(
 yay_packages=(
     clipster
     colorpicker
-    faba-icon-theme-git
     fast
     glogg
     gruvbox-material-gtk-theme-git

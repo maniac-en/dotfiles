@@ -1,52 +1,50 @@
 #!/usr/bin/env bash
 
-# Source: https://github.com/dastorm/volume-notification-dunst.git
+# Link for similar script using special character ─ (it's not dash -)
+# https://github.com/dastorm/volume-notification-dunst.git
 
 notify="$HOME"/bin/notify2
 
 function send_notification {
+    local volume, icon_name
     volume=$(pamixer --get-volume)
-    if [ "$volume" = "0" ]; then
-        icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-muted.svg"
-        $notify "$volume""      " -i "$icon_name" -t 2000 -h string:synchronous:"─" --replace=555
+    if [ "$volume" == "0" ]; then
+        icon_name="file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/audio-volume-muted.svg"
+    elif [ "$volume" -lt "33" ]; then
+        icon_name="file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/audio-volume-low.svg"
+    elif [ "$volume" -lt "66" ]; then
+        icon_name="file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/audio-volume-medium.svg"
     else
-        if [  "$volume" -lt "10" ]; then
-            icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-low.svg"
-            $notify "$volume""     " -i "$icon_name" --replace=555 -t 2000
-        else
-            if [ "$volume" -lt "30" ]; then
-                icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-low.svg"
-            else
-                if [ "$volume" -lt "70" ]; then
-                    icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-medium.svg"
-                else
-                    icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-high.svg"
-                fi
-            fi
-        fi
+        icon_name="file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/audio-volume-high.svg"
     fi
-    bar=$(seq -s "─" $((volume/5)) | sed 's/[0-9]//g')
-    # $notify "$volume""     ""$bar" -i "$icon_name" -t 2000 -h string:synchronous:"$bar" --replace=555
-    $notify "$volume%" -i "$icon_name" -t 2000 -h string:synchronous:"$bar" --replace=555
+    $notify "$volume%" -i "$icon_name" -t 2000 --replace=555
 }
 
 case $1 in
     up)
         pamixer -u
-        pamixer -i 5
+        pamixer -i 5 --allow-boost
         send_notification
         ;;
     down)
         pamixer -u
-        pamixer -d 5
+        pamixer -d 5 --allow-boost
         send_notification
         ;;
-    mute)
+    speaker_mute)
         pamixer -t
         if pamixer --get-mute &>/dev/null ; then
-            $notify -i "/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-muted.svg" --replace=555 -u normal "Muted" -t 2000
+            $notify -i "file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/audio-volume-muted.svg" --replace=555 -u normal "Muted" -t 2000
         else
             send_notification
         fi
+        ;;
+    mic_mute)
+        icon_mute="file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/microphone-sensitivity-muted.svg"
+        icon_unmute="file:///usr/share/icons/Gruvbox-Material-Dark/24x24/panel/microphone-sensitivity-high.svg"
+        pactl set-source-mute 1 toggle
+        pactl list sources | grep -qi 'Mute: yes' && \
+            $notify -i "$icon_mute" --replace=556 -u normal "Muted" -t 2000 || \
+            $notify -i "$icon_unmute" --replace=556 -u normal "Unmuted" -t 2000
         ;;
 esac

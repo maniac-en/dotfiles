@@ -18,4 +18,4 @@ pandoc \
     -V "geometry:margin=1in" \
     -o "$target"/"$outputFile" \
     "$filename" && \
-    "$HOME"/bin/notify2 "Note-making" "Build successful" -t 2000 -r 213 -i "/usr/share/icons/Faba/64x64/mimetypes/x-office-document.png"
+    "$HOME"/bin/notify2 "Note-making" "Build successful" -t 2000 -r 213 -i "file:///usr/share/icons/Gruvbox-Material-Dark/24x24/mimetypes/x-office-document.svg"

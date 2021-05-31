@@ -78,26 +78,23 @@ super + period
 
 # toggle mic
 F4
-    pactl set-source-mute 1 toggle
+    "$SYS"/audio.sh mic_mute
 
 # toggle mute volume
 F8
-    pamixer -t
-# "$SYS"/audio.sh mute
+    "$SYS"/audio.sh speaker_mute
 
 # decrease volume
 F9
-    pamixer -u; pamixer -d 5
-# "$SYS"/audio.sh down
+    "$SYS"/audio.sh down
 
 # increase volume
 F10
-    pamixer -u; pamixer -i 5
-# "$SYS"/audio.sh up
+    "$SYS"/audio.sh up
 
 # notify date-time
 F6
-    "$HOME"/bin/notify2 "Date & Time" "$(date +"%A - %j\n%d-%m-%Y %I:%M %p")" -t 2500 -r 444 -i "/usr/share/icons/Faba/48x48/categories/preferences-system-time.svg"
+    "$HOME"/bin/notify2 "Date & Time" "$(date +"%A - %j\n%d-%m-%Y %I:%M %p")" -t 2500 -r 444 -i "file:///usr/share/icons/Gruvbox-Material-Dark/64x64/apps/preferences-system-time.svg"
 
 # spotify toggle play/pause
 ctrl + F8
