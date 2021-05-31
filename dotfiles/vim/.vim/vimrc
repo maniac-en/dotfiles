@@ -23,6 +23,8 @@ set nocompatible
 set hidden
 " use modeline (if available) to change options
 set modeline
+" set nomodelineexpr to disallow expression in modelines
+set nomodelineexpr
 " timeout on keycodes on 5th of a second
 set ttimeoutlen=50
 " swap directory

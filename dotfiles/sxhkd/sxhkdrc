@@ -20,12 +20,16 @@ super + grave
 super + slash
     "$SYS"/binds.sh
 
-# terminal
+# fixed terminal
 super + Return
     "$SYS"/node_manager.py -d 1 -c terminal_fixed -x alacritty --config-file "$HOME"/.config/alacritty/alacritty.yml --class Alacritty,terminal_fixed -e zsh -c "tmux attach -t 0x11 || tmux new -s 0x11"
 
-# floating terminal
+# free tiled terminal
 super + shift + Return
+    alacritty
+
+# free floating terminal
+super + ctrl + Return
     alacritty --class Alacritty,terminal_floating
 
 # PCmanfm
@@ -120,7 +124,7 @@ ctrl + {Home,End}
     bspc desktop -f '^{1,10}' --follow
 
 # switching active workspaces
-super + {Next,Prior}
+super + {_,shift +}n
     bspc desktop -f {next,prev}.occupied
 
 # switching active workspaces
@@ -151,7 +155,11 @@ super + {_,shift + }h
 super + {1-9,0}
     bspc desktop -f '^{1-9,10}'
 
-# go to recent workspace
+# jump to recent workspace
+super + j
+    bspc desktop -f last
+
+# jump to recent workspace
 super + Pause
     bspc desktop -f last
 
