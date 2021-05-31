@@ -91,3 +91,6 @@
 [submodule "dotfiles/tmux/.tmux/plugins/tmux-fzf-url"]
 	path = dotfiles/tmux/.tmux/plugins/tmux-fzf-url
 	url = https://github.com/maniac-en/tmux-fzf-url
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-javascript"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript

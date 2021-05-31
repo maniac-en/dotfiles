@@ -37,8 +37,9 @@ set undodir=$HOME/.cache/vim/undo
 set autoread
 " time out which swap file is written
 set updatetime=300
-" keep track of cursor
-" @@@ [not sure]
+" replace concealed char with only 1 character
+set conceallevel=1
+" only conceal when in normal or visual mode
 set concealcursor=nv
 " store upto 10000(max) for : and /
 set history=10000
@@ -436,6 +437,8 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gc :G commit -S -vv<CR>
 " git status
 nnoremap <silent> <leader>gs :G<CR>
+" git push
+nnoremap <leader>gp :G push<SPACE>
 
 " markdown-preview.nvim (https://github.com/iamcco/markdown-preview.nvim)
 " do not auto close current preview window on buffer change
@@ -443,6 +446,10 @@ let g:mkdp_auto_close = 0
 " use MarkdownPreview command for all filetypes
 let g:mkdp_command_for_global = 1
 let g:mkdp_browser='chromium'
+
+" vim-javascript (https://github.com/pangloss/vim-javascript)
+" conceal word 'function'
+let g:javascript_conceal_function             = "ƒ"
 " }}}
 
 """ normal mode mappings {{{

@@ -24,13 +24,13 @@ super + slash
 super + Return
     "$SYS"/node_manager.py -d 1 -c terminal_fixed -x alacritty --config-file "$HOME"/.config/alacritty/alacritty.yml --class Alacritty,terminal_fixed -e zsh -c "tmux attach -t 0x11 || tmux new -s 0x11"
 
-# free tiled terminal
-super + shift + Return
-    alacritty
-
 # free floating terminal
-super + ctrl + Return
+super + shift + Return
     alacritty --class Alacritty,terminal_floating
+
+# free tiled terminal
+super + ctrl + Return
+    alacritty
 
 # PCmanfm
 super + o

@@ -111,6 +111,7 @@ yay_packages=(
     spotify
     ttf-ms-fonts
     vscodium-bin
+    youtube-dl
     zsh-git
 )
 
