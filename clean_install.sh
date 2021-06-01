@@ -204,11 +204,8 @@ _exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
 
 _echo "Installing blsd"
-export GO111MODULE=auto # https://github.com/junegunn/blsd/issues/3
-_exec curl -O https://raw.githubusercontent.com/junegunn/blsd/master/install
-_exec bash install
+_exec bash <(curl -sfL https://raw.githubusercontent.com/junegunn/blsd/master/install)
 _exec sudo mv blsd "/usr/bin"
-_exec rm install
 
 _echo "Post-hook markdown-preview.nvim"
 _exec "$DOT_DIR/vim/.vim/pack/github/start/markdown-preview.nvim/app/install.sh"
