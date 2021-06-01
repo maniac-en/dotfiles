@@ -36,7 +36,7 @@ _patch_alacritty() {
 
     # update neofetch as well
     sed -i "12s#.*#\tprintf -v term_font \"$1\"#" \
-    "$HERE/dotfiles/neofetch/config.conf"
+        "$HERE/dotfiles/neofetch/config.conf"
 }
 
 _patch_clipster() {
@@ -47,6 +47,10 @@ _patch_clipster() {
 _patch_rofi() {
     local conf_file="$HERE/dotfiles/rofi/config.rasi"
     sed -i "6s#.*#\tfont: \"$1 $2\";#" "$conf_file"
+
+    # update sxhkd command for workspace as well
+    sed -i "69s#.*#    rofi -show window -i -font \"$1 14\" -width 75#" \
+        "$HERE/dotfiles/sxhkd/sxhkdrc"
 }
 
 _patch_dunst() {
@@ -67,7 +71,7 @@ main() {
     --header="Choose a config file to update:" --no-sort --ansi --info=hidden)
     if [[ -n "$selected_conf_file" ]]
     then
-        selected_font_style=$(fc-list : family | sort -u | fzf \
+        selected_font_style=$(fc-list : family | tr ',' '\n' | sort -u | fzf \
         --header="Choose a font style:" --no-sort --ansi --info=hidden | xargs)
         if [[ -n "$selected_font_style" ]]
         then

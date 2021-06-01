@@ -66,7 +66,7 @@ super + shift + p
 
 # rofi workspace manager
 super + w
-    rofi -show window -width 80 -i
+    rofi -show window -i -font "Comic Code Medium 14" -width 75
 
 # vs-codium
 super + e
