@@ -37,8 +37,8 @@ set undodir=$HOME/.cache/vim/undo
 set autoread
 " time out which swap file is written
 set updatetime=300
-" replace concealed char with only 1 character
-set conceallevel=1
+" do not conceal chars by default (let it be file specific)
+set conceallevel=0
 " only conceal when in normal or visual mode
 set concealcursor=nv
 " store upto 10000(max) for : and /
@@ -562,6 +562,8 @@ if has("autocmd")
     augroup END
     augroup filetype_js
         autocmd!
+        " replace concealed char with only 1 character
+        autocmd filetype javascript setlocal conceallevel=1
         " run current javascript buffer (normal mode)
         autocmd filetype javascript nnoremap <F2> :w<CR>:!clear;node %<CR>
         " run current javascript buffer (insert mode)

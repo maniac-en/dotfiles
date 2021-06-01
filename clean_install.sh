@@ -105,7 +105,6 @@ yay_packages=(
     glogg
     gruvbox-material-gtk-theme-git
     gruvbox-material-icon-theme-git
-    jumpapp
     picom-jonaburg-git
     # polybar
     spotify

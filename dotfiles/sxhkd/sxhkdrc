@@ -70,7 +70,7 @@ super + w
 
 # vs-codium
 super + e
-    jumpapp codium
+    "$SYS"/node_manager.py -d 4 -c VSCodium -x codium
 
 # clipster
 super + period
