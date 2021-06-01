@@ -191,11 +191,10 @@ _exec ln -sf -- "$DOT_DIR/scripts/btc.sh" "$HOME/bin/btc"
 _exec ln -sf -- "$DOT_DIR/scripts/docker_descendants.py" "$HOME/bin/docker_descendants"
 _exec ln -sf -- "$DOT_DIR/scripts/etc.sh" "$HOME/bin/etc"
 _exec ln -sf -- "$DOT_DIR/scripts/kp.sh" "$HOME/bin/kp"
-_exec ln -sf -- "$DOT_DIR/scripts/markdown2pdf.sh" "$HOME/bin/markdown2pdf"
+_exec ln -sf -- "$DOT_DIR/scripts/system/markdown2pdf.sh" "$HOME/bin/markdown2pdf"
 _exec ln -sf -- "$DOT_DIR/scripts/notify2.sh" "$HOME/bin/notify2"
 _exec ln -sf -- "$DOT_DIR/scripts/out.sh" "$HOME/bin/out"
 _exec ln -sf -- "$DOT_DIR/scripts/screencast.sh" "$HOME/bin/cast"
-_exec ln -sf -- "$DOT_DIR/scripts/vpn.sh" "$HOME/bin/vpn"
 _exec ln -sf -- "$DOT_DIR/sxhkd" "$CONFIG_DIR"
 _exec ln -sf -- "$DOT_DIR/tmux/.tmux" "$HOME"
 _exec ln -sf -- "$DOT_DIR/tmux/.tmux.conf" "$HOME"
@@ -204,7 +203,13 @@ _exec ln -sf -- "$DOT_DIR/zathura" "$CONFIG_DIR"
 _exec ln -sf -- "$DOT_DIR/zsh/.zlogin" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
-_exec sudo ln -sf -- "$DOT_DIR/blsd" "/usr/bin"
+
+_echo "Installing blsd"
+export GO111MODULE=auto # https://github.com/junegunn/blsd/issues/3
+_exec curl -O https://raw.githubusercontent.com/junegunn/blsd/master/install
+_exec bash install
+_exec sudo mv blsd "/usr/bin"
+_exec rm install
 
 _echo "Post-hook markdown-preview.nvim"
 _exec "$DOT_DIR/vim/.vim/pack/github/start/markdown-preview.nvim/app/install.sh"
