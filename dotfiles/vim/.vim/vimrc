@@ -345,9 +345,9 @@ nnoremap <silent> <leader>wr mz:%s/\s\+$//e<CR>:let @/=''<CR>`z
 augroup cline
     autocmd!
     autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
-    autocmd WinLeave,InsertEnter * set nocursorline
+    autocmd BufLeave,InsertEnter * set nocursorline
     autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
-    autocmd WinEnter,InsertLeave * set cursorline
+    autocmd BufEnter,InsertLeave * set cursorline
 augroup END
 " move cursor to 1st non-blank while navigation
 set nostartofline
@@ -490,9 +490,6 @@ nnoremap <silent> <SPACE> :noh<CR>:call clearmatches()<CR><BAR>:echo<CR>
 " highlight all occurances of current word without jumpig cursor
 " Source: https://vim.fandom.com/wiki/Highlight_all_search_pattern_matches
 nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-" Select entire buffer
-nnoremap vaa ggvGg_
-nnoremap Vaa ggVG
 " Man page
 nnoremap M K
 " Easier linewise reselection of what you just pasted.
