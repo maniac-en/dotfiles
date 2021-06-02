@@ -352,7 +352,7 @@ augroup END
 " move cursor to 1st non-blank while navigation
 set nostartofline
 " Change all crappy quotes ”, “, ’, ‘
-command! ChangeCrappyQuotes silent call execute("%s/’/'/ge | %s/‘/'/ge | %s/”/\"/ge | %s/“/\"/ge") | noh
+command! ChangeCrappyQuotes :%s/\v’|‘/'/gec | %s/\v”|“/\"/gec | noh
 " Make those folders automatically if they don't already exist
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
