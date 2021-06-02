@@ -2,23 +2,23 @@
 typeset -A opt_args
 
 function _cast() {
-	local curcontext="$curcontext" state line
-	local -i ret=1
-	local -a args
+    local curcontext="$curcontext" state line
+    local -i ret=1
+    local -a args
 
-	args+=(
-	"(- *)"{-h,--help}"[Print help message]"
-	"(-s --select -f --full)"{-s,--select}"[select a window to capture it]:extra:->audio"
-	"(-f --full -s --select)"{-f,--full}"[capture full screen]:extra:->audio")
+    args+=(
+    "(- *)"{-h,--help}"[Print help message]"
+    "(-s --select -f --full)"{-s,--select}"[select a window to capture it]:extra:->audio"
+    "(-f --full -s --select)"{-f,--full}"[capture full screen]:extra:->audio")
 
-	_arguments -C -S "${args[@]}" && ret=0
+    _arguments -C -S "${args[@]}" && ret=0
 
-	case "$state" in
-		audio)
-			_arguments "(-a --audio)"{-a,--audio}"[record audio with screencasts]" && ret=0
-			;;
-	esac
-	return ret
+    case "$state" in
+        audio)
+            _arguments "(-a --audio)"{-a,--audio}"[record audio with screencasts]" && ret=0
+            ;;
+    esac
+    return ret
 }
 
 # vim: ft=zsh:

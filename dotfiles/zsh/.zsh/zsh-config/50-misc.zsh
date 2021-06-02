@@ -1,5 +1,6 @@
 # mkdir -p and cd $1
 function mcd() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" || true; }
+compdef -d mcd
 compdef _directories mcd
 
 # extract it away
