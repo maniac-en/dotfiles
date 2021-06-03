@@ -331,7 +331,7 @@ set grepprg=rg
 if has('unix')
   set grepprg+=\ \</dev/null
 endif
-set grepprg+=\ --color\ never\ --column\ --line-number\ --no-heading\ --hidden\ --glob\ '\\''!.git'\\'\ $*
+set grepprg+=\ --color\ never\ --column\ --line-number\ --no-heading\ --pcre2\ --hidden\ --glob\ '\\''!.git'\\'\ $*
 " }}}
 
 """ statusline {{{
@@ -399,7 +399,7 @@ let g:fzf_layout = {'down': '~40%'}
 " fzf binds to open in tabs, and splits
 let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
 " search in git dir else in current dir
-command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --color=always --pcre2 --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <silent> <leader>f :w<CR>:Find<CR>
 " get files in git dir else in current dir
 command! ProjectFiles execute 'Files' s:find_git_root()

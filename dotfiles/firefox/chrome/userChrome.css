@@ -1,0 +1,14 @@
+/* Credits:
+ * https://raw.githubusercontent.com/strager/dotfiles/35867ec0aad05b06df6776a247ca4e04f8a7e7bc/firefox/install.sh
+ * Checkout his twitch while you're at it: https://twitch.tv/strager
+ */
+
+/* Tabs are shown using the Tree Style Tab extension. Hide the built-in tab bar. */
+#TabsToolbar {
+    visibility: collapse !important;
+}
+
+/* Hide the "Tree Style Tab" header. */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] > #sidebar-header {
+    display: none;
+}
