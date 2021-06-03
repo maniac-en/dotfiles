@@ -444,7 +444,7 @@ let g:undotree_HighlightChangedWithSign = 1
 let g:python_highlight_all = 1
 
 " vim-fugitive (https://github.com/tpope/vim-fugitive)
-" open git diff against staged version in vsplit
+" populate with :Gvdiffsplit
 nnoremap <leader>gd :Gvdiffsplit<SPACE>
 " open current git file in browser
 " for github -> https://github.com/tpope/vim-rhubarb
@@ -453,10 +453,14 @@ nnoremap <silent> <leader>gb :GBrowse<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 " git signed verbose commit with unified diff
 nnoremap <silent> <leader>gc :G commit -S -vv<CR>
-" git push
+" populate with :G push
 nnoremap <leader>gp :G push<SPACE>
 " git status
 nnoremap <silent> <F1> :silent! execute(':G')<CR>
+
+" gv.vim (https://github.com/junegunn/gv.vim)
+" git commit history mapping
+nnoremap <silent> <leader>gl :GV<CR>
 
 " markdown-preview.nvim (https://github.com/iamcco/markdown-preview.nvim)
 " do not auto close current preview window on buffer change
@@ -467,7 +471,7 @@ let g:mkdp_browser='chromium'
 
 " vim-javascript (https://github.com/pangloss/vim-javascript)
 " conceal word 'function'
-let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_function = "ƒ"
 " }}}
 
 """ normal mode mappings {{{
@@ -504,7 +508,7 @@ nnoremap <silent> Y y$
 " re-indent whole file
 nnoremap <silent> == gg=G
 " disable currently highlighted matches
-nnoremap <silent> <SPACE> :noh<CR>:call clearmatches()<CR><BAR>:echo<CR>
+nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
 " highlight all occurances of current word without jumpig cursor
 " Source: https://vim.fandom.com/wiki/Highlight_all_search_pattern_matches
 nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>

@@ -2,7 +2,7 @@
     addIgnoredFile = false
     addEmptyPathspec = false
 [alias]
-    verboselog = log --color --graph --pretty=format:'%Cgreen%h%Creset :%C(yellow)%d%Creset %s %Cgreen(%cr) %C("#849598")<%an>%Creset' --abbrev-commit
+    verboselog = log --color --graph --pretty=format:'%Cgreen%h%Creset :%C(yellow)%d%Creset %s %Cgreen(%cr) %C("#849598")<%an>%Creset %G?' --abbrev-commit
     headlog = log --color --pretty=format:'%Cgreen%h%Creset :%C(yellow)%d%Creset %s%Creset' --abbrev-commit -n1
 [color]
     ui = auto
@@ -26,4 +26,4 @@
 [user]
     name = Shivam Mehta
     email = sm.cse17@gmail.com
-    signingkey = 35CA96A67982D315
+    signingkey = 951CA67EAC433918BE2875B635CA96A67982D315
