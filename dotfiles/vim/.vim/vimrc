@@ -314,6 +314,24 @@ fu! MD2PDF()
     redraw!
 endfu
 command! Markdown2Pdf call MD2PDF()
+
+" quickfix wrapper to open it in bottomright
+function! Quickfix_wrapper() abort
+    let l:window_id = win_getid()
+    botright copen
+    call win_gotoid(l:window_id)
+endfunction
+
+command -complete=dir -nargs=+
+            \ Grep silent grep <args>
+            \ | redraw!
+            \ | call Quickfix_wrapper()
+set grepformat=%f:%l:%c:%m
+set grepprg=rg
+if has('unix')
+  set grepprg+=\ \</dev/null
+endif
+set grepprg+=\ --color\ never\ --column\ --line-number\ --no-heading\ --hidden\ --glob\ '\\''!.git'\\'\ $*
 " }}}
 
 """ statusline {{{
@@ -498,6 +516,8 @@ nnoremap <leader>V V`]
 nnoremap =- V`]=
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
+" Close quickfixlist window
+nnoremap <silent> <leader>cq :ccl<CR>
 " }}}
 
 """ insert mode mappings {{{
