@@ -453,10 +453,10 @@ nnoremap <silent> <leader>gb :GBrowse<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 " git signed verbose commit with unified diff
 nnoremap <silent> <leader>gc :G commit -S -vv<CR>
-" git status
-nnoremap <silent> <leader>gs :G<CR>
 " git push
 nnoremap <leader>gp :G push<SPACE>
+" git status
+nnoremap <silent> <F1> :silent! execute(':G')<CR>
 
 " markdown-preview.nvim (https://github.com/iamcco/markdown-preview.nvim)
 " do not auto close current preview window on buffer change

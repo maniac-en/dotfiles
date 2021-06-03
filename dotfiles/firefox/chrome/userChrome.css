@@ -1,6 +1,7 @@
-/* Credits:
+ @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/* CREDITS START
  * https://raw.githubusercontent.com/strager/dotfiles/35867ec0aad05b06df6776a247ca4e04f8a7e7bc/firefox/install.sh
- * Checkout his twitch while you're at it: https://twitch.tv/strager
+ * Checkout his twitch while you're at it: https://twitch.tv/strager\
  */
 
 /* Tabs are shown using the Tree Style Tab extension. Hide the built-in tab bar. */
@@ -11,4 +12,24 @@
 /* Hide the "Tree Style Tab" header. */
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] > #sidebar-header {
     display: none;
+}
+/* CREDITS END */
+
+/* Increase font size for address bar */
+#urlbar {
+    font-size: 13pt !important;
+}
+
+/* Increase font size for context menu and menu items */
+#mainPopupSet menuitem,
+#mainPopupSet menu {
+  font-size: 14pt !important;
+}
+
+/* Increase font size for bookmarks toolbar and menu items */
+#PersonalToolbar,
+#PersonalToolbar menuitem,
+#PersonalToolbar menu {
+  font-size: 13pt !important;
+  text-align: center;
 }

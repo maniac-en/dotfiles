@@ -12,6 +12,7 @@ alias gll='git log'
 alias gp='git push'
 alias gs='{ git headlog 2>/dev/null || : } && git status -sb'
 alias gv='{ git headlog &>/dev/null || : } && vim -c +G -c "norm tk,d"'
+alias glv='{ git headlog &>/dev/null || : } && vim -c ":GV" -c "norm ,2,d"'
 
 #misc
 alias camera='mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video0'
