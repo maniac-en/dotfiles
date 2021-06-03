@@ -557,6 +557,12 @@ onoremap <silent> il{ :<C-U>normal! $F}vi{<cr>
 
 """ autocommand groups {{{
 if has("autocmd")
+    " files named TODO
+    augroup todo_files
+        autocmd!
+        autocmd BufRead,BufNewFile TODO setlocal formatoptions=q
+        autocmd BufRead,BufNewFile todo setlocal formatoptions=q
+    augroup END
     " set spellings, and formatoptions
     augroup text_files
         autocmd!
