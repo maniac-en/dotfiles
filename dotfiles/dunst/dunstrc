@@ -31,7 +31,7 @@
     always_run_script = true
     startup_notification = false
     dmenu = /usr/bin/dmenu -p "dunst"
-    browser = /usr/bin/chromium
+    browser = /usr/bin/firefox
     verbosity = mesg
     corner_radius = 0
     force_xinerama = false

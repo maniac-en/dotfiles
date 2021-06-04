@@ -322,9 +322,8 @@ mouse:
     #   - (macOS) open
     #   - (Linux) xdg-open
     #   - (Windows) explorer
-    launcher:
-     program: chromium
-     args: [ --new-window ]
+    # launcher:
+    #  program: xdg-open
 
     # URL modifiers
     #
