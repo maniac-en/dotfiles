@@ -38,9 +38,11 @@ function wget_dir() {
 }
 
 # gist wrapper
-function gist() {
+function gistf() {
     /usr/bin/gist -p --skip-empty "${@}" | clipster -c
+    clipster -r
 }
+compdef _files gistf
 
 # git wrapper
 function g() {

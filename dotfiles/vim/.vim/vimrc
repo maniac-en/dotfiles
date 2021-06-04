@@ -618,7 +618,7 @@ if has("autocmd")
     augroup cal_white_space
         autocmd!
         " calculate trailing space on cursor hold or post write event
-        autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+        autocmd bufwritepost * unlet! b:statusline_trailing_space_warning
     augroup end
     augroup autosource_vimrc
         autocmd!
