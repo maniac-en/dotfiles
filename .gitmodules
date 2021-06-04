@@ -91,3 +91,9 @@
 [submodule "dotfiles/vim/.vim/pack/github/start/vim-javascript"]
 	path = dotfiles/vim/.vim/pack/github/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
+[submodule "dotfiles/vim/.vim/pack/github/start/ale"]
+	path = dotfiles/vim/.vim/pack/github/start/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule "dotfiles/vim/.vim/pack/github/start/vim-nix"]
+	path = dotfiles/vim/.vim/pack/github/start/vim-nix
+	url = https://github.com/LnL7/vim-nix

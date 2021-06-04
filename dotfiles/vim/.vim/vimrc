@@ -68,6 +68,7 @@ nnoremap <TAB> <TAB>zz
 set t_Co=256
 set background=dark
 let g:gruvbox_italic=1
+let g:gruvbox_guisp_fallback = 'bg'
 colorscheme gruvbox
 set termguicolors
 " }}}
@@ -472,6 +473,21 @@ let g:mkdp_browser='chromium'
 " vim-javascript (https://github.com/pangloss/vim-javascript)
 " conceal word 'function'
 let g:javascript_conceal_function = "ƒ"
+
+" ale (https://github.com/dense-analysis/ale.git)
+" echo ale error for line under cursor
+let g:ale_echo_cursor = v:true
+" only enable specified linters
+let g:ale_linters_explicit = v:true
+" run linters as soon as text is changed
+let g:ale_lint_delay = 0
+" disable ale signs in gutten windows
+let g:ale_set_signs = v:false
+" ale highlight groups to see the errors
+highlight ALEInfo ctermbg=none ctermfg=red cterm=underline
+highlight ALEError ctermbg=none ctermfg=red cterm=underline
+highlight ALEWarning ctermbg=none ctermfg=red cterm=underline
+let b:ale_linters = { 'nix' : ['nix'], }
 " }}}
 
 """ normal mode mappings {{{
