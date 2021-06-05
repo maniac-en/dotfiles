@@ -487,7 +487,6 @@ let g:ale_set_signs = v:false
 highlight ALEInfo ctermbg=none ctermfg=red cterm=underline
 highlight ALEError ctermbg=none ctermfg=red cterm=underline
 highlight ALEWarning ctermbg=none ctermfg=red cterm=underline
-let b:ale_linters = { 'nix' : ['nix'], }
 " }}}
 
 """ normal mode mappings {{{

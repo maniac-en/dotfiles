@@ -202,6 +202,7 @@ _exec ln -sf -- "$DOT_DIR/zathura" "$CONFIG_DIR"
 _exec ln -sf -- "$DOT_DIR/zsh/.zlogin" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zsh" "$HOME"
 _exec ln -sf -- "$DOT_DIR/zsh/.zshrc" "$HOME"
+_exec ln -sf -- "$DOT_DIR/mimeapps.list" "$CONFIG_DIR/mimeapps.list"
 
 _echo "Installing blsd"
 _exec bash <(curl -sfL https://raw.githubusercontent.com/junegunn/blsd/master/install)
