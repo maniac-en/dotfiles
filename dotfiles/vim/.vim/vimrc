@@ -424,22 +424,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check if all selected lines are commented or not
 let g:NERDToggleCheckAllLines = 1
 
-" undotree (https://github.com/mbbill/undotree.git)
-" open/close undotree
-nnoremap <silent> <F5> :UndotreeToggle<CR>
-" focus to undotree buffer when toggled
-let g:undotree_SetFocusWhenToggle = 1
-" layout style 2: undotree(right), buffer(left), diff(bottom)
-let g:undotree_WindowLayout = 2
-" auto-open diff buffer
-let g:undotree_DiffAutoOpen = 1
-" diff buffer height
-let g:undotree_DiffpanelHeight = 8
-" don't highlight changed text
-let g:undotree_HighlightChangedText = 0
-" show changed sign in the gutter
-let g:undotree_HighlightChangedWithSign = 1
-
 " python-syntax (https://github.com/maniac-en/python-syntax.git)[my fork]
 " show all possible syntax highlights
 let g:python_highlight_all = 1

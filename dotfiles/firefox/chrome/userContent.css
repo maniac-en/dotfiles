@@ -1,0 +1,5 @@
+/* Highlighted text color and background */
+::-moz-selection {
+    color: black !important;
+    background: #fdff32 !important;
+}
