@@ -89,6 +89,7 @@ pacman_packages=(
     unzip
     wdiff
     wget
+    words
     xclip
     xdotool
     xorg
