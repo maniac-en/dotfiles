@@ -85,8 +85,6 @@ set lazyredraw
 set report=0
 " cursorline background colour
 highlight CursorLine cterm=NONE guibg=#363230
-" show both, current and relative line number
-set number relativenumber
 " set line number column width
 set numberwidth=3
 " disable cursor position
