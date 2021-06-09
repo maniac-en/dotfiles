@@ -35,12 +35,12 @@ function _exit_now() {
 
 if [[ "$1" == "-partial" ]]
 then
-    if ! (maim -m 5 -s "$img_path"); then
+    if ! (maim -u -m 5 -s "$img_path"); then
         notify2 "Screenshot.sh" "There was an issue taking a screenshot" && _exit_now
     fi
 elif [[ "$1" == "-full" ]]
 then
-    if ! (maim -m 5 "$img_path"); then
+    if ! (maim -u -m 5 "$img_path"); then
         notify2 "Screenshot.sh" "There was an issue taking a screenshot" && _exit_now
     fi
 else
