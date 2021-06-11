@@ -237,14 +237,6 @@ nnoremap <leader>h :tab help<SPACE>
 nnoremap <silent> <leader>ws /\v\s+$<CR>
 " remove trailing whitespaces
 nnoremap <silent> <leader>wr mz:%s/\s\+$//e<CR>:let @/=''<CR>`z
-" Use |(beam) cursor for insert mode, use █(block) cursor otherwise
-augroup cline
-    autocmd!
-    autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
-    autocmd BufLeave,InsertEnter * set nocursorline
-    autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
-    autocmd BufEnter,InsertLeave * set cursorline
-augroup END
 " move cursor to 1st non-blank while navigation
 set nostartofline
 " Change all crappy quotes ”, “, ’, ‘
@@ -561,32 +553,19 @@ onoremap <silent> il{ :<C-U>normal! $F}vi{<cr>
 
 """ autocommand groups {{{
 if has("autocmd")
-    augroup text_files
+    " use BEAM and nocursorline when in INSERT mode
+    " use BLOCK and cursorline whenever NOT in INSERT mode
+    augroup cline
         autocmd!
-        autocmd filetype gitcommit setlocal spell formatoptions=ctqjno
-        autocmd filetype markdown setlocal spell formatoptions=ctqjno
-        autocmd filetype text setlocal spell formatoptions=ctqjno
+        autocmd BufEnter,InsertLeave * setlocal cursorline
+        autocmd BufLeave,InsertEnter * setlocal nocursorline
+        autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
+        autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
     augroup END
-    augroup filetype_python
-        autocmd!
-        autocmd filetype python nnoremap <F2> :w<CR>:!clear;python %<CR>
-        autocmd filetype python inoremap <F2> <ESC>:w<CR>:!clear;python %<CR>
-    augroup END
-    augroup filetype_sh
-        autocmd!
-        autocmd filetype sh nnoremap <F2> :w<CR>:!clear;bash %<CR>
-        autocmd filetype sh inoremap <F2> <ESC>:w<CR>:!clear;bash %<CR>
-    augroup END
-    augroup filetype_js
-        autocmd!
-        autocmd filetype javascript setlocal conceallevel=1
-        autocmd filetype javascript nnoremap <F2> :w<CR>:!clear;node %<CR>
-        autocmd filetype javascript inoremap <F2> <ESC>:w<CR>:!clear;node %<CR>
-    augroup END
+    " calculate trailing space only on buffer write
     augroup cal_white_space
         autocmd!
-        " calculate trailing space on buffer write
-        autocmd bufwritepost * unlet! b:statusline_trailing_space_warning
+        autocmd BufWritePost * unlet! b:statusline_trailing_space_warning
     augroup end
     augroup autosource_vimrc
         autocmd!

@@ -1,6 +1,6 @@
 #git
 alias ga='git add -p'
-alias gar='git add --all .'
+alias gar='git add -v --all .'
 alias gb='git branch'
 alias gc='git commit -S -vv'
 alias gca='git commit -S --amend'
