@@ -219,11 +219,7 @@ command -complete=dir -nargs=+
             \ | redraw!
             \ | call Quickfix_wrapper()
 set grepformat=%f:%l:%c:%m
-set grepprg=rg
-if has('unix')
-  set grepprg+=\ \</dev/null
-endif
-set grepprg+=\ --color\ never\ --column\ --line-number\ --no-heading\ --pcre2\ --hidden\ --glob\ '\\''!.git'\\'\ $*
+set grepprg=rg\ --color\ never\ --column\ --line-number\ --no-heading\ --hidden\ --glob\ '!.git'\ --pcre2\ $*
 " }}}
 
 """ misc {{{
