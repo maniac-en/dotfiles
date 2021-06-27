@@ -147,7 +147,7 @@ set tabstop=8
 " use spaces to insert a tab or to autoindent
 set expandtab
 " number of spaces to use for autoindent
-set shiftwidth=4
+set shiftwidth=2
 " round indent to multiple of shiftwidth
 set shiftround
 " use shiftwidth for editing tabs

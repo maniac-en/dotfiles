@@ -12,7 +12,7 @@
     frame_width = 1
     frame_color = "#d8dee9"
     separator_color = frame
-    font = Comic Code Medium 18
+    font = Comic Code Medium 11
     height = 4
     markup = full
     format = "<span foreground='#f3f4f5'><b>%s</b>%p</span>\n%b"
