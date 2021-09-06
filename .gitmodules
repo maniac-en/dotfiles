@@ -80,7 +80,7 @@
 	path = dotfiles/vim/.vim/pack/github/start/ale
 	url = https://github.com/dense-analysis/ale.git
 [submodule "dotfiles/dotfiles/vim/.vim/pack/github/start/vim-markdown"]
-	path = dotfiles/dotfiles/vim/.vim/pack/github/start/vim-markdown
+	path = dotfiles/vim/.vim/pack/github/start/vim-markdown
 	url = https://github.com/gabrielelana/vim-markdown
 [submodule "dotfiles/vim/.vim/pack/github/start/vim-shellcheck"]
 	path = dotfiles/vim/.vim/pack/github/start/vim-shellcheck
