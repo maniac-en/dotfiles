@@ -1,3 +1,0 @@
-# Used for a script to capture screenshot
-# https://github.com/maniac-en/dotfiles/blob/gruvbox/dotfiles/scripts/system/screenshot.sh
-export IMGUR_CLIENT_ID=2b66XXXXXXXXXX

@@ -1,0 +1,19 @@
+git
+gvim {vim-gtk3, manually run install.sh for markdown-preview.nvim plugin}
+zsh {>=5.9, build with --enable-pcre}
+libpcre3 libpcre3-dev
+batcat
+xclip
+xdotool
+curl
+screenkey
+gnome-tweaks
+gnome-shell-extension-prefs
+fd-find
+ripgrep
+tmux
+youtube-dl
+vlc
+pandoc {texlive-xetex and fonts-dejavu to support markdown2pdf}
+fzf {install as per https://github.com/junegunn/fzf#using-git}
+blsd {pre-requisites: golang, cmake}

@@ -1,0 +1,527 @@
+""" important stuff
+let mapleader=','
+nmap Q <NOP>
+nmap <left> <NOP>
+nmap <right> <NOP>
+nmap <up> <NOP>
+nmap <down> <NOP>
+
+
+""" encoding n stuff
+set encoding=utf-8
+scriptencoding utf-8
+set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
+
+
+""" general
+" make vim more useful
+set nocompatible
+" switch between buffers without having to save first
+set hidden
+" use modeline (if available) to change options
+set modeline
+" set nomodelineexpr to disallow expression in modelines
+set nomodelineexpr
+" timeout on keycodes on 5th of a second
+set ttimeoutlen=50
+" swap directory
+set dir=$HOME/.cache/vim
+" save undo history
+set undofile
+" undo directory
+set undodir=$HOME/.cache/vim/undo
+" auto-update changes if file is changed outside vim
+set autoread
+" time out which swap file is written
+set updatetime=300
+" do not conceal chars by default (let it be file specific)
+set conceallevel=0
+" only conceal when in normal or visual mode
+set concealcursor=nv
+" store upto 10000(max) for : and /
+set history=10000
+" make vim copy buffer bigger
+set viminfo='100,<5000,s100,h
+" enable mouse usage in all modes
+set mouse=a
+" mouse codes for alacritty
+set ttymouse=sgr
+" use markers to specify folds
+set foldmethod=marker
+" backspace over auto indents, line breaks, insert start
+set backspace=indent,eol,start
+" disable first word capitalization spellchecks
+set spellcapcheck=
+" spellcheck language
+set spelllang=en
+" wordlist for spellchecking
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+" stay in middle when jumping around
+nnoremap <c-o> <c-o>zz
+nnoremap <TAB> <TAB>zz
+
+
+""" colorscheme
+set t_Co=256
+set background=dark
+let g:gruvbox_italic=1
+let g:gruvbox_guisp_fallback = 'bg'
+colorscheme gruvbox
+set termguicolors
+
+
+""" display
+" disable showing commands in last line
+set noshowcmd
+" disable error sounds
+set noerrorbells
+" show as much as possible of last line
+set display=lastline
+" faster redrawing
+set ttyfast
+" only redraw when necessary
+set lazyredraw
+" always report changed lines
+set report=0
+" cursorline background colour
+highlight CursorLine cterm=NONE guibg=#363230
+" set line number column width
+set numberwidth=3
+" disable cursor position
+set noruler
+" show special chars
+set list
+" set special chars
+set listchars=
+set listchars+=tab:⇥\ ,precedes:<,extends:>
+" minimal number of columns to scroll horizontally
+set sidescroll=5
+" minimal number of screen lines to keep above and below the cursor
+set scrolloff=5
+" avoid all hit-enter prompts
+set shortmess=a
+" truncate messages
+set shortmess+=tT
+" overwrite write messages over others
+set shortmess+=oO
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+
+""" wrap options
+" auto wrap comments always based on text width
+set formatoptions+=c
+" allow formatting comments using `gq`
+set formatoptions+=q
+" remove comment leader if possible on joining coments
+set formatoptions+=j
+" put comments leader's key when <CR> or o/O in normal mode
+set formatoptions+=ro
+" do not wrap lines unless specified
+set formatoptions-=t
+" wrap long lines at a character in 'breakat'
+set linebreak
+" maximum width of text that is being inserted
+set textwidth=80
+
+
+""" typos
+" command typos
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
+" insert typos
+" Tip: use <C-V> after wrong word to cancel abbreviation completion (map.txt)
+iabbrev adn and
+iabbrev tset test
+
+
+""" tabs and indentation
+" use 8 spaces for a tab
+set tabstop=8
+" use spaces to insert a tab or to autoindent
+set expandtab
+" number of spaces to use for autoindent
+set shiftwidth=2
+" round indent to multiple of shiftwidth
+set shiftround
+" use shiftwidth for editing tabs
+set softtabstop=-1
+" use cindent, fuck smartindent/autoindent
+set nosmartindent noautoindent
+set cindent
+
+
+""" sane searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+" keep search matches in the middle of the window
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+
+""" splits management
+set splitbelow splitright
+nnoremap <silent> th <C-W>h
+nnoremap <silent> tl <C-W>l
+nnoremap <silent> tj <C-W>j
+nnoremap <silent> tk <C-W>k
+nnoremap ts :split<SPACE>
+nnoremap tv :vsplit<SPACE>
+
+
+""" tab management
+nnoremap tn :tabe<SPACE>
+nnoremap <silent> tc :tabclose<CR>
+" <leader><num> to get to a tab<num>
+let s:i = 1
+while s:i <= 10
+    execute printf('nnoremap <silent> <leader>%d :%dtabnext<CR>', s:i == 10 ? 0 : s:i, s:i,)
+    let s:i += 1
+endwhile
+
+
+""" completion
+" wordlist for completion
+set dictionary+=/usr/share/dict/words
+" enhanced command line completion
+set wildmenu
+" character to start wildcard expansion
+set wildchar=<TAB>
+" complete longest common string, then each full match
+set wildmode=longest,full
+
+
+""" syntax highlighting
+" turn syntax highlight on
+syntax on
+" enable filetype detection
+filetype on
+" enable indentation based on filetype
+filetype indent on
+" enable plugins based on filetype
+filetype plugin on
+
+
+""" grep
+command -complete=dir -nargs=+
+            \ Grep silent grep <args>
+            \ | redraw!
+            \ | call Quickfix_wrapper()
+set grepformat=%f:%l:%c:%m
+set grepprg=rg\ --color\ never\ --column\ --line-number\ --no-heading\ --hidden\ --glob\ '!.git'\ --pcre2\ $*
+
+
+""" misc
+" open help in new tab using abbrev
+cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
+nnoremap <leader>h :tab help<SPACE>
+" show trailing whitespaces
+nnoremap <silent> <leader>ws /\v\s+$<CR>
+" remove trailing whitespaces
+nnoremap <silent> <leader>wr mz:%s/\s\+$//e<CR>:let @/=''<CR>`z
+" move cursor to 1st non-blank while navigation
+set nostartofline
+" Change all crappy quotes ”, “, ’, ‘
+command! ChangeCrappyQuotes :%s/\v’|‘/'/gec | %s/\v”|“/\"/gec | noh
+" Make those folders automatically if they don't already exist
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+
+""" plugins
+" load all plugins using vim's default plugin manager
+packloadall
+
+" generate helptags for plugin help docs
+silent! helptags ALL
+
+" vim-vinegar(https://github.com/tpope/vim-vinegar)
+" initialize netrw with dot files hidden
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
+" fzf.vim (https://github.com/junegunn/fzf.vim)
+" provide fzf bin path
+set rtp+=$HOME/.fzf
+" show fzf from bottom to 40% of screen
+let g:fzf_layout = {'down': '~40%'}
+" fzf binds to open in tabs, and splits
+let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
+" search in git dir else in current dir
+command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --color=always --pcre2 --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <silent> <leader>f :w<CR>:Find<CR>
+" get files in git dir else in current dir
+command! ProjectFiles execute 'Files' s:find_git_root()
+nnoremap <silent> <C-p> :w<CR>:ProjectFiles<CR>
+" change filetype for current buffer
+nnoremap <silent> <leader>F :Filetypes<CR>
+" search in current buffer's lines
+nnoremap <silent> <leader>b :BLines<CR>
+
+" nerdcommentor (https://github.com/preservim/nerdcommenter)
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check if all selected lines are commented or not
+let g:NERDToggleCheckAllLines = 1
+
+" python-syntax (https://github.com/maniac-en/python-syntax.git)[my fork]
+" show all possible syntax highlights
+let g:python_highlight_all = 1
+
+" vim-fugitive (https://github.com/tpope/vim-fugitive)
+" populate with :Gvdiffsplit
+nnoremap <leader>gd :Gvdiffsplit<SPACE>
+" open current git file in browser
+" for github -> https://github.com/tpope/vim-rhubarb
+nnoremap <silent> <leader>gb :GBrowse<CR>
+" write to git work tree and index versions of the file
+nnoremap <silent> <leader>gw :Gwrite<CR>
+" git signed verbose commit with unified diff
+nnoremap <silent> <leader>gc :G commit -S -vv<CR>
+" populate with :G push
+nnoremap <leader>gp :G push<SPACE>
+" git status
+nnoremap <silent> <F1> :silent! execute(':G')<CR>
+
+" gv.vim (https://github.com/junegunn/gv.vim)
+" git commit history mapping
+nnoremap <silent> <leader>gl :GV<CR>
+
+" markdown-preview.nvim (https://github.com/iamcco/markdown-preview.nvim)
+" do not auto close current preview window on buffer change
+let g:mkdp_auto_close = 0
+" use MarkdownPreview command for all filetypes
+let g:mkdp_command_for_global = 1
+let g:mkdp_browser='firefox'
+
+" vim-javascript (https://github.com/pangloss/vim-javascript)
+" conceal word 'function'
+let g:javascript_conceal_function = "ƒ"
+
+" ale (https://github.com/dense-analysis/ale.git)
+" Only use linters explicitly enabled
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_linters_explicit = v:true
+" Set ALE's 200ms delay to zero
+let g:ale_lint_delay = 0
+" Don't use the sign column/gutter for ALE
+let g:ale_set_signs = v:false
+" ale highlight groups to see the errors
+highlight ALEInfo ctermbg=none ctermfg=red cterm=underline
+highlight ALEError ctermbg=none ctermfg=red cterm=underline
+highlight ALEWarning ctermbg=none ctermfg=red cterm=underline
+" don't enable ALE by default
+let b:ale_enabled = 0
+" Toggle ale
+nnoremap <silent> <F5> :call ToggleAleWithLoclist()<CR>
+
+" vim-markdown
+if !exists('g:markdown_mapping_switch_status')
+  let g:markdown_mapping_switch_status = ''
+endif
+
+
+""" functions
+" Calulate if buffer has trailing spaces or not
+" Update the buffer scoped variable `statusline_trailing_space_warning` as
+" [ts] when they are present or {empty} when they are not present
+fu! StatuslineTrailingSpaceWarning()
+    if !exists('b:statusline_trailing_space_warning')
+        if search('\s\+$', 'nw') != 0
+            let b:statusline_trailing_space_warning = '[ts]'
+        else
+            let b:statusline_trailing_space_warning = ''
+        endif
+    endif
+    return b:statusline_trailing_space_warning
+endf
+
+" toggle status by updating laststatus
+fu! ToggleStatusBar()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set laststatus=0
+    else
+        let s:hidden_all = 0
+        set laststatus=2
+    endif
+endf
+
+" get path to root directory if it's a git directory
+fu! s:find_git_root()
+    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endf
+
+" convert markdown to pdf using this script: https://gist.github.com/af1f05b0ab7d8010b2574630413936c7
+" Note: I've symlinked this script in my system path as 'markdown2pdf'
+fu! MD2PDF()
+    set cmdheight=2
+    echom 'Building '.expand('%')
+    set cmdheight=1
+    silent! execute '!markdown2pdf %:p'
+    redraw!
+endfu
+command! Markdown2Pdf call MD2PDF()
+
+" quickfix wrapper to open it in bottomright
+function! Quickfix_wrapper() abort
+    let l:window_id = win_getid()
+    botright copen
+    call win_gotoid(l:window_id)
+endfunction
+
+" toggle locationlist with ALE
+function! ToggleAleWithLoclist() abort
+    if b:ale_enabled
+        ALEDisableBuffer
+        lclose
+    else
+        ALEEnableBuffer
+        sleep 69m
+        let l:window_id = win_getid()
+        silent! botright lopen
+        call win_gotoid(l:window_id)
+    endif
+endfunction
+
+
+""" statusline
+" always show statusline
+set laststatus=2
+" set statusline options
+set statusline=
+set statusline+=%.25F\ %y%m%r%q
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%=%(\%l/%L,\ %c\ %)
+" toggle statusbar
+let s:hidden_all = 1
+call ToggleStatusBar()
+nnoremap <silent> <F7> :call ToggleStatusBar()<CR>
+
+
+""" normal mode mappings
+" easy movement around wrapped lines
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> 0 g0
+nnoremap <silent> $ g$
+" write, quit mappings
+nnoremap <silent> <leader>q :qa<CR>
+nnoremap <silent> <leader>d :q<CR>
+nnoremap <silent> <leader>wa :wa<CR>
+nnoremap <silent> <leader>wq :x<CR>
+nnoremap <silent> <leader>x :x<CR>
+nnoremap <silent> <leader>Q :q!<CR>
+" jump between pair of parentheses using backspace
+nnoremap <silent> <BS> %
+" subsitute map
+nnoremap <leader>r :%s///g<Left><Left><Left>
+" delete map
+nnoremap <leader>R :%g//d<Left><Left>
+" cd to buffer's present working directory
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" open vimrc in a new tab
+nnoremap <silent> <leader>ev :tabe $MYVIMRC<CR>
+" sort current paragraph uniquely (case-sensitive)
+nnoremap <silent> <Leader>s vip:sort u<CR>
+" sort current paragraph uniquely (case-insensitive)
+nnoremap <silent> <Leader>S vip:sort iu<CR>
+" make Y consistent with D (i.e. D : d$ :: Y : y$)
+nnoremap <silent> Y y$
+" re-indent whole file
+nnoremap <silent> == gg=G
+" disable currently highlighted matches
+nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
+" highlight all occurances of current word without jumpig cursor
+" Source: https://vim.fandom.com/wiki/Highlight_all_search_pattern_matches
+nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" Easier linewise reselection of yanked text
+nnoremap <leader>V V`]
+" autoindent yanked text
+nnoremap =- V`]=
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+" Close quickfixlist window
+nnoremap <silent> <leader>cq :cclose<CR>
+" Close locationlist window
+nnoremap <silent> <leader>cl :lclose<CR>
+
+
+""" insert mode mappings
+" file completion
+inoremap <c-f> <c-x><c-f>
+" whole line completion
+inoremap <c-l> <c-x><c-l>
+" dictionary completion
+inoremap <c-k> <c-x><c-k>
+"""
+
+""" visual mode(only) mappings
+" copy to primary clipboard
+xnoremap <silent> <C-y> "+y
+" sort selection uniquely (case-sensitive)
+xnoremap <silent> <Leader>s :sort u<CR>
+" sort selection uniquely (case-insensitive)
+xnoremap <silent> <Leader>S :sort iu<CR>
+
+
+""" operator-pending mode mappings
+" around next parentheses
+onoremap <silent> an( :<C-U>normal! 0f(hviw<CR>
+onoremap <silent> an[ :<C-U>normal! 0f[hviw<CR>
+onoremap <silent> an{ :<C-U>normal! 0f{hviw<CR>
+" around last parentheses
+onoremap <silent> al( :<C-U>normal! $F(hviw<cr>
+onoremap <silent> al[ :<C-U>normal! $F[hviw<cr>
+onoremap <silent> al{ :<C-U>normal! $F{hviw<cr>
+" inside next parentheses
+onoremap <silent> in( :<C-U>normal! f(vi(<cr>
+onoremap <silent> in[ :<C-U>normal! f[vi(<cr>
+onoremap <silent> in{ :<C-U>normal! f{vi{<cr>
+" inside last parentheses
+onoremap <silent> il( :<C-U>normal! $F)vi(<cr>
+onoremap <silent> il[ :<C-U>normal! $F]vi[<cr>
+onoremap <silent> il{ :<C-U>normal! $F}vi{<cr>
+
+
+""" autocommand groups
+if has("autocmd")
+    " use BEAM and nocursorline when in INSERT mode
+    " use BLOCK and cursorline whenever NOT in INSERT mode
+    augroup cline
+        autocmd!
+        autocmd BufEnter,InsertLeave * setlocal cursorline
+        autocmd BufLeave,InsertEnter * setlocal nocursorline
+        autocmd InsertEnter * silent execute "!echo -en '\e[5 q'"
+        autocmd InsertLeave * silent execute "!echo -en '\e[2 q'"
+    augroup END
+    " calculate trailing space only on buffer write
+    augroup cal_white_space
+        autocmd!
+        autocmd BufWritePost * unlet! b:statusline_trailing_space_warning
+    augroup end
+    augroup autosource_vimrc
+        autocmd!
+        autocmd BufWritePost $MYVIMRC :source %
+    augroup END
+endif
+

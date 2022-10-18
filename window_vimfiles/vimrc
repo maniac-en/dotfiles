@@ -1,0 +1,523 @@
+""" important stuff {{{
+let mapleader=','
+nmap Q <NOP>
+nmap <left> <NOP>
+nmap <right> <NOP>
+nmap <up> <NOP>
+nmap <down> <NOP>
+" }}}
+
+""" encoding n stuff {{{
+" character encoding to be used inside vim
+set encoding=utf-8
+" character encoding used inside script
+scriptencoding utf-8
+" possible character encodings to use when editing a file in vim
+set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
+" }}}
+
+""" general {{{
+" make vim more useful
+set nocompatible
+" switch between buffers without having to save first
+set hidden
+" use modeline (if available) to change options
+set modeline
+" timeout on keycodes on 5th of a second
+set ttimeoutlen=50
+" swap directory
+set dir=$HOME/.cache/vim
+" save undo history
+set undofile
+" undo directory
+set undodir=$HOME/.cache/vim/undo
+" auto-update changes if file is changed outside vim
+set autoread
+" time out which swap file is written
+set updatetime=300
+" keep track of cursor
+" @@@ [not sure]
+set concealcursor=nv
+" store upto 10000(max) for : and /
+set history=10000
+" make vim copy buffer bigger
+set viminfo='100,<5000,s100,h
+" enable mouse usage in all modes
+set mouse=a
+" mouse codes for alacritty
+set ttymouse=sgr
+" use markers to specify folds
+set foldmethod=marker
+" backspace over auto indents, line breaks, insert start
+set backspace=indent,eol,start
+" disable first word capitalization spellchecks
+set spellcapcheck=
+" spellcheck language
+set spelllang=en
+" wordlist for spellchecking
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+" }}}
+
+""" colorscheme {{{
+set t_Co=256
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
+set termguicolors
+" }}}
+
+""" display {{{
+" match parenthesis by default
+let g:loaded_matchparen = v:false
+" disable showing commands in last line
+set noshowcmd
+" disable error sounds
+set noerrorbells
+" show as much as possible of last line
+set display=lastline
+" faster redrawing
+set ttyfast
+" only redraw when necessary
+set lazyredraw
+" always report changed lines
+set report=0
+" highlight row with current cursor
+" set cursorline
+" cursorline background colour
+highlight CursorLine cterm=NONE guibg=#363230
+" show both, current and relative line number
+set number relativenumber
+" set line number column width
+set numberwidth=3
+" disable cursor position
+set noruler
+" show special chars
+set list
+" set special chars
+set listchars=
+set listchars+=tab:⇥\ ,precedes:<,extends:>
+" minimal number of columns to scroll horizontally
+set sidescroll=5
+" minimal number of screen lines to keep above and below the cursor
+set scrolloff=5
+" avoid all hit-enter prompts
+set shortmess=a
+" truncate messages
+set shortmess+=tT
+" overwrite write messages over others
+set shortmess+=oO
+" }}}
+
+""" wrap options {{{
+" auto wrap comments always based on text width
+set formatoptions+=c
+" allow formatting comments using `gq`
+set formatoptions+=q
+" remove comment leader if possible on joining coments
+set formatoptions+=j
+" put comments leader's key when <CR> or o/O in normal mode
+set formatoptions+=ro
+" do not wrap lines unless specified
+set formatoptions-=t
+" wrap long lines at a character in 'breakat'
+set linebreak
+" maximum width of text that is being inserted
+set textwidth=80
+" }}}
+
+""" abbreviations for typos {{{
+" Tip: use <C-V> after wrong word to cancel abbreviation completion (map.txt)
+iabbrev adn and
+iabbrev tset test
+" }}}
+
+""" tabs and indentation {{{
+" number of spaces that a tab counts for
+set tabstop=8
+" use spaces to insert a tab or to autoindent
+set expandtab
+" number of spaces to use for autoindent
+set shiftwidth=4
+" round indent to multiple of shiftwidth
+set shiftround
+" edit tabs using spaces with the value of shiftwidth
+set softtabstop=-1
+" use cindent rather than smartindent or autoindent
+set cindent
+set nosmartindent
+set noautoindent
+" }}}
+
+""" sane searching {{{
+" highlight searched results
+set hlsearch
+" hightlight while typing
+set incsearch
+" case insensitive search
+set ignorecase
+" override ignorecase if uppercase char is present
+set smartcase
+" }}}
+
+""" splits management {{{
+" new split on below and right of current buffer
+set splitbelow splitright
+" normal mode mappings to move between splits
+nnoremap <silent> th <C-W>h
+nnoremap <silent> tl <C-W>l
+nnoremap <silent> tj <C-W>j
+nnoremap <silent> tk <C-W>k
+" invoke horizontal split for current/new file
+nnoremap ts :split<SPACE>
+" invoke vertical split for current/new file
+nnoremap tv :vsplit<SPACE>
+" }}}
+
+""" tab management {{{
+" new tab
+nnoremap tn :tabe<SPACE>
+" close tab
+nnoremap <silent> tc :tabclose<CR>
+" <leader><num> to get to a tab<num>
+let s:i = 1
+while s:i <= 10
+    execute printf('nnoremap <silent> <leader>%d :%dtabnext<CR>', s:i == 10 ? 0 : s:i, s:i,)
+    let s:i += 1
+endwhile
+" }}}
+
+""" completion {{{
+" wordlist for completion
+set dictionary+=/usr/share/dict/words
+" enhanced command line completion
+set wildmenu
+" character to start wildcard expansion
+set wildchar=<TAB>
+" complete longest common string, then each full match
+set wildmode=longest,full
+" }}}
+
+""" syntax highlighting {{{
+" turn syntax highlight on
+syntax on
+" enable filetype detection
+filetype on
+" enable indentation based on filetype
+filetype indent on
+" enable plugins based on filetype
+filetype plugin on
+" }}}
+
+""" functions {{{
+" Calulate if buffer has trailing spaces or not
+" Update the buffer scoped variable `statusline_trailing_space_warning` as
+" [ts] when they are present or {empty} when they are not present
+fu! StatuslineTrailingSpaceWarning()
+    if !exists('b:statusline_trailing_space_warning')
+        if search('\s\+$', 'nw') != 0
+            let b:statusline_trailing_space_warning = '[ts]'
+        else
+            let b:statusline_trailing_space_warning = ''
+        endif
+    endif
+    return b:statusline_trailing_space_warning
+endf
+
+" toggle status by updating laststatus
+fu! ToggleStatusBar()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set laststatus=0
+    else
+        let s:hidden_all = 0
+        set laststatus=2
+    endif
+endf
+
+" vimscript function to upload code to https://gist.github.com/
+" This wrapper function uses the gist uitility (https://github.com/defunkt/gist)
+" to upload the visually selected code and copy the url gist to your primary clipboard
+" This wrapper also takes in account the filetype of current buffer so as to
+" have syntax highlighting in the uploaded gist.
+" Visual selection part of wrapper is implemented from here: https://vi.stackexchange.com/a/11028/29810
+fu! GistWrapper() range abort
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+
+    " Get all the lines represented by this range
+    let lines = getline(lnum1, lnum2)
+
+    " The last line might need to be cut if the visual selection didn't end on
+    " the last column
+    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+    " The first line might need to be trimmed if the visual selection didn't
+    " start on the first column
+    let lines[0] = lines[0][col1 - 1:]
+
+    " Get the desired text
+    let selectedText = join(lines, "\n")
+
+    " call gist binary
+    if strlen(&filetype) > 0
+        " "javascript" is not a valid gist filetype
+        if &filetype == "javascript"
+            let l:url = system('gist -t js -p', selectedText)
+        else
+            let l:url = system('gist -t '.&filetype.' -p', selectedText)
+        endif
+    else
+        let l:url = system('gist -p', selectedText)
+    endif
+
+    " copy url to primary clipboard
+    let @+ = l:url
+
+    " remove last entry from clipster (comment it if you're not using clipster)
+    " https://github.com/mrichar1/clipster
+    " execute system('clipster -r')
+endfu
+
+" convert markdown to pdf using this script: https://gist.github.com/af1f05b0ab7d8010b2574630413936c7
+" Note: I've symlinked this script in my system path as 'markdown2pdf'
+fu! MD2PDF()
+    set cmdheight=2
+    echom 'Building '.expand('%')
+    set cmdheight=1
+    silent! execute '!markdown2pdf %:p'
+    redraw!
+endfu
+command! Markdown2Pdf call MD2PDF()
+" }}}
+
+""" statusline {{{
+" always show statusline
+set laststatus=2
+" set statusline options
+set statusline=
+set statusline+=%.25F\ %y%m%r%q
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%=%(\%l/%L,\ %c\ %)
+" toggle statusbar
+let s:hidden_all = 1
+call ToggleStatusBar()
+nnoremap <silent> <F7> :call ToggleStatusBar()<CR>
+" }}}
+
+""" misc {{{
+" GistLines
+command -range GistLines <line1>,<line2>call GistWrapper()
+xnoremap <F2> :GistLines<CR>
+" open help in new tab using abbrev
+cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
+nnoremap <leader>h :tab help<space>
+" remove trailing whitespaces
+command! TrimTrailingSpaces :%s/\s\+$//ge | noh
+" Use |(beam) cursor for insert mode, use █(block) cursor otherwise
+augroup cursor_change
+    autocmd InsertEnter * silent setlocal cursorline
+    autocmd InsertLeave * silent setlocal nocursorline
+augroup END
+" move cursor to 1st non-blank while navigation
+set nostartofline
+" Change all crappy quotes ”, “, ’, ‘
+command! ChangeCrappyQuotes silent call execute("%s/’/'/ge | %s/‘/'/ge | %s/”/\"/ge | %s/“/\"/ge") | noh
+" }}}
+
+""" plugins {{{
+" load all plugins using vim's default plugin manager
+packloadall
+
+" generate helptags for plugin help docs
+silent! helptags ALL
+
+" vim-vinegar(https://github.com/tpope/vim-vinegar)
+" initialize netrw with dot files hidden
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
+" fzf.vim (https://github.com/junegunn/fzf.vim)
+" provide fzf bin path
+set rtp+=$HOME/.fzf
+let $FZF_DEFAULT_OPTS="--no-mouse --layout reverse"
+" show fzf from bottom to 40% of screen
+let g:fzf_layout = {'down': '~40%'}
+" fzf binds to open in tabs, and splits
+let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
+" get files in current dir
+nnoremap <silent> <C-p> :w<CR>:Files<CR>
+" change filetype for current buffer
+nnoremap <silent> <leader>F :Filetypes<CR>
+" search in current buffer's lines
+nnoremap <silent> <leader>b :BLines<CR>
+
+" nerdcommentor (https://github.com/preservim/nerdcommenter)
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check if all selected lines are commented or not
+let g:NERDToggleCheckAllLines = 1
+
+" undotree (https://github.com/mbbill/undotree.git)
+" open/close undotree
+nnoremap <silent> <F5> :UndotreeToggle<CR>
+" focus to undotree buffer when toggled
+let g:undotree_SetFocusWhenToggle = 1
+" layout style 2: undotree(right), buffer(left), diff(bottom)
+let g:undotree_WindowLayout = 2
+" auto-open diff buffer
+let g:undotree_DiffAutoOpen = 1
+" diff buffer height
+let g:undotree_DiffpanelHeight = 8
+" don't highlight changed text
+let g:undotree_HighlightChangedText = 0
+" show changed sign in the gutter
+let g:undotree_HighlightChangedWithSign = 1
+
+" python-syntax (https://github.com/maniac-en/python-syntax.git)[my fork]
+" show all possible syntax highlights
+let g:python_highlight_all = 1
+
+" vim-fugitive (https://github.com/tpope/vim-fugitive)
+" open git diff against staged version in vsplit
+nnoremap <leader>gd :Gvdiffsplit<SPACE>
+" open current git file in browser
+" for github -> https://github.com/tpope/vim-rhubarb
+nnoremap <silent> <leader>gb :GBrowse<CR>
+" write to git work tree and index versions of the file
+nnoremap <silent> <leader>gw :Gwrite<CR>
+" git signed verbose commit with unified diff
+nnoremap <silent> <leader>gc :G commit -S -vv<CR>
+" git status
+nnoremap <silent> <leader>gs :G<CR>
+
+" markdown-preview.nvim (https://github.com/iamcco/markdown-preview.nvim)
+" do not auto close current preview window on buffer change
+let g:mkdp_auto_close = 0
+" use MarkdownPreview command for all filetypes
+let g:mkdp_command_for_global = 1
+let g:mkdp_browser='firefox'
+" }}}
+
+""" normal mode mappings {{{
+" easy movement around wrapped lines
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> 0 g0
+nnoremap <silent> $ g$
+" use <CR> to toggle marker folds
+nnoremap <silent> <CR> za
+" write, quit mappings
+nnoremap <silent> <leader>q :qa<CR>
+nnoremap <silent> <leader>d :q<CR>
+nnoremap <silent> <leader>wa :wa<CR>
+nnoremap <silent> <leader>wq :x<CR>
+nnoremap <silent> <leader>x :x<CR>
+nnoremap <silent> <leader>Q :q!<CR>
+" jump between pair of parentheses using backspace
+nnoremap <silent> <BS> %
+" subsitute map
+nnoremap <leader>r :%s///g<Left><Left><Left>
+" delete map
+nnoremap <leader>R :%g//d<Left><Left>
+" cd to buffer's present working directory
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" open vimrc in a new tab
+nnoremap <silent> <leader>ev :tabe $MYVIMRC<CR>
+" sort current paragraph uniquely (case-sensitive)
+nnoremap <silent> <Leader>s vip:sort u<CR>
+" sort current paragraph uniquely (case-insensitive)
+nnoremap <silent> <Leader>S vip:sort iu<CR>
+" make Y consistent with D (i.e. D : d$ :: Y : y$)
+nnoremap <silent> Y y$
+" re-indent whole file
+nnoremap <silent> == gg=G
+" disable currently highlighted matches
+nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
+" highlight all occurances of current word without jumpig cursor
+" Source: https://vim.fandom.com/wiki/Highlight_all_search_pattern_matches
+nnoremap <silent> <F3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" }}}
+
+""" visual mode(only) mappings {{{
+" copy to primary clipboard
+xnoremap <silent> <C-y> "+y
+" sort selection uniquely (case-sensitive)
+xnoremap <silent> <Leader>s :sort u<CR>
+" sort selection uniquely (case-insensitive)
+xnoremap <silent> <Leader>S :sort iu<CR>
+" }}}
+
+""" insert mode mappings {{{
+" convert current WORD to uppercase
+inoremap <silent> <C-U> <ESC>gUiWEa
+" }}}
+
+""" operator-pending mode mappings {{{
+" around next parentheses
+onoremap <silent> an( :<C-U>normal! 0f(hviw<CR>
+onoremap <silent> an[ :<C-U>normal! 0f[hviw<CR>
+onoremap <silent> an{ :<C-U>normal! 0f{hviw<CR>
+" around last parentheses
+onoremap <silent> al( :<C-U>normal! $F(hviw<cr>
+onoremap <silent> al[ :<C-U>normal! $F[hviw<cr>
+onoremap <silent> al{ :<C-U>normal! $F{hviw<cr>
+" inside next parentheses
+onoremap <silent> in( :<C-U>normal! f(vi(<cr>
+onoremap <silent> in[ :<C-U>normal! f[vi(<cr>
+onoremap <silent> in{ :<C-U>normal! f{vi{<cr>
+" inside last parentheses
+onoremap <silent> il( :<C-U>normal! $F)vi(<cr>
+onoremap <silent> il[ :<C-U>normal! $F]vi[<cr>
+onoremap <silent> il{ :<C-U>normal! $F}vi{<cr>
+" }}}
+
+""" autocommand groups {{{
+if has("autocmd")
+    " set spellings, and formatoptions
+    augroup text_files
+        autocmd!
+        autocmd filetype gitcommit setlocal spell formatoptions=ctqjno
+        autocmd filetype markdown setlocal spell formatoptions=ctqjno
+        autocmd filetype text setlocal spell formatoptions=ctqjno
+    augroup END
+    augroup filetype_python
+        autocmd!
+        " run current python buffer (normal mode)
+        autocmd filetype python nnoremap <F2> :w<CR>:!clear;python %<CR>
+        " run current python buffer (insert mode)
+        autocmd filetype python inoremap <F2> <ESC>:w<CR>:!clear;python %<CR>
+    augroup END
+    augroup filetype_sh
+        autocmd!
+        " shellcheck current bash buffer
+        autocmd filetype sh nnoremap <silent> <F1> :w<CR>:!clear; shellcheck -x %:p<CR>
+        " run current bash script buffer (normal mode)
+        autocmd filetype sh nnoremap <F2> :w<CR>:!clear;bash %<CR>
+        " run current bash script buffer (insert mode)
+        autocmd filetype sh inoremap <F2> <ESC>:w<CR>:!clear;bash %<CR>
+    augroup END
+    augroup filetype_js
+        autocmd!
+        " run current javascript buffer (normal mode)
+        autocmd filetype javascript nnoremap <F2> :w<CR>:!clear;node %<CR>
+        " run current javascript buffer (insert mode)
+        autocmd filetype javascript inoremap <F2> <ESC>:w<CR>:!clear;node %<CR>
+    augroup END
+    augroup cal_white_space
+        autocmd!
+        " calculate trailing space on cursor hold or post write event
+        autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+    augroup end
+    augroup autosource_vimrc
+        autocmd!
+        " source vimrc on save
+        autocmd BufWritePost $MYVIMRC :source %
+    augroup END
+endif
+" }}}

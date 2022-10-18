@@ -1,87 +1,87 @@
-[submodule "dotfiles/vim/.vim/pack/github/start/fugitive"]
-	path = dotfiles/vim/.vim/pack/github/start/fugitive
-	url = https://github.com/tpope/vim-fugitive
-[submodule "dotfiles/vim/.vim/pack/github/start/gruvbox"]
-	path = dotfiles/vim/.vim/pack/github/start/gruvbox
-	url = https://github.com/morhetz/gruvbox.git
-[submodule "dotfiles/vim/.vim/pack/github/start/nerdcommenter"]
-	path = dotfiles/vim/.vim/pack/github/start/nerdcommenter
-	url = https://github.com/preservim/nerdcommenter
-[submodule "dotfiles/vim/.vim/pack/github/start/fzf.vim"]
-	path = dotfiles/vim/.vim/pack/github/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
-[submodule "dotfiles/vim/.vim/pack/github/start/gv.vim"]
-	path = dotfiles/vim/.vim/pack/github/start/gv.vim
-	url = https://github.com/junegunn/gv.vim
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-endwise"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-endwise
-	url = https://github.com/tpope/vim-endwise
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-eunuch"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-eunuch
-	url = https://github.com/tpope/vim-eunuch
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-lastplace"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-lastplace
-	url = https://github.com/farmergreg/vim-lastplace
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-repeat"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-repeat
-	url = https://github.com/tpope/vim-repeat
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-rhubarb"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-rhubarb
-	url = https://github.com/tpope/vim-rhubarb
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-spell-under"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-spell-under
-	url = https://github.com/osamuaoki/vim-spell-under
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-surround"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-surround
-	url = https://github.com/tpope/vim-surround
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-unimpaired"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-vinegar"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar
-[submodule "dotfiles/zsh/.zsh/zsh-completions"]
-	path = dotfiles/zsh/.zsh/zsh-completions
-	url = git://github.com/zsh-users/zsh-completions.git
-[submodule "dotfiles/zsh/.zsh/zsh-autosuggestions"]
-	path = dotfiles/zsh/.zsh/zsh-autosuggestions
+[submodule "tmux/plugins/tmux-copycat"]
+	path = tmux/plugins/tmux-copycat
+	url = https://github.com/tmux-plugins/tmux-copycat
+[submodule "tmux/plugins/tmux-prefix-highlight"]
+	path = tmux/plugins/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight
+[submodule "tmux/plugins/tmux-yank"]
+	path = tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank
+[submodule "tmux/plugins/tmux-fzf-url"]
+	path = tmux/plugins/tmux-fzf-url
+	url = https://github.com/wfxr/tmux-fzf-url
+[submodule "zsh/zsh-completions"]
+	path = zsh/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh/zsh-autosuggestions"]
+	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "dotfiles/zsh/.zsh/zsh-syntax-highlighting"]
-	path = dotfiles/zsh/.zsh/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "dotfiles/zsh/.zsh/zsh-z"]
-	path = dotfiles/zsh/.zsh/zsh-z
+[submodule "zsh/zsh-syntax-highlighting"]
+	path = zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/zsh-z"]
+	path = zsh/zsh-z
 	url = https://github.com/agkozak/zsh-z
-[submodule "dotfiles/tmux/.tmux/plugins/tmux-copycat"]
-	path = dotfiles/tmux/.tmux/plugins/tmux-copycat
-	url = https://git::@github.com/tmux-plugins/tmux-copycat
-[submodule "dotfiles/tmux/.tmux/plugins/tmux-prefix-highlight"]
-	path = dotfiles/tmux/.tmux/plugins/tmux-prefix-highlight
-	url = https://git::@github.com/tmux-plugins/tmux-prefix-highlight
-[submodule "dotfiles/tmux/.tmux/plugins/tmux-yank"]
-	path = dotfiles/tmux/.tmux/plugins/tmux-yank
-	url = https://github.com/tmux-plugins/tmux-yank.git
-[submodule "dotfiles/vim/.vim/pack/github/start/python-syntax"]
-	path = dotfiles/vim/.vim/pack/github/start/python-syntax
-	url = https://github.com/maniac-en/python-syntax
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-syntax-extra-for-c"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-syntax-extra-for-c
-	url = https://github.com/maniac-en/vim-syntax-extra-for-c
-[submodule "dotfiles/vim/.vim/pack/github/start/markdown-preview.nvim"]
-	path = dotfiles/vim/.vim/pack/github/start/markdown-preview.nvim
-	url = https://github.com/iamcco/markdown-preview.nvim
-[submodule "dotfiles/tmux/.tmux/plugins/tmux-fzf-url"]
-	path = dotfiles/tmux/.tmux/plugins/tmux-fzf-url
-	url = https://github.com/maniac-en/tmux-fzf-url
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-javascript"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-javascript
-	url = https://github.com/pangloss/vim-javascript
-[submodule "dotfiles/vim/.vim/pack/github/start/ale"]
-	path = dotfiles/vim/.vim/pack/github/start/ale
+[submodule "vim/pack/github/start/ale"]
+	path = vim/pack/github/start/ale
 	url = https://github.com/dense-analysis/ale.git
-[submodule "dotfiles/dotfiles/vim/.vim/pack/github/start/vim-markdown"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-markdown
+[submodule "vim/pack/github/start/vim-lastplace"]
+	path = vim/pack/github/start/vim-lastplace
+	url = https://github.com/farmergreg/vim-lastplace
+[submodule "vim/pack/github/start/vim-markdown"]
+	path = vim/pack/github/start/vim-markdown
 	url = https://github.com/gabrielelana/vim-markdown
-[submodule "dotfiles/vim/.vim/pack/github/start/vim-shellcheck"]
-	path = dotfiles/vim/.vim/pack/github/start/vim-shellcheck
+[submodule "vim/pack/github/start/markdown-preview.nvim"]
+	path = vim/pack/github/start/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim
+[submodule "vim/pack/github/start/vim-shellcheck"]
+	path = vim/pack/github/start/vim-shellcheck
 	url = https://github.com/itspriddle/vim-shellcheck
+[submodule "vim/pack/github/start/fzf.vim"]
+	path = vim/pack/github/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "vim/pack/github/start/gv.vim"]
+	path = vim/pack/github/start/gv.vim
+	url = https://github.com/junegunn/gv.vim
+[submodule "vim/pack/github/start/vim-syntax-extra"]
+	path = vim/pack/github/start/vim-syntax-extra
+	url = https://github.com/justinmk/vim-syntax-extra.git
+[submodule "vim/pack/github/start/python-syntax"]
+	path = vim/pack/github/start/python-syntax
+	url = https://github.com/maniac-en/python-syntax
+[submodule "vim/pack/github/start/gruvbox"]
+	path = vim/pack/github/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "vim/pack/github/start/vim-spell-under"]
+	path = vim/pack/github/start/vim-spell-under
+	url = https://github.com/osamuaoki/vim-spell-under
+[submodule "vim/pack/github/start/vim-javascript"]
+	path = vim/pack/github/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "vim/pack/github/start/nerdcommenter"]
+	path = vim/pack/github/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter
+[submodule "vim/pack/github/start/vim-endwise"]
+	path = vim/pack/github/start/vim-endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "vim/pack/github/start/vim-eunuch"]
+	path = vim/pack/github/start/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
+[submodule "vim/pack/github/start/vim-fugitive"]
+	path = vim/pack/github/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/github/start/vim-repeat"]
+	path = vim/pack/github/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim/pack/github/start/vim-rhubarb"]
+	path = vim/pack/github/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb
+[submodule "vim/pack/github/start/vim-surround"]
+	path = vim/pack/github/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/github/start/vim-unimpaired"]
+	path = vim/pack/github/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/pack/github/start/vim-vinegar"]
+	path = vim/pack/github/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar

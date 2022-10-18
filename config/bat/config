@@ -1,0 +1,4 @@
+--theme=ansi
+--italic-text=always
+--style=auto
+--map-syntax='*.rasi:INI'
