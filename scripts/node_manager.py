@@ -10,7 +10,7 @@ DEBUG = False
 """
 usage: node_manager.py [-h] [--debug] -c CLASS_NAME -x ...
 
-bspwm node manager script
+node manager script
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -74,7 +74,7 @@ def run_or_raise(class_name: str, cmd : str) -> None:
     else:
         exec_cmd(cmd, False)
 
-parser = argparse.ArgumentParser(description='bspwm node manager script')
+parser = argparse.ArgumentParser(description='node manager script')
 parser.add_argument('--debug', required=False, help='enable script debugging', dest='debug', action='store_true')
 parser.add_argument('-c', required=True, type=str, help='exact or possible app WM class name for regex match', dest='class_name')
 parser.add_argument('-x', required=True, type=str, help='cmd to start app if not running already', dest='cmd', nargs=argparse.REMAINDER, action='append')
