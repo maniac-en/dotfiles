@@ -313,26 +313,21 @@ let g:mkdp_auto_close = 0
 let g:mkdp_command_for_global = 1
 let g:mkdp_browser='firefox'
 
-" vim-javascript (https://github.com/pangloss/vim-javascript)
-" conceal word 'function'
-let g:javascript_conceal_function = "ƒ"
-
 " ale (https://github.com/dense-analysis/ale.git)
-" Only use linters explicitly enabled
-let g:ale_lint_on_text_changed = 'always'
+" only run linters named in ale_linters settings.
 let g:ale_linters_explicit = v:true
-" Set ALE's 200ms delay to zero
-let g:ale_lint_delay = 0
-" Don't use the sign column/gutter for ALE
+" disable linting whilst typing unless explicitly mentioned in ftplugin file
+let g:ale_lint_on_text_changed = 'never'
+" don't use the sign column/gutter for ALE
 let g:ale_set_signs = v:false
 " ale highlight groups to see the errors
 highlight ALEInfo ctermbg=none ctermfg=red cterm=underline
 highlight ALEError ctermbg=none ctermfg=red cterm=underline
 highlight ALEWarning ctermbg=none ctermfg=red cterm=underline
-" don't enable ALE by default
-let b:ale_enabled = 0
-" Toggle ale
-nnoremap <silent> <F5> :call ToggleAleWithLoclist()<CR>
+" only call ALE when needed ?!?
+if exists('#ALEEvents')
+  call ale#events#Init()
+endif
 
 " vim-markdown
 if !exists('g:markdown_mapping_switch_status')
@@ -389,20 +384,30 @@ function! Quickfix_wrapper() abort
     call win_gotoid(l:window_id)
 endfunction
 
-" toggle locationlist with ALE
-function! ToggleAleWithLoclist() abort
-    if b:ale_enabled
-        ALEDisableBuffer
-        lclose
+" toggle quickfix
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        call Quickfix_wrapper()
     else
-        ALEEnableBuffer
-        sleep 69m
-        let l:window_id = win_getid()
-        silent! botright lopen
-        call win_gotoid(l:window_id)
+        cclose
     endif
 endfunction
 
+" loclist wrapper to open it in bottomright
+function! Loclist_wrapper() abort
+  let l:window_id = win_getid()
+  botright lopen
+  call win_gotoid(l:window_id)
+endfunction
+
+" toggle locationlist
+function! ToggleLocList()
+    if empty(filter(getwininfo(), 'v:val.loclist'))
+        call Loclist_wrapper()
+    else
+        lclose
+    endif
+endfunction
 
 """ statusline
 " always show statusline
@@ -431,7 +436,7 @@ nnoremap <silent> <leader>wa :wa<CR>
 nnoremap <silent> <leader>wq :x<CR>
 nnoremap <silent> <leader>x :x<CR>
 nnoremap <silent> <leader>Q :q!<CR>
-" jump between pair of parentheses using backspace
+" jump between matching pairs using backspace
 nnoremap <silent> <BS> %
 " subsitute map
 nnoremap <leader>r :%s///g<Left><Left><Left>
@@ -460,10 +465,10 @@ nnoremap <leader>V V`]
 nnoremap =- V`]=
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
-" Close quickfixlist window
-nnoremap <silent> <leader>cq :cclose<CR>
-" Close locationlist window
-nnoremap <silent> <leader>cl :lclose<CR>
+" toggle locationlist window
+nnoremap <silent> <F5> :call ToggleLocList()<CR>
+" toggle quickfixlist window
+nnoremap <silent> <F6> :call ToggleQuickFix()<CR>
 
 
 """ insert mode mappings
