@@ -4,4 +4,4 @@
 
 " HACK(D. Ben Knoble)
 " suggested in comments: https://vi.stackexchange.com/a/31503/29810
-execute 'nmap <silent> <buffer> <CR>' maparg('<CR>', 'n').':let b:ale_enabled = 0<CR>'
+" execute 'nmap <silent> <buffer> <CR>' maparg('<CR>', 'n').':let b:ale_enabled = 0<CR>'
