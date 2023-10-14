@@ -2,6 +2,8 @@ git
 gvim {vim-gtk3, manually run install.sh for markdown-preview.nvim plugin}
   maybe try neovim?
 zsh {>=5.9, build with --enable-pcre}
+tmux
+gnome-terminal
 libpcre3 libpcre3-dev
 batcat
 xclip
@@ -15,6 +17,7 @@ ripgrep
 tmux
 youtube-dl
 vlc
+spotify
 gcc
 python3, pip
 pandoc {texlive-xetex and fonts-dejavu to support markdown2pdf}
