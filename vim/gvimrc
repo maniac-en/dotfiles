@@ -1,8 +1,0 @@
-set guifont=Comic\ Code\ Medium\ 14
-set lines=60 columns=120
-winpos 289 34
-set guioptions-=T
-set guioptions-=m
-set guioptions-=r
-set guioptions-=l
-set guioptions-=b

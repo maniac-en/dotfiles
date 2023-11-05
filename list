@@ -1,15 +1,16 @@
 git
-gvim {vim-gtk3, manually run install.sh for markdown-preview.nvim plugin}
-  maybe try neovim?
+neovim
+go
+node
+npm
 zsh {>=5.9, build with --enable-pcre}
+  libpcre3 libpcre3-dev
 tmux
 gnome-terminal
-libpcre3 libpcre3-dev
 batcat
 xclip
 xdotool
 curl
-screenkey
 gnome-tweaks
 gnome-shell-extension-prefs
 fd-find
@@ -19,6 +20,8 @@ youtube-dl
 vlc
 spotify
 gcc
+make
+cmake
 python3, pip
 pandoc {texlive-xetex and fonts-dejavu to support markdown2pdf}
 fzf {install as per https://github.com/junegunn/fzf#using-git}
