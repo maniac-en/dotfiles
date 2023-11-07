@@ -62,3 +62,10 @@ function gcd() {
   local git_root_path=$(git rev-parse --show-toplevel 2>/dev/null)
   if [[ -n "$git_root_path" ]]; then cd "$git_root_path"; fi
 }
+
+# Open the file in Vim and go to the line
+# Source: https://github.com/junegunn/fzf#turning-into-a-different-process
+function git-lines() {
+  git grep --line-number . |
+    fzf --delimiter : --nth 3.. --bind 'enter:become(vim {1} +{2})'
+}

@@ -45,13 +45,12 @@ alias out='shutdown now'
 alias remove='sudo apt remove --purge -y'
 alias rg="rg --hidden --glob '!.git'"
 alias s='sudo'
-alias sc='source $HOME/.zshrc'
 alias shutdown='sudo shutdown'
 alias su='sudo su'
 alias v='vim'
 alias vc='$EDITOR $HOME/.config/nvim'
 alias x='chmod a+x'
-alias zd='$EDITOR $HOME/.zsh/zsh-config'
+alias zc="$EDITOR $HOME/.zsh/zsh-config && source $HOME/.zshrc"
 alias zsh_reset='rm -f ~/.zcompdump; compinit'
 
 #no idea why I made them
@@ -60,4 +59,4 @@ alias sl="echo -e \"\nIt's ls you DUMB-ASS\n\""
 
 # Hack(maniac): I keep changing zsh aliases file name so I wrote this workaround
 export _MANIAC_ALIASES_FILE_PATH="$0:A"
-alias ali="$EDITOR $_MANIAC_ALIASES_FILE_PATH && sc"
+alias ali="$EDITOR $_MANIAC_ALIASES_FILE_PATH && source $HOME/.zshrc"
