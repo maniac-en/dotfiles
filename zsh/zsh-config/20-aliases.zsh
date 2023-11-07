@@ -16,7 +16,7 @@ alias gpu='git pull'
 alias gr='git remote'
 alias gru='git remote update --prune'
 alias gs='{ git headlog 2>/dev/null || : } && git status -sb'
-alias gv='{ git headlog &>/dev/null || : } && vim -c +G -c "norm tk,d"'
+alias gsv='{ git headlog &>/dev/null || : } && vim -c +G -c "norm tk,d"'
 alias gw='git worktree'
 
 #general
