@@ -39,35 +39,102 @@ vim.keymap.set('n', '<leader>/',
   end, { desc = '[/] Fuzzily search in current buffer' }
 )
 
--- search files in entire git dir if in a git directoy
-function vim.find_files_from_project_git_root()
-  local function is_git_repo()
-    vim.fn.system("git rev-parse --is-inside-work-tree")
-    return vim.v.shell_error == 0
+-- Function to find the git root directory based on the current buffer's path
+local function find_git_root()
+  -- Use the current buffer's path as the starting point for the git search
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_dir
+  local cwd = vim.fn.getcwd()
+  -- If the buffer is not associated with a file, return nil
+  if current_file == "" then
+    current_dir = cwd
+  else
+    -- Extract the directory from the current file's path
+    current_dir = vim.fn.fnamemodify(current_file, ":h")
   end
-  local function get_git_root()
-    local dot_git_path = vim.fn.finddir(".git", ".;")
-    return vim.fn.fnamemodify(dot_git_path, ":h")
+
+  -- Find the Git root directory from the current file's path
+  local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
+  if vim.v.shell_error ~= 0 then
+    print("Not a git repository. Searching on current working directory")
+    return current_dir
   end
-  local opts = {}
-  if is_git_repo() then
-    opts = {
-      cwd = get_git_root(),
-    }
-  end
-  require("telescope.builtin").find_files(opts)
+  return git_root
 end
-vim.keymap.set('n', '<M-p>', builtin.git_files, { silent = true, desc = 'Search Git Files' })
+
+-- Function to find the irectory based on the current buffer's path
+local function find_cwd()
+  -- Use the current buffer's path as the starting point
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_dir
+  local cwd = vim.fn.getcwd()
+  -- If the buffer is not associated with a file, return nil
+  if current_file == "" then
+    current_dir = cwd
+  else
+    -- Extract the directory from the current file's path
+    current_dir = vim.fn.fnamemodify(current_file, ":h")
+  end
+
+  return current_dir
+end
+
+-- Custom live_grep function to search in git root
+local function live_grep_git_root()
+  local git_root = find_git_root()
+  if git_root then
+    require('telescope.builtin').live_grep({
+      search_dirs = {git_root},
+        winblend = 10,
+        layout_config = {
+          height = 0.9,
+          width = 0.9
+        }
+    })
+  end
+end
+
+vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
+vim.keymap.set('n', '<C-f>', live_grep_git_root, { silent = true, desc = 'Grep Git Files' })
+
+-- search files in entire git dir if in a git directoy
+local function find_files_git_root()
+  local git_root = find_git_root()
+  local opts = {}
+  if git_root then
+    opts = {
+      cwd = git_root,
+      winblend = 10,
+      layout_config = {
+        height = 0.9,
+        width = 0.9
+      }
+    }
+    require("telescope.builtin").find_files(opts)
+  end
+end
+vim.api.nvim_create_user_command('FindFilesGitRoot', find_files_git_root, {})
+vim.keymap.set('n', '<C-p>', find_files_git_root, { silent = true, desc = 'Find Git Files' })
 
 -- search files in current dir
-vim.keymap.set('n', '<C-p>', vim.find_files_from_project_git_root, { silent = true, desc = '[S]earch [F]iles' })
+local function find_files()
+  local current_dir = find_cwd()
+  local opts = {}
+  if current_dir then
+    opts = {
+      cwd = current_dir,
+      winblend = 10,
+      layout_config = {
+        height = 0.9,
+        width = 0.9
+      }
+    }
+    require("telescope.builtin").find_files(opts)
+  end
+end
+vim.api.nvim_create_user_command('FindFiles', find_files, {})
+vim.keymap.set('n', '<M-p>', find_files, { silent = true, desc = 'Find Files' })
 
--- grep search in current dir
-vim.keymap.set('n', '<C-f>', function()
-  builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end, { desc = '[G]rep [S]earch ' })
-
--- search vim help docs
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { silent = true, desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', builtin.grep_string, { silent = true, desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { silent = true, desc = '[S]earch [D]iagnostics' })
