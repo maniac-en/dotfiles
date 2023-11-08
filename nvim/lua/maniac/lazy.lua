@@ -20,7 +20,7 @@ require('lazy').setup({
   { 'tpope/vim-fugitive', dependencies = { 'tpope/vim-rhubarb', } },
 
   -- fast git commit browser
-  { 'junegunn/gv.vim', dependencies = { 'tpope/vim-fugitive' } },
+  { 'junegunn/gv.vim',    dependencies = { 'tpope/vim-fugitive' } },
 
   -- add/delete/update surroundings in pairs
   'tpope/vim-surround',
@@ -83,7 +83,7 @@ require('lazy').setup({
   },
 
   -- zen mode
-  { "folke/zen-mode.nvim", opts = {} },
+  { "folke/zen-mode.nvim",   opts = {} },
 
   -- undotree
   "mbbill/undotree",
@@ -92,12 +92,27 @@ require('lazy').setup({
   "nullchilly/fsread.nvim",
 
   -- lsp setup using lsp-zero
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'neovim/nvim-lspconfig'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
-  {'L3MON4D3/LuaSnip'},
+  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+  { 'williamboman/mason.nvim' },
+  { 'williamboman/mason-lspconfig.nvim' },
+  { 'neovim/nvim-lspconfig' },
 
+  -- autocompletion
+  {
+    'hrsh7th/nvim-cmp',
+    event = { "InsertEnter", "CmdlineEnter" },
+  },
+  'hrsh7th/cmp-nvim-lua',
+  'hrsh7th/cmp-nvim-lsp',
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
+  },
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-nvim-lsp-signature-help',
+  'hrsh7th/cmp-path',
+  'tjdevries/complextras.nvim'
 })

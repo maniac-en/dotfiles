@@ -99,7 +99,7 @@ vim.o.textwidth = 80
 vim.o.wrap = true
 
 -- shortmess stuff
-vim.o.shortmess = "atToO"
+-- vim.o.shortmess = "atToO"
 
 -- scrolling
 vim.o.sidescroll = 8
