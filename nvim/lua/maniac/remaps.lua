@@ -45,6 +45,7 @@ vim.keymap.set('n', '<leader>ts', '/\\v\\s+$<CR>', { noremap = true, silent = tr
 for _, v in ipairs({'q', 'qa', 'x', 'wq', 'wqa'}) do
   vim.keymap.set('n', '<leader>'..v, ':'..v..'<CR>', { noremap = true })
 end
+vim.keymap.set('n', '<leader>Q', ':q!<CR>', { noremap = true })
 
 -- tab open vim config
 vim.keymap.set('n', '<leader>ev', ':tabedit ' .. vim.fn.expand("$HOME") .. '/.config/nvim<CR>',
