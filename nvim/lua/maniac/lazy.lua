@@ -115,4 +115,10 @@ require('lazy').setup({
   'hrsh7th/cmp-nvim-lsp-signature-help',
   'hrsh7th/cmp-path',
   'tjdevries/complextras.nvim',
+
+  -- dap
+  "mfussenegger/nvim-dap",
+  "rcarriga/nvim-dap-ui",
+  "theHamsta/nvim-dap-virtual-text",
+  "mfussenegger/nvim-dap-python",
 })
