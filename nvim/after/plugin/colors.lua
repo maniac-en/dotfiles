@@ -1,18 +1,16 @@
-require("catppuccin").setup({
-  color_overrides = {
-    mocha = {
-      base = "#020403",
-      crust = "#666666",
-    }
-  }
+require("tokyonight").setup({
+  style = "night",
+  sidebars = { "qf", "vista_kind", "terminal", "packer" },
+  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+  on_colors = function(colors)
+    colors.hint = colors.orange
+    colors.error = "#ff0000"
+  end,
 })
 
-vim.cmd.colorscheme "catppuccin-mocha"
+vim.cmd.colorscheme "tokyonight-night"
 
-local statusline_color = "guifg=#adadad guibg=#1b1b1b"
+local statusline_color = "guifg=#a9b1d6 guibg=#22222e"
 vim.cmd.highlight({ "StatusLine", statusline_color })
 vim.cmd.highlight({ "StatusLineNC", statusline_color })
-
-local line_column_color = "guibg=#181818"
-vim.cmd.highlight({ "ColorColumn", line_column_color })
-vim.cmd.highlight({ "CursorLine", line_column_color })
+vim.cmd.highlight({ "ColorColumn",  "guibg=#272736" })
