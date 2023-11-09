@@ -114,5 +114,5 @@ require('lazy').setup({
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-nvim-lsp-signature-help',
   'hrsh7th/cmp-path',
-  'tjdevries/complextras.nvim'
+  'tjdevries/complextras.nvim',
 })
