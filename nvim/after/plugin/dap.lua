@@ -1,6 +1,15 @@
+local map = function(mode, lhs, rhs, desc)
+   if desc then
+      desc = "MANIAC_DAP: " .. desc
+   end
+   vim.keymap.set(mode, lhs, rhs, { remap = false, desc = desc })
+end
+
 require("nvim-dap-virtual-text").setup({
    virt_text_pos = 'eol'
 })
+
+---@diagnostic disable-next-line: missing-fields
 require("dapui").setup({
    layouts = {
       {
@@ -26,16 +35,16 @@ local dap = require("dap")
 local dapui = require("dapui")
 
 -- debugger mappings
-vim.keymap.set("n", "<F1>", function() dap.step_into() end, { noremap = true })
-vim.keymap.set("n", "<F2>", function() dap.step_over() end, { noremap = true })
-vim.keymap.set("n", "<F3>", function() dap.step_out() end, { noremap = true })
-vim.keymap.set("n", "<F4>", function() dapui.toggle() end, { noremap = true })
-vim.keymap.set("n", "<F5>", function() dap.continue() end, { noremap = true })
+map("n", "<F1>", function() dap.step_into() end, "[<F1>] Debug Step Into")
+map("n", "<F2>", function() dap.step_over() end, "[<F2>] Debug Step Over")
+map("n", "<F3>", function() dap.step_out() end, "[<F3>] Debug Step Out")
+map("n", "<F4>", function() dapui.toggle() end, "[<F4>] Debug UI Toggle")
+map("n", "<F5>", function() dap.continue() end, "[<F5>] Debug Continue")
 
-vim.keymap.set("n", "<leader>b", function() dap.toggle_breakpoint() end, { noremap = true })
-vim.keymap.set("n", "<leader>B", function() dap.set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end,
-   { noremap = true })
-vim.keymap.set("n", "<leader>dr", function() dapui.open({ reset = true }) end, { noremap = true })
+map("n", "<leader>b", function() dap.toggle_breakpoint() end, "[<leader>b] Debug Toggle [b]reakpoint")
+map("n", "<leader>B", function() dap.set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end,
+   "[<leader>B] Debug Add conditional [B]reakpoint")
+map("n", "<leader>dr", function() dapui.open({ reset = true }) end, "[<leader>dr] [D]ebug UI [R]eset")
 
 -- remove colorcolumn from dap buffers
 local ManiacDapUI = vim.api.nvim_create_augroup("ManiacDapUI", { clear = true })

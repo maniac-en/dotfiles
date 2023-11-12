@@ -4,7 +4,7 @@ require("dap").adapters["pwa-node"] = {
   port = "${port}",
   executable = {
     command = "node",
-    args = {vim.fn.expand("$HOME").."/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js", "${port}"},
+    args = { vim.fn.expand("$HOME") .. "/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js", "${port}" },
   }
 }
 

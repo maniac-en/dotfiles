@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: missing-fields
 require("Comment").setup({
   mappings = {
     basic = true,

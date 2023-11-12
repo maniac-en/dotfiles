@@ -1,19 +1,27 @@
--- Source: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/configuration-templates.md#primes-config
-
 local lsp_zero = require('lsp-zero')
+local tele_builtin = require('telescope.builtin')
+
+local map = function(mode, lhs, rhs, desc, bufnr)
+  if desc then
+    desc = "MANIAC_LSP: " .. desc
+  end
+  vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, remap = false, desc = desc })
+end
 
 lsp_zero.on_attach(function(_, bufnr)
-  local opts = { buffer = bufnr, remap = false }
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
-  vim.keymap.set("n", "<leader>fd", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>vr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  map("n", "gd", tele_builtin.lsp_definitions, "[gd] [G]et [D]efinition via telescope", bufnr)
+  map("n", "<leader>sd", tele_builtin.diagnostics, "[<leader>sd] Show [D]iagnostics via telescope", bufnr)
+  map("n", "K", vim.lsp.buf.hover, "[K] Display hover info about symbol", bufnr)
+  map("i", "<C-k>", vim.lsp.buf.signature_help, "[C-k] Display signature help about symbol", bufnr)
+  map("n", ",ds", tele_builtin.lsp_document_symbols, "[<leader>ds] Get [D]ocument [S]ymbols via telescope", bufnr)
+  map("n", "<leader>ws", tele_builtin.lsp_dynamic_workspace_symbols, "[<leader>ws] Get dynamic [W]orkspace [S]ymbols",
+    bufnr)
+  map("n", "<leader>fd", vim.diagnostic.open_float, "[<leader>fd] Show [F]loating [D]iagnostic window", bufnr)
+  map("n", "[d", vim.diagnostic.goto_next, "[[d] Next diagnostic", bufnr)
+  map("n", "]d", vim.diagnostic.goto_prev, "[]d] Prev diagnostic", bufnr)
+  map("n", "<leader>ca", vim.lsp.buf.code_action, "[<leader>ca] Show possible [C]ode [A]ctions", bufnr)
+  map("n", "<leader>vr", tele_builtin.lsp_references, "[<leader>vr] [V]iew [R]eferences", bufnr)
+  map("n", "<leader>rn", vim.lsp.buf.rename, "[<leader>rn] [R]e[Name] current symbol", bufnr)
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)

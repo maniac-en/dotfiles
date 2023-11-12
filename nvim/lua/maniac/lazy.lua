@@ -95,7 +95,12 @@ require('lazy').setup({
   { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim' },
-  { 'neovim/nvim-lspconfig' },
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      "folke/neodev.nvim", opts = {}
+    }
+  },
 
   -- autocompletion
   {
@@ -121,4 +126,7 @@ require('lazy').setup({
   "rcarriga/nvim-dap-ui",
   "theHamsta/nvim-dap-virtual-text",
   "mfussenegger/nvim-dap-python",
+
+  -- devicons
+  "kyazdani42/nvim-web-devicons",
 })

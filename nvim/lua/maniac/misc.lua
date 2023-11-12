@@ -23,12 +23,12 @@ autocmd("BufWrite", {
 })
 
 -- disable line numbers in terminal
-autocmd( "TermOpen", {
+autocmd("TermOpen", {
     group = maniac_aug,
     pattern = "*",
     callback = function()
-      vim.o.number = false
-      vim.o.relativenumber = false
+        vim.o.number = false
+        vim.o.relativenumber = false
     end,
-  }
+}
 )

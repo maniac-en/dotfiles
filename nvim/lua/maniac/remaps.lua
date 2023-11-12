@@ -1,79 +1,50 @@
+local map = function(mode, lhs, rhs, desc, silent, expr)
+  silent = silent or false
+  expr = expr or false
+  if desc then
+    desc = "MANIAC_GENERIC: " .. desc
+  end
+  vim.keymap.set(mode, lhs, rhs, { remap = false, silent = silent, expr = expr, desc = desc })
+end
 -- Set the leader key
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ','
 
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
--- disable not-needed maps
-vim.keymap.set('x', '<Space>', '<Nop>', { silent = true })
+map("x", "<Space>", '<Nop>', "[<Space>] Purposely mapped to nothing", true, false)
 for _, m in ipairs({ "Q", "<left>", "<right>", "<up>", "<down>" }) do
-  vim.keymap.set('n', m, '<Nop>')
+  map("n", m, '<Nop>', "[" .. m .. "] Purposely mapped to nothing", true, false)
 end
 
--- stay in middle when jumping around, even while searching
-vim.keymap.set('n', '<c-o>', '<c-o>zz', { noremap = true })
-vim.keymap.set('n', '<TAB>', '<TAB>zz', { noremap = true })
-vim.keymap.set('n', 'n', 'nzzzv', { noremap = true })
-vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true })
+map("n", "<c-o>", "<c-o>zz", "[<c-o>] Jumplist-previous with cursor in middle of buffer", false, false)
+map("n", "<TAB>", "<TAB>zz", "[<TAB>] Jumplist-new with cursor in middle of buffer", false, false)
+map("n", "n", "nzzzv", "[n] Next search hit with cursor in middle of buffer", false, false)
+map("n", "N", "Nzzzv", "[N] Previous search hit with cursor in middle of buffer", false, false)
+map("n", "<C-d>", "<C-d>zz", "[<C-d>] Scroll downwards with cursor in middle of buffer", false, false)
+map("n", "<C-u>", "<C-u>zz", "[<C-u>] Scroll upwards with cursor in middle of buffer", false, false)
 
--- opening new splits/tabs
-vim.keymap.set('n', 'ts', ':split<SPACE>', { noremap = true })
-vim.keymap.set('n', 'tv', ':vsplit<SPACE>', { noremap = true })
-vim.keymap.set('n', 'tn', ':tabe<SPACE>', { noremap = true })
-vim.keymap.set('n', 'tc', ':tabclose<CR>', { noremap = true, silent = true })
+map("n", "ts", ":split<SPACE>", "[ts] [T]ab [S]plit; it's not really a tab", false, false)
+map("n", "tv", ":vsplit<SPACE>", "[tv] [T]ab split [V]ertical; it's not really a tab", false, false)
+map("n", "tn", ":tabe<SPACE>", "[tn] [T]ab [N]ew", false, false)
+map("n", "tc", vim.cmd.tabclose, "[tc] [T]ab [C]lose", true, false)
 
--- Jump to normal mode using <ESC> in terminal
-vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true })
-
--- Stop highlighting text with <SPACE>
-vim.keymap.set('n', '<SPACE>', ':noh<BAR>:echo<CR>', { noremap = true })
-
--- jump between matching pairs using backspace
-vim.keymap.set('n', '<BS>', '%', { noremap = true, silent = true })
-
--- cd to buffer's present working directory
--- usually needed when I launch a file/folder in vim buffer not from a
--- project's folder
-vim.keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = true })
-
--- show trailing whitespaces
-vim.keymap.set('n', '<leader>ts', '/\\v\\s+$<CR>', { noremap = true, silent = true })
-
--- write/quit file conveniently
--- I SHOULD NOT BE USING THESE
--- DISCIPLINE IS EVERYTHING MANIAC
--- for _, v in ipairs({'q', 'qa', 'x', 'wq', 'wqa'}) do
---   vim.keymap.set('n', '<leader>'..v, ':'..v..'<CR>', { noremap = true })
--- end
--- vim.keymap.set('n', '<leader>Q', ':q!<CR>', { noremap = true })
-
--- tab open vim config
-vim.keymap.set('n', '<leader>ev', ':tabedit ' .. vim.fn.expand("$HOME") .. '/.config/nvim<CR>',
-  { noremap = true, silent = true })
-
--- Retain cursor position whilst joining lines
-vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
-
--- sudo write mapping
-vim.keymap.set("s", "w!!", "w !sudo tee > /dev/null %")
-
--- retain yanked content whilst pasting in visual mode
-vim.keymap.set("x", "<leader>p", "\"_dP", { noremap = true })
-
--- copy to system clipboard
-vim.keymap.set('x', '<C-y>', '"+y', { noremap = true, silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '0', "v:count == 0 ? 'g0' : '0'", { expr = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '$', "v:count == 0 ? 'g$' : '$'", { expr = true, silent = true })
-
--- sort selection
-vim.keymap.set('x', '<leader>s', ':sort u<CR>', { noremap = true, silent = true })
-
--- move selected lines up/down
-vim.keymap.set('x', "J", ":m '>+1<CR>gv=gv", { noremap = true })
-vim.keymap.set('x', "K", ":m '<-2<CR>gv=gv", { noremap = true })
+map("t", "<ESC>", "<C-\\><C-n>", "[<ESC>] [Esc]ape into normal mode in terminal", false, false)
+map("n", "<SPACE>", ":noh<BAR>:echo<CR>", "[<SPACE>] Stop highlighting text with <SPACE>", false, false)
+map("n", "<BS>", "%", "[<BS>] Jump matching pairs using Backspace", true, false)
+map("n", "<leader>ev", ":tabedit " .. vim.fn.expand("$HOME") .. "/.config/nvim<CR>",
+  "[<leader>ev] Tab edit [E]dit Neo[V]im", true, false)
+map("n", "J", "mzJ`z", "[J] Retain cursor position whilst joining lines", false, false)
+map("s", "w!!", "w !sudo tee > /dev/null %", "[w!!] SudoWrite", false, false)
+map("x", "<leader>p", "\"_dP", "[<leader>p] Retain yanked content whilst pasting in visual mode", false, false)
+map("n", "<leader>ts", "/\\v\\s+$<CR>", "[<leader>ts] Show [T]railing [S]paces", true, false)
+map("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", "[<leader>cd] [CD] to current buffer's curret working directory", false,
+  false)
+map("x", "<C-y>", "\"+y", "[<C-y>] Copy to system clipboard", true, false)
+map({ "n", "x" }, "j", "v:count == 0 ? \"gj\" : \"j\"", "[j] Better navigation around wrapped lines", true, true)
+map({ "n", "x" }, "k", "v:count == 0 ? \"gk\" : \"k\"", "[k] Better navigation around wrapped lines", true, true)
+map({ "n", "x" }, "0", "v:count == 0 ? \"g0\" : \"0\"", "[0] Better navigation around wrapped lines", true, true)
+map({ "n", "x" }, "$", "v:count == 0 ? \"g$\" : \"$\"", "[$] Better navigation around wrapped lines", true, true)
+map("x", "<leader>s", ":sort u<CR>", "[<leader>s] Sort selection uniquely", true, false)
+map("x", "J", ":m '>+1<CR>gv=gv", "[J] Move selected lines up/down with indentation", false, false)
+map("x", "K", ":m '<-2<CR>gv=gv", "[K] Move selected lines up/down with indentation", false, false)
+map("n", "<C-j>", ":cnext<CR>", "[<C-j>] Next quickfix hit", false, false)
+map("n", "<C-k>", ":cprevious<CR>", "[<C-k>] Prev quickfix hit", false, false)

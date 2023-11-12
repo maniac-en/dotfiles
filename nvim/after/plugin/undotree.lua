@@ -1,1 +1,2 @@
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { noremap = true, desc = 'Toggle UndoTree' })
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle,
+  { remap = false, desc = 'MANIAC_UNDOTREE [<leader>u] Toggle [U]ndoTree' })

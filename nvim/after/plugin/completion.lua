@@ -11,6 +11,7 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+---@diagnostic disable-next-line: missing-fields
 cmp.setup({
 
   sources = { -- priority of sources matter
@@ -93,6 +94,7 @@ cmp.setup({
     ghost_text = false,
   },
 
+  ---@diagnostic disable-next-line: missing-fields
   sorting = {
     comparators = {
       cmp.config.compare.offset,
@@ -129,4 +131,3 @@ vim.api.nvim_set_keymap(
   [[<c-r>=luaeval("require('complextras').complete_matching_line()")<CR>]],
   { noremap = true }
 )
-

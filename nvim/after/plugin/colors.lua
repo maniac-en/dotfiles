@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: missing-fields
 require("tokyonight").setup({
   style = "night",
   sidebars = { "qf", "vista_kind", "terminal", "packer" },
@@ -6,11 +7,18 @@ require("tokyonight").setup({
     colors.hint = colors.orange
     colors.error = "#ff0000"
   end,
+
+  on_highlights = function(highlights, _)
+    highlights.StatusLine = { fg = "#a9b1d6", bg = "#22222e" }
+    highlights.StatusLineNC = highlights.statusline
+    highlights.ColorColumn = { bg = "#272736" }
+    highlights.ManiacTodo = { fg = "#e0af68" }
+  end
 })
 
 vim.cmd.colorscheme "tokyonight-night"
 
-local statusline_color = "guifg=#a9b1d6 guibg=#22222e"
-vim.cmd.highlight({ "StatusLine", statusline_color })
-vim.cmd.highlight({ "StatusLineNC", statusline_color })
-vim.cmd.highlight({ "ColorColumn",  "guibg=#272736" })
+-- case-insensitive match TODO, FIXME, @@@
+vim.fn.matchadd("ManiacTodo", [[\v\c<TODO>]])
+vim.fn.matchadd("ManiacTodo", [[\v\c<FIXME>]])
+vim.fn.matchadd("ManiacTodo", [[@@@]])
