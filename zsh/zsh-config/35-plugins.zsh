@@ -1,8 +1,12 @@
 # zsh-syntax-hignlighting
-[ -f "$HOME"/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source "$HOME"/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
 typeset -gA ZSH_HIGHLIGHT_STYLES
+typeset -A ZSH_HIGHLIGHT_PATTERNS
+[ -f "$HOME"/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source "$HOME"/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line)
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#A89984'
+ZSH_HIGHLIGHT_STYLES[line]='bold'
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rdf *' 'fg=red,bold,bg=black,underline')
+ZSH_HIGHLIGHT_PATTERNS+=('\|' 'fg=yellow,bold')
 
 # zsh-autosuggestions
 [ -f "$HOME"/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source "$HOME"/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

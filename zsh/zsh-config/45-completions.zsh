@@ -65,17 +65,16 @@ bindkey -M menuselect '^o' accept-and-infer-next-history
 # just use inbuilt completion for bat due to cache BS
 compdef -d bat
 
-# completions for my custom git aliases
-compdef -d ga gar gc gca gco gcr gd gf gl gll glq glv gp gpu gru gs gv gw
-compdef __git_add ga gar
-compdef __git_commit gc gca gcr
-compdef __git_diff gd
-compdef __git_branch_names gco
-compdef __git_fetch gf
-compdef __git_log gl gll glq
-compdef __git_push gp
-compdef __git_pull gpu
-compdef __git_remotes gr gru
-compdef __git_status gs
-compdef __git_worktree gw
-
+# # completions for my custom git aliases
+# compdef -d ga gar gc gca gco gcr gd gf gl gll glq glv gp gpu gru gs gv gw
+# compdef __git_add ga gar
+# compdef __git_commit gc gca gcr
+# compdef __git_diff gd
+# compdef __git_branch_names gco
+# compdef __git_fetch gf
+# compdef __git_log gl gll glq
+# compdef __git_push gp
+# compdef __git_pull gpu
+# compdef __git_remotes gr gru
+# compdef __git_status gs
+# compdef __git_worktree gw

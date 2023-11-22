@@ -5,3 +5,10 @@
 --]]
 
 require("maniac")
+
+-- @@@ experimenting
+-- it's good to have guibg as None for WinSeparator/VertSplit highlight groups
+-- for good looking statuslines in splits
+vim.o.laststatus = 3 -- show global statusline
+vim.o.winbar = "%=%m %f"
+vim.o.stl = "%=%m %F %=%l/%L:%v"

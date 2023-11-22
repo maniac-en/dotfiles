@@ -14,8 +14,14 @@ require("dapui").setup({
    layouts = {
       {
          elements = {
-            { id = "watches", size = 0.65 },
-            { id = "repl",    size = 0.35 },
+            { id = "repl",    size = 1 },
+         },
+         position = "right",
+         size = 75
+      },
+      {
+         elements = {
+            { id = "watches", size = 1 },
          },
          position = "bottom",
          size = 12

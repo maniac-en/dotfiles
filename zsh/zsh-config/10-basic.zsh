@@ -1,4 +1,4 @@
-# Use emacs mode. Vim is nice but not in a shell.
+# Use emacs mode. Vim is nice but not in a shell. (for me)
 bindkey -e
 set -o emacs
 
